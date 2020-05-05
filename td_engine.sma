@@ -857,7 +857,7 @@ public CmdGoToSpec(id)
 {
 	if(get_user_team(id) == 3 || get_user_team(id) == 0)
 	{
-		ColorChat(id, GREEN, "%s^x01 You cannot join to^x03 Spectacors^x01 if you are spectactor", CHAT_PREFIX);
+		ColorChat(id, GREEN, "%s^x01 Nie mozesz przejsc do ^x03 obserwatorow^x01 jezeli jestes obserwatorem", CHAT_PREFIX);
 		return PLUGIN_HANDLED;
 	}
 	
@@ -872,7 +872,7 @@ public CmdGoToSpec(id)
 	
 	user_silentkill(id);
 
-	ColorChat(0, GREEN, "%s^x01 Defender '%s' has been moved to Spectacors.", CHAT_PREFIX, szName);
+	ColorChat(0, GREEN, "%s^x01 Gracz '%s' zostal przeniesiony do obserwatorow.", CHAT_PREFIX, szName);
 	cs_set_user_team(id, CS_TEAM_SPECTATOR, CS_DONTCHANGE);
 
 	remove_task(id + TASK_GIVE_NAPALM)
@@ -984,7 +984,7 @@ public SaveUserConfig(id, iFile)
 		{
 			if(tmpGold > g_ConfigValues[CFG_BANK_LIMIT_VIP])
 			{
-				ColorChat(id, GREEN, "%s^x01 You reached maximum bank limit of gold for VIP users [ %d ]", CHAT_PREFIX, g_ConfigValues[CFG_BANK_LIMIT_VIP]); 
+				ColorChat(id, GREEN, "%s^x01 Osiagnales limit monet w banku dla graczy VIP [ %d ]", CHAT_PREFIX, g_ConfigValues[CFG_BANK_LIMIT_VIP]); 
 				tmpGold = g_ConfigValues[CFG_BANK_LIMIT_VIP];
 			}
 		}
@@ -995,10 +995,10 @@ public SaveUserConfig(id, iFile)
 		{
 			if(tmpGold > g_ConfigValues[CFG_BANK_LIMIT])
 			{
-				ColorChat(id, GREEN, "%s^x01 You reached maximum bank limit of gold for normal users [ %d ]", CHAT_PREFIX, g_ConfigValues[CFG_BANK_LIMIT]); 
+				ColorChat(id, GREEN, "%s^x01 Osiagnales limit monet w banku dla graczy bez VIP [ %d ]", CHAT_PREFIX, g_ConfigValues[CFG_BANK_LIMIT]); 
 
 				if(g_ConfigValues[CFG_VIP] && g_ConfigValues[CFG_BANK_LIMIT_VIP])
-					ColorChat(id, GREEN, "%s^x01 VIP users can save in bank %d gold", CHAT_PREFIX, g_ConfigValues[CFG_BANK_LIMIT_VIP])
+					ColorChat(id, GREEN, "%s^x01 Gracze VIP moga zachowac w banku %d monet", CHAT_PREFIX, g_ConfigValues[CFG_BANK_LIMIT_VIP])
 
 				tmpGold = g_ConfigValues[CFG_BANK_LIMIT];
 			}
@@ -1274,11 +1274,11 @@ public PlayerSpawned(id)
 				new iGold = g_ConfigValues[CFG_JOIN_PLAYER_EXTRA_GOLD] * g_ActualWave
 				new iMoney = g_ConfigValues[CFG_JOIN_PLAYER_EXTRA_MONEY] * g_ActualWave;
 				
-				ColorChat(id, GREEN, "%s^x01 Actually defenders reached^x04 %d^x01 wave", CHAT_PREFIX, g_ActualWave)
+				ColorChat(id, GREEN, "%s^x01 Obroncy doszli do ^x04 %d^x01 fali", CHAT_PREFIX, g_ActualWave)
 				
 				if(iGold)
 				{
-					ColorChat(id, GREEN, "%s^x01 For better start you got %d gold", CHAT_PREFIX, iGold)	          
+					ColorChat(id, GREEN, "%s^x01 Otrzymales %d monet na lepszy start", CHAT_PREFIX, iGold)	          
 					g_PlayerInfo[id][PLAYER_GOLD] += iGold
 				}
 				if(iMoney)
@@ -1288,7 +1288,7 @@ public PlayerSpawned(id)
 					if(iMoney > 16000)
 						iMoney = 16000;
 						
-					ColorChat(id, GREEN, "%s^x01 For better start you got $%d", CHAT_PREFIX, iMoney)
+					ColorChat(id, GREEN, "%s^x01 Otrzymales na start $%d", CHAT_PREFIX, iMoney)
 					cs_set_user_money(id, iMoney)
 				}
 			}
@@ -1361,7 +1361,7 @@ public CmdKill(id)
 {
 	if(g_ConfigValues[CFG_BLOCK_CMD_KILL])
 	{
-		client_print(id, print_console, "This command is blocked by Tower Defense Mod");
+		client_print(id, print_console, "Ta komenda jest zablokowana przez Tower Defense Mod");
 		return FMRES_SUPERCEDE
 	}
 	return FMRES_IGNORED
@@ -1383,7 +1383,7 @@ public ChangeWidthOfStartZone(id)
 	
 	if(iWidth < 5 || iWidth > 10000)
 	{
-		client_print(id, print_center, "You typed bad value");
+		client_print(id, print_center, "Wybrales zla wartosc");
 		StartZoneAdminMenu(id);
 		return PLUGIN_HANDLED;
 	}
@@ -1404,7 +1404,7 @@ public ChangeLengthOfStartZone(id)
 	
 	if(iLength < 5 || iLength > 10000)
 	{
-		client_print(id, print_center, "You typed bad value");
+		client_print(id, print_center, "Wybrales zla wartosc");
 		StartZoneAdminMenu(id);
 		return PLUGIN_HANDLED;
 	}
@@ -1426,7 +1426,7 @@ public ChangeWidthOfRepairZone(id)
 	
 	if(iWidth < 5 || iWidth > 10000)
 	{
-		client_print(id, print_center, "You typed bad value");
+		client_print(id, print_center, "Wybrales zla wartosc");
 		RepairZoneAdminMenu(id);
 		return PLUGIN_HANDLED;
 	}
@@ -1447,7 +1447,7 @@ public ChangeLengthOfRepairZone(id)
 	
 	if(iLength < 5 || iLength > 10000)
 	{
-		client_print(id, print_center, "You typed bad value");
+		client_print(id, print_center, "Wybrales zla wartosc");
 		RepairZoneAdminMenu(id);
 		return PLUGIN_HANDLED;
 	}
@@ -1469,7 +1469,7 @@ public ChangeWidthOfMapVoteZone(id)
 	
 	if(iWidth < 5 || iWidth > 10000)
 	{
-		client_print(id, print_center, "You typed bad value");
+		client_print(id, print_center, "Wybrales zla wartosc");
 		MapVoteZoneAdminMenu(id);
 		return PLUGIN_HANDLED;
 	}
@@ -1490,7 +1490,7 @@ public ChangeLengthOfMapVoteZone(id)
 	
 	if(iLength < 5 || iLength > 10000)
 	{
-		client_print(id, print_center, "You typed bad value");
+		client_print(id, print_center, "Wybrales zla wartosc");
 		MapVoteZoneAdminMenu(id);
 		return PLUGIN_HANDLED;
 	}
@@ -2202,7 +2202,7 @@ public PlayerIsInRepairZone(id)
 		if(g_TowerUpgradingPlayerIndex != id && g_TowerUpgradingPlayerIndex != 0)
 		{
 			set_hudmessage(60, 255, 0, 0.06, 0.70, 1, 1.0, 2.1, 0.2, 0.2, -1)
-			ShowSyncHudMsg(id, g_SyncHudRepair, "Tower is being upgraded by other player");
+			ShowSyncHudMsg(id, g_SyncHudRepair, "Wieza jest ulepszana przez innego gracza");
 			
 			set_task(1.0, "PlayerIsInRepairZone", id + TASK_IS_IN_REPAIR_ZONE)
 			return;
@@ -2219,7 +2219,7 @@ public PlayerIsInRepairZone(id)
 		if(g_TowerHealth == maxTowerHealth)
 		{
 			set_hudmessage(255, 0, 0, 0.06, 0.70, 1, 1.0, 2.1, 0.2, 0.2, -1)
-			ShowSyncHudMsg(id, g_SyncHudRepair, "Tower is not damaged! Repairing not completed.");
+			ShowSyncHudMsg(id, g_SyncHudRepair, "Wieza nie jest uszkodzona! Naprawa nieudana.");
 		} 
 		else if((++g_PlayerRepairedBlock[id]) == maxBlocks || maxBlocks == 0)
 		{
@@ -2240,12 +2240,12 @@ public PlayerIsInRepairZone(id)
 			else
 				g_TowerHealth  += amount;
 			
-			ColorChat(0, GREEN, "%s^x01 Defender %s has just repaired Tower about %d HP", CHAT_PREFIX, szName, amount);
+			ColorChat(0, GREEN, "%s^x01 Obronca %s naprawil wiezy %d HP", CHAT_PREFIX, szName, amount);
 		}
 		else
 		{
 			set_hudmessage(0, 255, 0, 0.06, 0.70, 1, 1.0, 2.1, 0.2, 0.2, -1)
-			ShowSyncHudMsg(id, g_SyncHudRepair, "Bulding %d block completed!", g_PlayerRepairedBlock[id]);
+			ShowSyncHudMsg(id, g_SyncHudRepair, "Budowa %d zakonczona!", g_PlayerRepairedBlock[id]);
 		}
 		
 		g_PlayerTimeInRepairZone[id] = g_ConfigValues[CFG_REPAIR_ZONE_TIME];
@@ -2257,12 +2257,12 @@ public PlayerIsInRepairZone(id)
 	if(g_TowerHealth >= maxTowerHealth)
 	{
 		set_hudmessage(255, 0, 0, 0.06, 0.70, 1, 1.0, 2.1, 0.2, 0.2, -1)
-		ShowSyncHudMsg(id, g_SyncHudRepair, "Tower is not damaged!");
+		ShowSyncHudMsg(id, g_SyncHudRepair, "Wieza jest nieuszkodzona!");
 	}
 	else
 	{
 		set_hudmessage(255, 0, 0, 0.06, 0.70, 1, 1.0, 2.1, 0.2, 0.2, -1)
-		ShowSyncHudMsg(id, g_SyncHudRepair, "Wait %d %s to build block [%d / %d] [Tower repair cost: %d gold]", playerTime, playerTime == 1 ? "second" : "seconds",  g_PlayerRepairedBlock[id]+1, maxBlocks, cost);
+		ShowSyncHudMsg(id, g_SyncHudRepair, "Zaczekaj %d %s aby zbudowac [%d / %d] [Koszt naprawy wiezy: %d monet]", playerTime, playerTime == 1 ? "sekunda" : "sekund",  g_PlayerRepairedBlock[id]+1, maxBlocks, cost);
 		
 		g_PlayerTimeInRepairZone[id] --;
 	}
@@ -2275,7 +2275,7 @@ public CheckArePlayersInStartZone()
 	if(!is_valid_ent(g_StartZoneEntity))
 	{
 		set_hudmessage(255, 0, 0, 0.06, 0.63, 1, 1.0, 1.1, 0.2, 0.2, 3)
-		ShowSyncHudMsg(0, g_SyncHudGameInfo, "StartZone is not exist. Create new one!");
+		ShowSyncHudMsg(0, g_SyncHudGameInfo, "Strefa startu nie istnieje! Stworz nowa!");
 		
 		return;
 	}
@@ -2313,7 +2313,7 @@ public CheckArePlayersInStartZone()
 			g_IsGameStarted = true;
 			
 			set_hudmessage(0, 255, 0, 0.06, 0.63, 1, 1.0, 1.1, 0.2, 0.2, 3)
-			ShowSyncHudMsg(0, g_SyncHudGameInfo, "Game will be started in 10 seconds...");
+			ShowSyncHudMsg(0, g_SyncHudGameInfo, "Gra zostanie zrestartowana w ciagu 10 sekund...");
 			
 			client_cmd(0, "spk sound/%s", g_SoundFile[SND_CLEAR_WAVE]);
 			
@@ -2331,12 +2331,12 @@ public CheckArePlayersInStartZone()
 		else if(!g_IsAdminInStartZoneMenu)
 		{
 			set_hudmessage(0, 255, 0, 0.06, 0.63, 1, 1.0, 1.1, 0.2, 0.2, 3)
-			ShowSyncHudMsg(0, g_SyncHudGameInfo, "Stay yet %d %s in start zone...^n%s created by %s", checkPlayerTime, checkPlayerTime == 1 ? "second" : "seconds",  PLUGIN, AUTHOR);
+			ShowSyncHudMsg(0, g_SyncHudGameInfo, "Zostan jeszcze %d %s w strefie startu...^n%s stworzone przez %s", checkPlayerTime, checkPlayerTime == 1 ? "sekunda" : "sekund",  PLUGIN, AUTHOR);
 		}
 		else
 		{
 			set_hudmessage(22, 255, 125, 0.06, 0.63, 1, 1.0, 1.1, 0.2, 0.2, 3)
-			ShowSyncHudMsg(0, g_SyncHudGameInfo, "Admin is working... [is in admin menu]");
+			ShowSyncHudMsg(0, g_SyncHudGameInfo, "Admin wlasnie pracuje... [jest w menu admina]");
 		}
 	}
 	else
@@ -2351,12 +2351,12 @@ public CheckArePlayersInStartZone()
 				if(!g_IsPlayerInStartZone[i])
 				{
 					set_hudmessage(255, 255, 0, 0.06, 0.63, 1, 1.0, 1.1, 0.2, 0.2, 3)
-					ShowSyncHudMsg(0, g_SyncHudGameInfo, "%d %s left to start game. Please go to start zone...", iPlayersLeft,iPlayersLeft== 1 ? "player" : "players");
+					ShowSyncHudMsg(0, g_SyncHudGameInfo, "%d %s wymagane do wystartowania. Udaj sie do strefy startu...", iPlayersLeft,iPlayersLeft== 1 ? "gracz" : "graczy");
 				}
 				else
 				{
 					set_hudmessage(100, 255, 0, 0.06, 0.63, 1, 1.0, 1.1, 0.2, 0.2, 3)
-					ShowSyncHudMsg(0, g_SyncHudGameInfo, "%d %s left to start game. Please wait for %s...", iPlayersLeft ,iPlayersLeft == 1 ? "player" : "players", iPlayersLeft == 1 ? "last player" : "other players");
+					ShowSyncHudMsg(0, g_SyncHudGameInfo, "%d %s pozostalo do wystartowania. Zaczekaj na %s...", iPlayersLeft ,iPlayersLeft == 1 ? "gracza" : "graczy", iPlayersLeft == 1 ? "last player" : "other players");
 				}
 			}
 		}
@@ -2396,7 +2396,7 @@ public CheckGameTask()
 							user_silentkill(i);
 
 							cs_set_user_team(i, CS_TEAM_SPECTATOR, CS_DONTCHANGE);
-							ColorChat(0, GREEN, "%s^x01 Defender '%s' was moved to spectator becouse he was afk about %d seconds.", CHAT_PREFIX, szName, g_ConfigValues[CFG_AFK_TIME]);
+							ColorChat(0, GREEN, "%s^x01 Obronca '%s' zostal przeniesiony do obserwatorow z powody bycia afk przez %d sekund.", CHAT_PREFIX, szName, g_ConfigValues[CFG_AFK_TIME]);
 						}
 						else if(g_PlayerAfkWarns[i] >= floatround( iLimit / 2.0 ) )
 						{
@@ -2405,7 +2405,7 @@ public CheckGameTask()
 							if(iLeft <= 5)
 							{
 								set_dhudmessage(255, 0, 0, -1.0, 0.55, 1, 1.0, 4.5)
-								show_dhudmessage(i, "AFK to SPEC^n - MOVE TO SPEC AFTER %d SECONDS -", iLeft);
+								show_dhudmessage(i, "AFK to SPEC^n - PRZENIESIENIE DO OBSERWATOROW ZA %d SEKUND -", iLeft);
 							}
 							else if(5 < iLeft < 20)
 							{
@@ -2435,7 +2435,7 @@ public CheckGameTask()
 	{
 		if(GetAlivePlayers() == 0)
 		{
-			ColorChat(0, GREEN, "%s^x01 Game has been resetted becouse there are not alive players.", CHAT_PREFIX);
+			ColorChat(0, GREEN, "%s^x01 Gra zostala zresetowana z powodu braku zyjacych graczy.", CHAT_PREFIX);
 			ResetGame();
 		}
 	}
@@ -2677,7 +2677,7 @@ public ShowShopMenu(id, fromMenu)
 	
 	static szFormat[128]
 
-	formatex(szFormat, charsmax(szFormat), "\yYou have \w%d\y gold!^n\rWhat you want to buy?", g_PlayerInfo[id][PLAYER_GOLD])
+	formatex(szFormat, charsmax(szFormat), "\yPosiadasz \w%d\y monet!^n\rCo chcesz kupic?", g_PlayerInfo[id][PLAYER_GOLD])
 	
 	new iMenu = menu_create(szFormat, "ShowShopMenuH")
 	new iCb = menu_makecallback("ShowShopMenuCb")
