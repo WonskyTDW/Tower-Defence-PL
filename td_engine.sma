@@ -2284,7 +2284,7 @@ public CheckArePlayersInStartZone()
 	if(iAlivePlayers == 0)
 	{
 		set_hudmessage(255, 0, 0, 0.06, 0.63, 1, 1.0, 1.1, 0.2, 0.2, 3)
-		ShowSyncHudMsg(0, g_SyncHudGameInfo, "Waiting for players...!");
+		ShowSyncHudMsg(0, g_SyncHudGameInfo, "Oczekiwanie na graczy...!");
 		
 		return
 	}
@@ -2734,15 +2734,15 @@ public ShowShopMenuH(id, menu, item)
 	
 	num_to_str(item, szKey, 4);
 	
-	formatex(szTitle, charsmax(szTitle), "\wName: \y%s ^n\wDescription: \y%s ^n\wPrice: \y%d\w gold ^nOne per map: %s ^n\rYou buy?",  
+	formatex(szTitle, charsmax(szTitle), "\wNazwa: \y%s ^n\wOpis: \y%s ^n\wCena: \y%d\w monet ^nRaz na mape: %s ^n\rKupujesz?",  
 	g_ShopItemsName[item], 
 	g_ShopItemsDesc[item],
 	g_ShopItemsPrice[item], 
-	g_ShopOnePerMap[item] ?  "\rYes": "\yNo")	
+	g_ShopOnePerMap[item] ?  "\rTak": "\yNie")	
 	
 	new iMenu = menu_create(szTitle, "ShowShopMenu2H")
-	menu_additem(iMenu, "\yBuy", szKey)
-	menu_additem(iMenu, "\rBack" )	
+	menu_additem(iMenu, "\yKup", szKey)
+	menu_additem(iMenu, "\rPowrot" )	
 	menu_display(id, iMenu)
 	return PLUGIN_CONTINUE
 }
@@ -2776,9 +2776,9 @@ public PlayerBuyItem(id, iItemIndex)
 	if(iRet != PLUGIN_CONTINUE)
 		return iRet;
 		
-	ColorChat(id, GREEN, "%s^x01 You buy: %s", CHAT_PREFIX, g_ShopItemsName[iItemIndex])
-	ColorChat(id, GREEN, "%s^x01 Description: %s", CHAT_PREFIX, g_ShopItemsDesc[iItemIndex])
-	ColorChat(id, GREEN, "%s^x01 For: %d gold", CHAT_PREFIX, g_ShopItemsPrice[iItemIndex])
+	ColorChat(id, GREEN, "%s^x01 Kupiles: %s", CHAT_PREFIX, g_ShopItemsName[iItemIndex])
+	ColorChat(id, GREEN, "%s^x01 Opis: %s", CHAT_PREFIX, g_ShopItemsDesc[iItemIndex])
+	ColorChat(id, GREEN, "%s^x01 Koszt: %d monet", CHAT_PREFIX, g_ShopItemsPrice[iItemIndex])
 	
 	if(g_ShopOnePerMap[iItemIndex]) 
 		g_ShopPlayerBuy[id][iItemIndex] = 1;
@@ -2794,7 +2794,7 @@ public CmdPlayerSkillMenu(id)
 {
 	static szFormat[128]
 	
-	new iMenu = menu_create("Your skills:", "CmdPlayerSkillMenuH")
+	new iMenu = menu_create("Twoje skile:", "CmdPlayerSkillMenuH")
 	new iCb = menu_makecallback("CmdPlayerSkillMenuCb");
 	new iPlayerLevel = g_PlayerInfo[id][PLAYER_LEVEL] ;
 	
@@ -2803,9 +2803,9 @@ public CmdPlayerSkillMenu(id)
 		if(i == 0)
 			formatex(szFormat, charsmax(szFormat), g_SkillsDesc[i])
 		else if(iPlayerLevel <= i)
-			formatex(szFormat, charsmax(szFormat), "%s \r[NEED FRAGS: %d]",  g_SkillsDesc[i], g_LevelFrags[i] ) 
+			formatex(szFormat, charsmax(szFormat), "%s \r[LICZBA FRAGOW: %d]",  g_SkillsDesc[i], g_LevelFrags[i] ) 
 		else
-			formatex(szFormat, charsmax(szFormat), "%s \y[UNLOCKED]",  g_SkillsDesc[i]) 
+			formatex(szFormat, charsmax(szFormat), "%s \y[ODBLOKOWNE]",  g_SkillsDesc[i]) 
 		menu_additem(iMenu, szFormat, _, _, iCb);
 	}
 	
@@ -2854,9 +2854,9 @@ public CheckPlayerLevel(iPlayer)
 		get_user_name(iPlayer, szName, 32);
 		g_PlayerInfo[iPlayer][PLAYER_LEVEL]++
 
-		ColorChat(0, GREEN, "%s^x01 Defender^x04 %s^x01 has just reached %d level!", CHAT_PREFIX, szName, g_PlayerInfo[iPlayer][PLAYER_LEVEL]);
-		ColorChat(iPlayer, GREEN, "%s^x01 You earned level %d!", CHAT_PREFIX,  g_PlayerInfo[iPlayer][PLAYER_LEVEL])
-		ColorChat(iPlayer, GREEN, "%s^x01 You have new skill! Type '/skill' to get more information!", CHAT_PREFIX)
+		ColorChat(0, GREEN, "%s^x01 Obronca ^x04 %s^x01 wbil %d poziom!", CHAT_PREFIX, szName, g_PlayerInfo[iPlayer][PLAYER_LEVEL]);
+		ColorChat(iPlayer, GREEN, "%s^x01 Wbiles poziom %d!", CHAT_PREFIX,  g_PlayerInfo[iPlayer][PLAYER_LEVEL])
+		ColorChat(iPlayer, GREEN, "%s^x01 Odblokowales nowy skill! Wpisz '/skill' po wiecej informacji!", CHAT_PREFIX)
 		
 		client_cmd(iPlayer, "spk sound/%s", g_SoundFile[SND_PLAYER_LEVELUP])
 
@@ -2898,14 +2898,14 @@ public CmdSwapMoney(id)
  {
 	if(!g_ConfigValues[CFG_SWAP_MONEY])
 	{
-		ColorChat(id, GREEN, "%s^x01 Swapping money for gold is disabled on this server.", CHAT_PREFIX);
+		ColorChat(id, GREEN, "%s^x01 Wymiana kasy na monety jest zablokowana.", CHAT_PREFIX);
 		return;
 	}
 	new iMoney = cs_get_user_money(id)
 	
 	if(iMoney < g_ConfigValues[CFG_SWAP_MONEY_MONEY]) 
 	{
-		ColorChat(id, GREEN, "%s^x01 You dont have much money to swap. You must have $%d!", CHAT_PREFIX, g_ConfigValues[CFG_SWAP_MONEY_MONEY])
+		ColorChat(id, GREEN, "%s^x01 Nie posiadasz dosc kasy na wymiane. Musisz miec $%d!", CHAT_PREFIX, g_ConfigValues[CFG_SWAP_MONEY_MONEY])
 		g_IsUserNotifiedAboutSwap[id] = 0
 		
 		return;
@@ -2913,7 +2913,7 @@ public CmdSwapMoney(id)
 	
 	if(g_IsUserNotifiedAboutSwap[id]) 
 	{
-		ColorChat(id, GREEN, "%s^x01 You swapped $%d for %d gold!", CHAT_PREFIX, g_ConfigValues[CFG_SWAP_MONEY_MONEY], g_ConfigValues[CFG_SWAP_MONEY_GOLD])
+		ColorChat(id, GREEN, "%s^x01 Wymieniles $%d kasy na %d monet!", CHAT_PREFIX, g_ConfigValues[CFG_SWAP_MONEY_MONEY], g_ConfigValues[CFG_SWAP_MONEY_GOLD])
 	
 		iMoney -= g_ConfigValues[CFG_SWAP_MONEY_MONEY]
 		
@@ -2945,8 +2945,8 @@ public EventMoney(id)
 				CmdSwapMoney(id)
 				return
 			}
-			ColorChat(id, GREEN, "%s^x01 You have $%d!", CHAT_PREFIX, g_ConfigValues[CFG_SWAP_MONEY_MONEY])
-			ColorChat(id, GREEN, "%s^x01 Type '/swap' to swap money for %d gold!", CHAT_PREFIX, g_ConfigValues[CFG_SWAP_MONEY_GOLD])	
+			ColorChat(id, GREEN, "%s^x01 Masz $%d!", CHAT_PREFIX, g_ConfigValues[CFG_SWAP_MONEY_MONEY])
+			ColorChat(id, GREEN, "%s^x01 Wpisz '/swap' aby wymienic kase na %d monet!", CHAT_PREFIX, g_ConfigValues[CFG_SWAP_MONEY_GOLD])	
 		} 
 		else if(iMoney < g_ConfigValues[CFG_SWAP_MONEY]) 
 			g_IsUserNotifiedAboutSwap[id] = 0
@@ -2962,17 +2962,17 @@ public CmdPlayerMenu(id)
 	if(!is_user_connected(id))
 		return PLUGIN_CONTINUE
 
-	new iMenu = menu_create("Tower Defense Mod 0.6 Rebuild^n\yCreated by tomcionek15 & grs4", "CmdPlayerMenuH");
+	new iMenu = menu_create("Tower Defense Mod 0.6 Rebuild^n\yStworzony przez tomcionek15 & grs4", "CmdPlayerMenuH");
 	new iCb = menu_makecallback("CmdPlayerMenuCb");
 	
-	menu_additem(iMenu, "Turrets", "0", _, iCb);
-	menu_additem(iMenu, "Skills", "1", _, iCb);
-	menu_additem(iMenu, "Shop", "2", _, iCb)
+	menu_additem(iMenu, "Wiezyczki", "0", _, iCb);
+	menu_additem(iMenu, "Skille", "1", _, iCb);
+	menu_additem(iMenu, "Sklep", "2", _, iCb)
 	if(g_isGunModEnabled)
-		menu_additem(iMenu, "Weapons", "3", _, iCb);
-	menu_additem(iMenu, "Give gold", "4", _, iCb)
-	menu_additem(iMenu, "User settings", "5");
-	menu_additem(iMenu, "Admin menu", "6", ADMIN_CVAR);
+		menu_additem(iMenu, "Bronie", "3", _, iCb);
+	menu_additem(iMenu, "Daj monety", "4", _, iCb)
+	menu_additem(iMenu, "Menu gracza", "5");
+	menu_additem(iMenu, "Menu admina", "6", ADMIN_CVAR);
 
 	menu_display(id, iMenu);
 
@@ -3064,14 +3064,14 @@ public ShowPlayerOptionsMenu(id)
 {	
 	static  szFormat[90]
 
-	new iMenu = menu_create("\yUser settings", "ShowPlayerOptionsMenuH");
+	new iMenu = menu_create("\yMenu gracza", "ShowPlayerOptionsMenuH");
 	new iCb = menu_makecallback("ShowPlayerOptionsMenuCb")
 	
-	menu_additem(iMenu, "Change HUD options", _, _, iCb);
-	menu_additem(iMenu, "Change Healthbar", _, _, iCb);
-	menu_additem(iMenu, "Change Turrets settings", _, _, iCb);
+	menu_additem(iMenu, "Opcje HUD", _, _, iCb);
+	menu_additem(iMenu, "Opcje paska zdrowia", _, _, iCb);
+	menu_additem(iMenu, "Opcje wiezyczek", _, _, iCb);
 	
-	formatex(szFormat, charsmax(szFormat), "Automatic swapping money %s^n\w[\y %d gold\w when you have\y $%d\w ]", g_PlayerSwapMoneyAutobuy[id] ? "\yis ON":"\ris OFF",  g_ConfigValues[CFG_SWAP_MONEY_GOLD], g_ConfigValues[CFG_SWAP_MONEY_MONEY]);	
+	formatex(szFormat, charsmax(szFormat), "Automatyczna zamiana kasy %s^n\w[\y %d monet\w kiedy masz \y $%d\w ]", g_PlayerSwapMoneyAutobuy[id] ? "\yis ON":"\ris OFF",  g_ConfigValues[CFG_SWAP_MONEY_GOLD], g_ConfigValues[CFG_SWAP_MONEY_MONEY]);	
 	menu_additem(iMenu, szFormat, _, _, iCb);
 	
 	menu_setprop(iMenu, MPROP_EXITNAME, "Back");
@@ -3108,7 +3108,7 @@ public ShowPlayerOptionsMenuH(id, menu, item)
 			if(cs_get_user_money(id) > g_ConfigValues[CFG_SWAP_MONEY_MONEY])
 				CmdSwapMoney(id)
 				
-			ColorChat(id, GREEN, "%s^x01 Auto swapping money for gold is now %s.", CHAT_PREFIX,  g_PlayerSwapMoneyAutobuy[id] ? "enabled":"disabled");
+			ColorChat(id, GREEN, "%s^x01 Automatyczna zamiana kasy jest %s.", CHAT_PREFIX,  g_PlayerSwapMoneyAutobuy[id] ? "wl":"wyl");
 			ShowPlayerOptionsMenu(id)
 		}
 	}
@@ -3118,10 +3118,10 @@ public ShowPlayerOptionsMenuH(id, menu, item)
 
 public MenuEditHealthbar(id) 
 {
-	new iMenu = menu_create("\yHealthbars settings:", "MenuEditHealthbarH")
+	new iMenu = menu_create("\yOpcje paska zdrowia:", "MenuEditHealthbarH")
 	
-	menu_additem(iMenu, "Change healthbar style")
-	menu_additem(iMenu, "Change healthbar scale")
+	menu_additem(iMenu, "Zmien wyglad")
+	menu_additem(iMenu, "Zmien rozmiar")
 	menu_setprop(iMenu, MPROP_EXITNAME, "Back");
 	
 	menu_display(id, iMenu);
@@ -3146,7 +3146,7 @@ public MenuEditHealthbarScale(id)
 {
 	static szFormat[33];
 	
-	formatex(szFormat, charsmax(szFormat), "%s\w every 0.05", g_IsUserAdding[id]? "\yAdd":"\rSubstract")
+	formatex(szFormat, charsmax(szFormat), "%s\w kazde 0.05", g_IsUserAdding[id]? "\yDodaj":"\rOdejmij")
 	new iMenu = menu_create(szFormat, "MenuEditHealthbarScaleH");
 	
 	formatex(szFormat, charsmax(szFormat), "Scale: \r%0.2f", g_PlayerHealthbarScale[id]);
