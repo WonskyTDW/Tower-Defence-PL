@@ -5,7 +5,7 @@ new iItem;
 public plugin_init()
 {
 	new id = register_plugin("TD: SHOP| Range totem", "1.0", "GT Team")
-	iItem = td_shop_register_item("Range totem for turrets", "+25 percent to range for nearest turrets.", 100, 0, id)
+	iItem = td_shop_register_item("Totem zasiegu ", "+25 procent wiekszy zasieg", 100, 0, id)
 }
 
 public td_shop_item_selected(id, itemid)
@@ -14,7 +14,7 @@ public td_shop_item_selected(id, itemid)
 	{
 		if(td_turrets_get_player_totem(id))
 		{
-			client_print(id, print_center, "You alerady have totem!");
+			client_print(id, print_center, "Masz juz totem!");
 			return PLUGIN_HANDLED;
 		}
 
