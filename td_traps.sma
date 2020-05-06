@@ -107,12 +107,12 @@ public trapMenu(id) {
 	
 	if(td_get_user_info(id, PLAYER_GOLD) < 25)
 	{
-		client_print_color(id, 0, "^4You dont have 25 gold!");
+		client_print_color(id, 0, "^4Nie masz 25 zlota!");
 		return
 	}
-	new menu = menu_create("Select type of trap:", "trapMenuH")
+	new menu = menu_create("Wybierz typ:", "trapMenuH")
 	
-	menu_additem(menu, "Hurting [1500 DMG] [25 GOLD]")
+	menu_additem(menu, "Zadaje [1500 DMG] [25 GOLD]")
 	
 	menu_display(id, menu)
 	
@@ -140,24 +140,24 @@ public trapMenuType(id, type) {
 	}
 
 	if(num == g_iTrackNum) {
-		client_print(id, print_center, "Map reached limit [%d]!", num)
-		client_print_color(id, 0, "Map reached limit [%d]!", num)
+		client_print(id, print_center, "Osiagnieto limit mapy [%d]!", num)
+		client_print_color(id, 0, "Osiagnieto limit mapy [%d]!", num)
 		return
 	}
 
 	if(g_iPlayerTrapEnt[id]) {
-		client_print(id, print_center, "You alerady have a trap !")
-		client_print_color(id, 0, "^4You alerady have a trap !")
+		client_print(id, print_center, "Masz juz pluapke !")
+		client_print_color(id, 0, "^4 Masz juz pluapke !")
 		return
 	}
 
 	g_bPlayerIsChoosing[id] = true
 
-	new menu = menu_create("Select place of trap^nby aiming on corner of track", "trapMenuTypeH")
+	new menu = menu_create("Wybierz miejsce pulapki ^ncelujac w naroznik toru", "trapMenuTypeH")
 	new index[3]
 
 	num_to_str(type, index, 2)
-	menu_additem(menu, "Place it here", index)
+	menu_additem(menu, "Postaw tutaj", index)
 	menu_additem(menu, "Back")
 	
 	menu_display(id, menu)
@@ -182,8 +182,8 @@ public trapMenuTypeH(id, menu, item) {
 		return
 	}
 	if(!g_iPlayerTrapEnt[id]) {
-		client_print(id, print_center, "You have to select proper corner of track!")
-		client_print_color(id, 0, "^4You have to select proper corner of track!")
+		client_print(id, print_center, "Musisz wybrać odpowiedni narożnik toru!")
+		client_print_color(id, 0, "^4Musisz wybrać odpowiedni narożnik toru!")
 		trapMenuType(id, type)
 		return
 		
