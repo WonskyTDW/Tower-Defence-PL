@@ -156,7 +156,7 @@ public addPlayerBenefitsForAssist(id, iEnt)
 	static userMoney; userMoney = cs_get_user_money(id)
 	cs_set_user_money(id, ( userMoney + iMoney ) > 16000 ? 16000 : ( userMoney + iMoney), 1)
 	
-	ColorChat(id, GREEN, "[TD]^x01 You got %d gold and $%d for assist with killing a moster!",  iGold, iMoney)
+	ColorChat(id, GREEN, "[TD]^x01 Otrzymujesz %d zlota i $%d za pomoc w zabiciu potwora!",  iGold, iMoney)
 }
 
 public removeMonsterFromMemory(iEnt)
