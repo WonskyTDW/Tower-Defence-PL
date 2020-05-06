@@ -28,7 +28,7 @@ new g_PlayerUse[33]
 public plugin_init() 
 {
 	new plugin = register_plugin("IonCannon", "1.0", "MarWit");
-	shop_item = td_shop_register_item("Canon", "Press 'C' to use canon", 500, 0, plugin);
+	shop_item = td_shop_register_item("Canon", "Wcisnij 'C' aby uzyc", 500, 0, plugin);
 	IonShake = get_user_msgid("ScreenShake")
 	register_clcmd("radio3", "CmdUseCanon");
 }
@@ -52,7 +52,7 @@ public td_shop_item_selected(id, item)
 {
 	if(item == shop_item)
 	{
-		client_print(id, print_center, "Press 'C' somewhere you want to use canon.");
+		client_print(id, print_center, "Wcisnij 'C' aby uzyc.");
 		g_PlayerUse[id]++;
 	}
 }
