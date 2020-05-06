@@ -213,12 +213,12 @@ public DisplayHud(iTask)
 		if(td_get_user_hud_size(id) == HUD_SMALL)
 		{			
 			set_dhudmessage(0, 0, 255, 0.1, 0.01, 0, 6.0, 2.52, 0.0, 0.1);
-			show_dhudmessage(id, "[GUN LEVEL: %d / %d] [EXP: %d / %d]", iPlayerLevel, g_LevelsNum, iPlayerExp, iExpToLevel);
+			show_dhudmessage(id, "[POZIOM BRONI: %d / %d] [EXP: %d / %d]", iPlayerLevel, g_LevelsNum, iPlayerExp, iExpToLevel);
 		}
 		else
 		{
 			static szText[128]	;
-			formatex(szText, charsmax(szText),  "Gun level: %d / %d | Exp: %d / %d", iPlayerLevel, g_LevelsNum, iPlayerExp, iExpToLevel);	
+			formatex(szText, charsmax(szText),  "Poziom broni: %d / %d | Exp: %d / %d", iPlayerLevel, g_LevelsNum, iPlayerExp, iExpToLevel);	
 			message_begin(MSG_ONE, g_HudStatusText, _, id);
 			write_byte(0);
 			write_string(szText);
@@ -507,7 +507,7 @@ public showWeaponMenu(id)
 	static szTitle[64];
 	new iPlayerLevel = g_PlayerLevel[id];
 	
-	formatex(szTitle, 63, "Your level:\r %d^n\wExp:\r %d\w /\r %d", iPlayerLevel, g_PlayerExp[id], g_ExpTable[iPlayerLevel]);
+	formatex(szTitle, 63, "Twoj Poziom:\r %d^n\wExp:\r %d\w /\r %d", iPlayerLevel, g_PlayerExp[id], g_ExpTable[iPlayerLevel]);
 	
 	new menu = menu_create(szTitle, "showWeaponMenuH");
 	new cb = menu_makecallback("showWeaponMenuCb");
@@ -515,23 +515,23 @@ public showWeaponMenu(id)
 	new loadedWeaponsType = getWeaponsLoaded();
 	
 	if(loadedWeaponsType & 1<<1)
-		menu_additem(menu, "Pistols", "0");
+		menu_additem(menu, "Pistolety", "0");
 	if(loadedWeaponsType & 1<<2)
-		menu_additem(menu, "Shotguns", "1");
+		menu_additem(menu, "Shotguny", "1");
 	if(loadedWeaponsType & 1<<3)
-		menu_additem(menu, "SMGs", "2");
+		menu_additem(menu, "SMG", "2");
 	if(loadedWeaponsType & 1<<4)
-		menu_additem(menu, "Rifles", "3");
+		menu_additem(menu, "Karabiny", "3");
 	if(loadedWeaponsType & 1<<5)
-		menu_additem(menu, "Snipers", "4");
+		menu_additem(menu, "Snajperskie", "4");
 	if(loadedWeaponsType & 1<<6)
 	{
 		new iWeapLvl = getLevelOfWeapon("weapon_m249");
 		
 		if(iWeapLvl > iPlayerLevel)
-			formatex(szTitle, 63, "M249\w [\y Unlock at\r %d\y level\w ]", iWeapLvl);
+			formatex(szTitle, 63, "M249\w [\y Odblokuj na\r %d\y poziomie\w ]", iWeapLvl);
 		else
-			formatex(szTitle, 63, "M249\w [\r %d\y level\w ]", iWeapLvl);
+			formatex(szTitle, 63, "M249\w [\r %d\y poziom\w ]", iWeapLvl);
 		
 		if(strcmp("weapon_m249", g_PlayerSelectedWeapons[id][1], true) == 0)
 			add(szTitle, 63, " \w[\y SELECTED\w ]");
@@ -607,7 +607,7 @@ public showWeaponTypeMenu(id, weaponType)
 	static szTitle[64], szWeapons[33][33], szWeaponName[35];
 	new iPlayerLevel = g_PlayerLevel[id], iWeaponLevel, len;
 	
-	formatex(szTitle, 63, "Your level:\r %d^n\wExp:\r %d\w /\r %d", iPlayerLevel, g_PlayerExp[id], g_ExpTable[iPlayerLevel]);
+	formatex(szTitle, 63, "Twoj poziom:\r %d^n\wExp:\r %d\w /\r %d", iPlayerLevel, g_PlayerExp[id], g_ExpTable[iPlayerLevel]);
 	
 	new menu = menu_create(szTitle, "showWeaponTypeMenuH");
 	new cb = menu_makecallback("showWeaponTypeMenuCb");
@@ -620,16 +620,16 @@ public showWeaponTypeMenu(id, weaponType)
 		getWeaponName(szWeapons[i], szWeaponName, 32);
 				
 		if(iWeaponLevel > iPlayerLevel)
-			formatex(szTitle, 63, "%s\w [\y Unlock at\r %d\y level\w ]", szWeaponName, iWeaponLevel);
+			formatex(szTitle, 63, "%s\w [\y Odblokuj na\r %d\y poziomie\w ]", szWeaponName, iWeaponLevel);
 		else 
-			formatex(szTitle, 63, "%s\w [\r %d\y level\w ]", szWeaponName, iWeaponLevel);
+			formatex(szTitle, 63, "%s\w [\r %d\y poziom\w ]", szWeaponName, iWeaponLevel);
 		
 		
 		for(new j = 0; j < 2; j++)
 		{
 			if(strcmp(szWeapons[i], g_PlayerSelectedWeapons[id][j], true) == 0)
 			{
-				add(szTitle, 63, " [\y SELECTED\w ]");
+				add(szTitle, 63, " [\y WYBRANE\w ]");
 				break;
 			}
 		}
@@ -638,7 +638,7 @@ public showWeaponTypeMenu(id, weaponType)
 		menu_additem(menu, szTitle, szWeaponName, _, cb);
 	}
 	
-	menu_setprop(menu, MPROP_EXITNAME, "Back");
+	menu_setprop(menu, MPROP_EXITNAME, "Wroc");
 	menu_display(id, menu);
 }
 
@@ -681,7 +681,7 @@ public showWeaponTypeMenuH(id, menu, item)
 	new bitWeapon = (1 << get_weaponid(weapon));
 	
 	if(g_PlayerChangeWeaponLimit[id] == 0)
-		client_print(id, print_center, "You reached wave change weapon limit!");
+		client_print(id, print_center, "Osiagnales limit zmiany broni!");
 	else
 	{
 		
@@ -890,11 +890,11 @@ public checkIfUserEarnedNewLevel(id)
 
 		new szName[33];
 		get_user_name(id, szName, 32);
-		ColorChat(0, GREEN, "%s^x01 Defender^x04 %s^x01 has just earned new weapon level [%d]!", prefix, szName, level);
-		ColorChat(id, GREEN, "%s^x01 You has just earned new weapon level: %d!", prefix, level);
+		ColorChat(0, GREEN, "%s^x01 Obronca^x04 %s^x01 wlasnie zdobyl nowy poziom broni [%d]!", prefix, szName, level);
+		ColorChat(id, GREEN, "%s^x01 Zdobyles nowy poziom broni: %d!", prefix, level);
 		client_cmd(id, "spk %s", g_SoundLevelUp);
 		
-		ColorChat(id, GREEN, "%s^x01 Also, you has just unlocked:", prefix);
+		ColorChat(id, GREEN, "%s^x01 Wlasnie odblokowales:", prefix);
 		
 		new weapons[MAX_WEAPONS_PER_LEVEL][33], len;
 		
