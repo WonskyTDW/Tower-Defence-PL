@@ -1,11 +1,3 @@
-/*
-	1 - g_PlayerShowHitCrosshair
-	2 - WIN/LOSE GAME prize
-	3 - forward takedamagepost
-	4 - bug fixes with chat prefix / loading level / fix crosshair hit effect
-	5 - changed forward takedamage from take_amage to take_damage in plugin init
-*/
-
 #include <amxmodx>
 #include <td_const>
 #include <engine>
@@ -15,7 +7,6 @@
 #include <hamsandwich>
 #include <nvault_util>
 
-/*  More allocation memory in plugin */
 #pragma dynamic 131072 
 
 #define PLUGIN 				"Tower Defense Mod"
@@ -521,32 +512,32 @@ public plugin_precache()
 	if(file_exists("sprites/TD/startzone.spr"))
 		precache_model("sprites/TD/startzone.spr")
 	else if(DEBUG)
-		log_to_file(LOG_FILE, "DEBUG: sprites/TD/startzone.spr is not exist!");
+		log_to_file(LOG_FILE, "DEBUG: sprites/TD/startzone.spr nie odnaleziono!");
 
 	if(file_exists("sprites/TD/repairzone.spr"))
 		precache_model("sprites/TD/repairzone.spr")
 	else if(DEBUG)
-		log_to_file(LOG_FILE, "DEBUG: sprites/TD/repairzone.spr is not exist!");
+		log_to_file(LOG_FILE, "DEBUG: sprites/TD/repairzone.spr nie odnaleziono!");
 
 	if(file_exists("sprites/TD/votemap_sprites.spr"))
 		precache_model("sprites/TD/votemap_sprites.spr")
 	else if(DEBUG)
-		log_to_file(LOG_FILE, "DEBUG: sprites/TD/votemap_sprites.spr is not exist!");
+		log_to_file(LOG_FILE, "DEBUG: sprites/TD/votemap_sprites.spr nie odnaleziono!");
 
 	if(file_exists("sprites/TD/ranger.spr"))
 		precache_model("sprites/TD/ranger.spr")
 	else if(DEBUG)
-		log_to_file(LOG_FILE, "DEBUG: sprites/TD/ranger.spr is not exist!");
+		log_to_file(LOG_FILE, "DEBUG: sprites/TD/ranger.spr nie odnaleziono!");
 
 	if(file_exists("sprites/TD/ranger.spr"))
 		precache_model("sprites/TD/ranger.spr")
 	else if(DEBUG)
-		log_to_file(LOG_FILE, "DEBUG: sprites/TD/ranger.spr is not exist!");
+		log_to_file(LOG_FILE, "DEBUG: sprites/TD/ranger.spr nie odnaleziono!");
 	
 	LoadConfiguration();
 	
 	if(DEBUG)	
-		log_to_file(LOG_FILE, "DEBUG: Precaching sounds started.")
+		log_to_file(LOG_FILE, "DEBUG: Rozpoczynam wczytywanie dzwiekow.")
 
 	new szFormat[64];
 	
@@ -558,7 +549,7 @@ public plugin_precache()
 		if(file_exists(szFormat))
 			precache_sound(g_SoundFile[ENUM_SOUNDS:i]);
 		else if(DEBUG)
-			log_to_file(LOG_FILE, "DEBUG: %s is not exist! i = %d", szFormat, i);
+			log_to_file(LOG_FILE, "DEBUG: %s nie odnaleziono! i = %d", szFormat, i);
 	}
 
 	precache_sound("weapons/hegrenade-1.wav")
@@ -566,8 +557,8 @@ public plugin_precache()
 	
 	if(DEBUG)
 	{
-		log_to_file(LOG_FILE, "DEBUG: Precaching sounds finished.")
-		log_to_file(LOG_FILE, "DEBUG: Precaching models started.")
+		log_to_file(LOG_FILE, "DEBUG: Wczytywanie dzwiekow zakonczone")
+		log_to_file(LOG_FILE, "DEBUG: Rozpoczynam wczytywanie modeli.")
 	}
 	
 	/* Precache models */
@@ -580,7 +571,7 @@ public plugin_precache()
 			if(file_exists(szFormat))
 				precache_model(szFormat)
 			else if(DEBUG)
-				log_to_file(LOG_FILE, "DEBUG: %s is not exist!", szFormat);
+				log_to_file(LOG_FILE, "DEBUG: %s nie odnaleziono!", szFormat);
 		}
 	}
 	
@@ -588,58 +579,58 @@ public plugin_precache()
 	if(file_exists(GET_MODEL_DIR_FROM_FILE(g_ModelFileNapalmGrenade_V)))
 		precache_model(GET_MODEL_DIR_FROM_FILE(g_ModelFileNapalmGrenade_V));
 	else if(DEBUG)
-		log_to_file(LOG_FILE, "DEBUG: %s is not exist!", GET_MODEL_DIR_FROM_FILE(g_ModelFileNapalmGrenade_V));
+		log_to_file(LOG_FILE, "DEBUG: %s nie odnaleziono!", GET_MODEL_DIR_FROM_FILE(g_ModelFileNapalmGrenade_V));
 
 	if(file_exists(GET_MODEL_DIR_FROM_FILE(g_ModelFileNapalmGrenade_W)))
 		precache_model(GET_MODEL_DIR_FROM_FILE(g_ModelFileNapalmGrenade_W));
 	else if(DEBUG)
-		log_to_file(LOG_FILE, "DEBUG: %s is not exist!", GET_MODEL_DIR_FROM_FILE(g_ModelFileNapalmGrenade_W));
+		log_to_file(LOG_FILE, "DEBUG: %s nie odnaleziono!", GET_MODEL_DIR_FROM_FILE(g_ModelFileNapalmGrenade_W));
 		
 	if(file_exists(GET_MODEL_DIR_FROM_FILE(g_ModelFileNapalmGrenade_P)))
 		precache_model(GET_MODEL_DIR_FROM_FILE(g_ModelFileNapalmGrenade_P));
 	else if(DEBUG)
-		log_to_file(LOG_FILE, "DEBUG: %s is not exist!", GET_MODEL_DIR_FROM_FILE(g_ModelFileNapalmGrenade_P));
+		log_to_file(LOG_FILE, "DEBUG: %s nie odnaleziono!", GET_MODEL_DIR_FROM_FILE(g_ModelFileNapalmGrenade_P));
 
 	if(file_exists(GET_MODEL_DIR_FROM_FILE(g_ModelFileFrozenGrenade_V)))
 		precache_model(GET_MODEL_DIR_FROM_FILE(g_ModelFileFrozenGrenade_V));
 	else if(DEBUG)
-		log_to_file(LOG_FILE, "DEBUG: %s is not exist!", GET_MODEL_DIR_FROM_FILE(g_ModelFileFrozenGrenade_V));
+		log_to_file(LOG_FILE, "DEBUG: %s nie odnaleziono!", GET_MODEL_DIR_FROM_FILE(g_ModelFileFrozenGrenade_V));
 		
 	if(file_exists(GET_MODEL_DIR_FROM_FILE(g_ModelFileFrozenGrenade_W)))
 		precache_model(GET_MODEL_DIR_FROM_FILE(g_ModelFileFrozenGrenade_W));
 	else if(DEBUG)
-		log_to_file(LOG_FILE, "DEBUG: %s is not exist!", GET_MODEL_DIR_FROM_FILE(g_ModelFileFrozenGrenade_W));
+		log_to_file(LOG_FILE, "DEBUG: %s nie odnaleziono!", GET_MODEL_DIR_FROM_FILE(g_ModelFileFrozenGrenade_W));
 
 	if(file_exists(GET_MODEL_DIR_FROM_FILE(g_ModelFileFrozenGrenade_P)))
 		precache_model(GET_MODEL_DIR_FROM_FILE(g_ModelFileFrozenGrenade_P));
 	else if(DEBUG)
-		log_to_file(LOG_FILE, "DEBUG: %s is not exist!", GET_MODEL_DIR_FROM_FILE(g_ModelFileFrozenGrenade_P));
+		log_to_file(LOG_FILE, "DEBUG: %s nie odnaleziono!", GET_MODEL_DIR_FROM_FILE(g_ModelFileFrozenGrenade_P));
 		
 	if(file_exists(GET_MODEL_DIR_FROM_FILE(g_ModelFileStopGrenade_V)))
 		precache_model(GET_MODEL_DIR_FROM_FILE(g_ModelFileStopGrenade_V));
 	else if(DEBUG)
-		log_to_file(LOG_FILE, "DEBUG: %s is not exist!", GET_MODEL_DIR_FROM_FILE(g_ModelFileStopGrenade_V));
+		log_to_file(LOG_FILE, "DEBUG: %s nie odnaleziono!", GET_MODEL_DIR_FROM_FILE(g_ModelFileStopGrenade_V));
 		
 	if(file_exists(GET_MODEL_DIR_FROM_FILE(g_ModelFileStopGrenade_W)))
 		precache_model(GET_MODEL_DIR_FROM_FILE(g_ModelFileStopGrenade_W));
 	else if(DEBUG)
-		log_to_file(LOG_FILE, "DEBUG: %s is not exist!", GET_MODEL_DIR_FROM_FILE(g_ModelFileStopGrenade_W));
+		log_to_file(LOG_FILE, "DEBUG: %s nie odnaleziono!", GET_MODEL_DIR_FROM_FILE(g_ModelFileStopGrenade_W));
 		
 	if(file_exists(GET_MODEL_DIR_FROM_FILE(g_ModelFileStopGrenade_P)))
 		precache_model(GET_MODEL_DIR_FROM_FILE(g_ModelFileStopGrenade_P));
 	else if(DEBUG)
-		log_to_file(LOG_FILE, "DEBUG: %s is not exist!", GET_MODEL_DIR_FROM_FILE(g_ModelFileStopGrenade_P));
+		log_to_file(LOG_FILE, "DEBUG: %s nie odnaleziono!", GET_MODEL_DIR_FROM_FILE(g_ModelFileStopGrenade_P));
 		
 	if(file_exists(GET_VIP_MODEL(g_VipModel)))
 		precache_model(GET_VIP_MODEL(g_VipModel));
 	else if(DEBUG)
-		log_to_file(LOG_FILE, "DEBUG: %s is not exist!",GET_VIP_MODEL(g_VipModel));
+		log_to_file(LOG_FILE, "DEBUG: %s nie odnaleziono!",GET_VIP_MODEL(g_VipModel));
 		
 	
 	if(DEBUG)
 	{
-		log_to_file(LOG_FILE, "DEBUG: Precaching models finished.")
-		log_to_file(LOG_FILE, "DEBUG: Precaching healthbars started.")
+		log_to_file(LOG_FILE, "DEBUG: Wczytywane modeli zakonczone.")
+		log_to_file(LOG_FILE, "DEBUG: Rozpoczynam wczytywanie paska HP.")
 	}
 	/* Precache healthbars */
 	for(new i = 1; i < ( sizeof g_HealthbarsSprite ) ; i++)
@@ -647,58 +638,58 @@ public plugin_precache()
 		if(file_exists(g_HealthbarsSprite[i]))
 			precache_model(g_HealthbarsSprite[i])
 		else if(DEBUG)
-			log_to_file(LOG_FILE, "DEBUG: %s is not exist!", g_HealthbarsSprite[i]);
+			log_to_file(LOG_FILE, "DEBUG: %s nie odnaleziono!", g_HealthbarsSprite[i]);
 	}
 		
 	if(DEBUG)
 	{
-		log_to_file(LOG_FILE, "DEBUG: Precaching healthbars finished.")	
-		log_to_file(LOG_FILE, "DEBUG: Precaching other sprites started.")	
+		log_to_file(LOG_FILE, "DEBUG: Wczytywanie paska HP zakonczone")	
+		log_to_file(LOG_FILE, "DEBUG: Rozpoczynam wczytywanie sprites.")	
 	}
 
 	if(file_exists(SPAWN_SPRITE))
 		precache_model(SPAWN_SPRITE)
 	else if(DEBUG)
-		log_to_file(LOG_FILE, "DEBUG: %s is not exist!", SPAWN_SPRITE);
+		log_to_file(LOG_FILE, "DEBUG: %s nie odnaleziono!", SPAWN_SPRITE);
 			
 	if(file_exists("sprites/TD/blood.spr"))
 		g_SpriteBloodDrop = precache_model("sprites/TD/blood.spr")
 	else if(DEBUG)
-		log_to_file(LOG_FILE, "DEBUG: sprites/TD/blood.spr is not exist!");
+		log_to_file(LOG_FILE, "DEBUG: sprites/TD/blood.spr nie odnaleziono!");
 			
 	if(file_exists("sprites/TD/bloodspray.spr"))
 		g_SpriteBloodSpray = precache_model("sprites/TD/bloodspray.spr")
 	else if(DEBUG)
-		log_to_file(LOG_FILE, "DEBUG: sprites/TD/bloodspray.spr is not exist!");
+		log_to_file(LOG_FILE, "DEBUG: sprites/TD/bloodspray.spr nie odnaleziono!");
 			
 	if(file_exists("sprites/TD/zerogxplode.spr"))
 		g_SpriteExplode = precache_model("sprites/TD/zerogxplode.spr")
 	else if(DEBUG)
-		log_to_file(LOG_FILE, "DEBUG: sprites/TD/zerogxplode.spr is not exist!");
+		log_to_file(LOG_FILE, "DEBUG: sprites/TD/zerogxplode.spr nie odnaleziono!");
 
 	if(file_exists("sprites/TD/lgtning.spr"))
 		g_SpriteLighting = precache_model("sprites/TD/lgtning.spr")
 	else if(DEBUG)
-		log_to_file(LOG_FILE, "DEBUG: sprites/TD/lgtning.spr is not exist!");
+		log_to_file(LOG_FILE, "DEBUG: sprites/TD/lgtning.spr nie odnaleziono!");
 
 	if(file_exists("sprites/flame.spr"))
 		g_SpriteFlame = precache_model("sprites/flame.spr")
 	else if(DEBUG)
-		log_to_file(LOG_FILE, "DEBUG: sprites/flame.spr is not exist!");
+		log_to_file(LOG_FILE, "DEBUG: sprites/flame.spr nie odnaleziono!");
 
 	if(file_exists("sprites/TD/laserbeam.spr"))
 		g_SpriteTrail = precache_model("sprites/TD/laserbeam.spr")
 	else if(DEBUG)
-		log_to_file(LOG_FILE, "DEBUG: sprites/TD/laserbeam.spr is not exist!");
+		log_to_file(LOG_FILE, "DEBUG: sprites/TD/laserbeam.spr nie odnaleziono!");
 
 	if(file_exists("sprites/white.spr"))
 		g_SpriteWhiteLine = precache_model("sprites/white.spr")
 	else if(DEBUG)
-		log_to_file(LOG_FILE, "DEBUG: sprites/white.spr is not exist!");
+		log_to_file(LOG_FILE, "DEBUG: sprites/white.spr nie odnaleziono!");
 
 
 	if(DEBUG)
-		log_to_file(LOG_FILE, "DEBUG: Precaching other sprites finished.")	
+		log_to_file(LOG_FILE, "DEBUG: Wczytywanie sprites zakonczone")	
 	
 }
 
@@ -776,7 +767,7 @@ public plugin_init()
 	
 	if(nvault_open(NVAULT_FILE_NAME) == INVALID_HANDLE)
 		if(DEBUG)
-			log_to_file(LOG_FILE, "DEBUG: Users config file data/vault/%s.vault is not exist. This message can be showed when you run first time Tower Defense Mod on your server", NVAULT_FILE_NAME)
+			log_to_file(LOG_FILE, "DEBUG: Pliku data/vault/%s.vault nie odnaleziono. Ta wiadomosc moze pojawi sie za pierwszym razem.", NVAULT_FILE_NAME)
 			
 	/* For healthbars */
 	register_forward(FM_AddToFullPack, "fwAddToFullPack", 1)
@@ -844,7 +835,7 @@ public PlayerSaysSomething(id)
 	
 	if(!(1 <= iWave <= g_WavesNum))
 	{
-		ColorChat(id, GREEN, "%s^x01 You can check only waves from 1 to %d!", CHAT_PREFIX, g_WavesNum);
+		ColorChat(id, GREEN, "%s^x01 Mozesz sprawdzic tylko fale od 1 do %d!", CHAT_PREFIX, g_WavesNum);
 		return PLUGIN_CONTINUE;
 	}
 
@@ -1050,7 +1041,7 @@ public AddMapToLastMaps()
 	}
 
 	if(DEBUG)	
-		log_to_file(LOG_FILE, "DEBUG: Map %s added to td-lastmapsplayed.cfg.", currentMap)
+		log_to_file(LOG_FILE, "DEBUG: Mapa %s dodana do td-lastmapsplayed.cfg.", currentMap)
 		
 	write_file("addons/amxmodx/data/td-lastmapsplayed.cfg", currentMap, 0);
 	
@@ -1541,19 +1532,19 @@ public MapVoteZoneAdminMenu(id)
 	new cb =menu_makecallback("MapVoteZoneAdminMenuCb");
 	
 	static szFormat[64]
-	formatex(szFormat, 63, "Change width:\r %d", g_MapVoteZoneWidth)
+	formatex(szFormat, 63, "Zmien szerokosc:\r %d", g_MapVoteZoneWidth)
 	menu_additem(menu, szFormat, _, _, cb);
 	
-	formatex(szFormat, 63, "Change length:\r %d", g_MapVoteZoneLength)
+	formatex(szFormat, 63, "Zmien dlugosc:\r %d", g_MapVoteZoneLength)
 	menu_additem(menu, szFormat, _, _, cb);
 	
-	menu_additem(menu, "Update Width & Length to last zone", _, _, cb);
-	menu_additem(menu, "Remove last MapVote zone", _, _, cb);
-	menu_additem(menu, "Remove all MapVote zone",  _, _, cb);
+	menu_additem(menu, "Zaktualizuj szerokosc i długosc do ostatniej strefy", _, _, cb);
+	menu_additem(menu, "Usun ostatnia strefe Vote", _, _, cb);
+	menu_additem(menu, "Usun wszystkie strefy Vote",  _, _, cb);
 	
-	menu_additem(menu, "\yCreate MapVoteZone where I am", _, _, cb);
+	menu_additem(menu, "\yDodaj Strefe Vote", _, _, cb);
 		
-	menu_additem(menu, "Print schema in console", _, _, cb);
+	menu_additem(menu, "Wydrukuj w konsoli", _, _, cb);
 	
 	menu_setprop(menu, MPROP_EXITNAME, "Back")
 	menu_display(id, menu);
@@ -1584,13 +1575,13 @@ public MapVoteZoneAdminMenuH(id, menu, item)
 	{
 		case 0:
 		{	
-			client_print(id, print_center, "Type width");
+			client_print(id, print_center, "Wpisz szerokosc");
 			console_cmd( id, "messagemode mapvotezone_select_width")
 		}
 		
 		case 1:
 		{
-			client_print(id, print_center, "Type length");
+			client_print(id, print_center, "Wpisz dlugosc");
 			console_cmd( id, "messagemode mapvotezone_select_length")
 		}
 		
@@ -1598,7 +1589,7 @@ public MapVoteZoneAdminMenuH(id, menu, item)
 		{
 			if(!is_valid_ent(g_MapVoteZoneLastEntity))
 			{
-				client_print(id, print_center, "You must create entity first!");
+				client_print(id, print_center, "Utworz najpierw byt!");
 				StartZoneAdminMenu(id);
 				return;
 			}
@@ -1616,7 +1607,7 @@ public MapVoteZoneAdminMenuH(id, menu, item)
 			Max[2] = 50.0;
 			
 			entity_set_size(g_MapVoteZoneLastEntity, Mins, Max);
-			client_print(id, print_center, "Wait while for reconfiguration result");
+			client_print(id, print_center, "Zaczekaj na rekonfiguracje");
 			
 			MapVoteZoneAdminMenu(id);
 		}
@@ -2186,12 +2177,12 @@ public PlayerIsInRepairZone(id)
 		if(g_TowerHealth  >= maxTowerHealth)
 		{
 			set_hudmessage(255, 0, 0, 0.06, 0.70, 1, 1.0, 2.1, 0.2, 0.2, -1)
-			ShowSyncHudMsg(id, g_SyncHudRepair, "Tower is not damaged!");
+			ShowSyncHudMsg(id, g_SyncHudRepair, "Wieza nie jest uszkodzona!");
 		} 
 		else
 		{
 			set_hudmessage(255, 0, 0, 0.06, 0.70, 1, 1.0, 2.1, 0.2, 0.2, -1)
-			ShowSyncHudMsg(id, g_SyncHudRepair, "You don't have %d gold", cost);
+			ShowSyncHudMsg(id, g_SyncHudRepair, "Nie masz %d zlota", cost);
 		}
 		set_task(1.0, "PlayerIsInRepairZone", id + TASK_IS_IN_REPAIR_ZONE)
 		
@@ -2227,7 +2218,7 @@ public PlayerIsInRepairZone(id)
 			get_user_name(id, szName, 32);
 			
 			set_hudmessage(0, 255, 0, 0.06, 0.70, 1, 1.0, 2.1, 0.2, 0.2, -1)
-			ShowSyncHudMsg(id, g_SyncHudRepair, "Tower repaired!");
+			ShowSyncHudMsg(id, g_SyncHudRepair, "Wieza naprawiona!");
 			
 			static amount; 
 			if(!amount) amount = g_ConfigValues[CFG_REPAIR_ZONE_AMOUNT];
@@ -2324,14 +2315,14 @@ public CheckArePlayersInStartZone()
 				
 				fm_set_rendering(entity_get_int(g_RepairZoneEntity, EV_INT_repairzone_entity), kRenderFxNone, 0, 0, 0, kRenderTransAdd, 255);
 				set_hudmessage(255, 20, 0, 0.06, 0.63, 1, 1.0, 9.8, 0.2, 0.2, 3)
-				ShowSyncHudMsg(0, g_SyncHudRepair, "^n== REPAIR ZONE MAP CONFIGURATION ==^nIf you want to repair tower, go to repair zone.^nRepair zone cost: %d gold^nRepair zone time: %d seconds^nRepair zone amount: %d HP", g_ConfigValues[CFG_REPAIR_ZONE_COST], g_ConfigValues[CFG_REPAIR_ZONE_TIME], g_ConfigValues[CFG_REPAIR_ZONE_AMOUNT]);
+				ShowSyncHudMsg(0, g_SyncHudRepair, "^n== REPAIR ZONE MAP CONFIGURATION ==^nJesli chcesz naprawic wieze idz do strefy.^nKoszt naprawy: %d zlota^nCzas naprawy: %d sekund^nWartosc naprawy: %d HP", g_ConfigValues[CFG_REPAIR_ZONE_COST], g_ConfigValues[CFG_REPAIR_ZONE_TIME], g_ConfigValues[CFG_REPAIR_ZONE_AMOUNT]);
 			}
 			remove_task(TASK_CHECK_STARTZONE)
 		}
 		else if(!g_IsAdminInStartZoneMenu)
 		{
 			set_hudmessage(0, 255, 0, 0.06, 0.63, 1, 1.0, 1.1, 0.2, 0.2, 3)
-			ShowSyncHudMsg(0, g_SyncHudGameInfo, "Zostan jeszcze %d %s w strefie startu...^n%s stworzone przez %s", checkPlayerTime, checkPlayerTime == 1 ? "sekunda" : "sekund",  PLUGIN, AUTHOR);
+			ShowSyncHudMsg(0, g_SyncHudGameInfo, "Zostan jeszcze %d %s w strefie startu...", checkPlayerTime, checkPlayerTime == 1 ? "sekunda" : "sekund");
 		}
 		else
 		{
@@ -2405,17 +2396,17 @@ public CheckGameTask()
 							if(iLeft <= 5)
 							{
 								set_dhudmessage(255, 0, 0, -1.0, 0.55, 1, 1.0, 4.5)
-								show_dhudmessage(i, "AFK to SPEC^n - PRZENIESIENIE DO OBSERWATOROW ZA %d SEKUND -", iLeft);
+								show_dhudmessage(i, "AFK do SPEC^n - PRZENIESIENIE DO OBSERWATOROW ZA %d SEKUND -", iLeft);
 							}
 							else if(5 < iLeft < 20)
 							{
 								set_dhudmessage(255, 128, 0, -1.0, 0.55, 1, 1.0, 4.5)
-								show_dhudmessage(i, "AFK to SPEC^n - MOVE TO SPEC AFTER %d SECONDS -", iLeft);
+								show_dhudmessage(i, "AFK do SPEC^n - RZENIESIENIE DO OBSERWATOROW ZA %d SEKUND -", iLeft);
 							}
 							else
 							{
 								set_dhudmessage(255, 255, 0, -1.0, 0.55, 1, 1.0, 4.5)
-								show_dhudmessage(i, "AFK to SPEC^n - MOVE TO SPEC AFTER %d SECONDS -", iLeft);
+								show_dhudmessage(i, "AFK do SPEC^n - RZENIESIENIE DO OBSERWATOROW ZA %d SEKUND -", iLeft);
 							}	
 						}
 					}
@@ -2479,7 +2470,7 @@ public ResetGame()
 	g_TowerUpgradingPlayerIndex = 0
 	CreateStartZoneBox(g_StartZoneCoordinations[0], 0, 0, g_StartZoneCoordinations[1], g_StartZoneCoordinations[2]);
 	if(DEBUG)	
-		log_to_file(LOG_FILE, "DEBUG: Game has been reseted.")
+		log_to_file(LOG_FILE, "DEBUG: Gra zostala zresetowana.")
 		
 	set_task(1.0, "CheckArePlayersInStartZone", TASK_CHECK_STARTZONE, _, _, "b")
 }
@@ -2686,13 +2677,13 @@ public ShowShopMenu(id, fromMenu)
 	{
 		
 		if(g_ShopPlayerBuy[id][i] )
-			formatex(szFormat, charsmax(szFormat), "\d%s \r[ BOUGHT ]",  g_ShopItemsName[i])
+			formatex(szFormat, charsmax(szFormat), "\d%s \r[ KUPIONE ]",  g_ShopItemsName[i])
 		else 
 		{
 			if(g_ShopItemsPrice[i] > 0) 
-				formatex(szFormat, charsmax(szFormat), "%s \w[ \r%d\y GOLD\w ]", g_ShopItemsName[i], g_ShopItemsPrice[i])
+				formatex(szFormat, charsmax(szFormat), "%s \w[ \r%d\y ZLOTO\w ]", g_ShopItemsName[i], g_ShopItemsPrice[i])
 			else
-				formatex(szFormat, charsmax(szFormat), "%s \w[ \rFREE\w ]",  g_ShopItemsName[i])
+				formatex(szFormat, charsmax(szFormat), "%s \w[ \rDARMOWE\w ]",  g_ShopItemsName[i])
 		}
 			
 		menu_additem(iMenu, szFormat, _, _, iCb)
@@ -2805,7 +2796,7 @@ public CmdPlayerSkillMenu(id)
 		else if(iPlayerLevel <= i)
 			formatex(szFormat, charsmax(szFormat), "%s \r[LICZBA FRAGOW: %d]",  g_SkillsDesc[i], g_LevelFrags[i] ) 
 		else
-			formatex(szFormat, charsmax(szFormat), "%s \y[ODBLOKOWNE]",  g_SkillsDesc[i]) 
+			formatex(szFormat, charsmax(szFormat), "%s \y[ODBLOKOWANE]",  g_SkillsDesc[i]) 
 		menu_additem(iMenu, szFormat, _, _, iCb);
 	}
 	
@@ -2940,13 +2931,13 @@ public EventMoney(id)
 			g_IsUserNotifiedAboutSwap[id] = 1
 			if(g_PlayerSwapMoneyAutobuy[id]) 
 			{
-				ColorChat(id, GREEN, "%s^x03 Auto swaping - condition executed.", CHAT_PREFIX)
+				ColorChat(id, GREEN, "%s^x03 Automatyczna zamiana $ na Zloto", CHAT_PREFIX)
 				
 				CmdSwapMoney(id)
 				return
 			}
 			ColorChat(id, GREEN, "%s^x01 Masz $%d!", CHAT_PREFIX, g_ConfigValues[CFG_SWAP_MONEY_MONEY])
-			ColorChat(id, GREEN, "%s^x01 Wpisz '/swap' aby wymienic kase na %d monet!", CHAT_PREFIX, g_ConfigValues[CFG_SWAP_MONEY_GOLD])	
+			ColorChat(id, GREEN, "%s^x01 Wpisz '/zamien' aby wymienic kase na %d monet!", CHAT_PREFIX, g_ConfigValues[CFG_SWAP_MONEY_GOLD])	
 		} 
 		else if(iMoney < g_ConfigValues[CFG_SWAP_MONEY]) 
 			g_IsUserNotifiedAboutSwap[id] = 0
@@ -2962,7 +2953,7 @@ public CmdPlayerMenu(id)
 	if(!is_user_connected(id))
 		return PLUGIN_CONTINUE
 
-	new iMenu = menu_create("Tower Defense Mod 0.6 Rebuild^n\yStworzony przez tomcionek15 & grs4", "CmdPlayerMenuH");
+	new iMenu = menu_create("Tower Defense Mod", "CmdPlayerMenuH");
 	new iCb = menu_makecallback("CmdPlayerMenuCb");
 	
 	menu_additem(iMenu, "Wiezyczki", "0", _, iCb);
@@ -3027,11 +3018,11 @@ public ShowAdminMenu(id)
 	menu_additem(iMenu, "StartZone settings");
 	
 	if(g_ConfigValues[CFG_REPAIR_ZONE_AMOUNT])
-		menu_additem(iMenu, "RepairZone settings");
+		menu_additem(iMenu, "Ustawienia Strefy Naprawy");
 	else
-		menu_additem(iMenu, "RepairZone [plase define first repair^nzone configuration of this map:^nREPAIR_ZONE_AMOUNT]", _, _, cb);
+		menu_additem(iMenu, "Strefy Naprawy [plase define first repair^nzone configuration of this map:^nREPAIR_ZONE_AMOUNT]", _, _, cb);
 	
-	menu_additem(iMenu, "MapVoteZones settings");
+	menu_additem(iMenu, "Ustawienia strefy vote");
 	menu_setprop(iMenu, MPROP_EXITNAME, "Back");
 	
 	menu_display(id, iMenu);
@@ -3071,7 +3062,7 @@ public ShowPlayerOptionsMenu(id)
 	menu_additem(iMenu, "Opcje paska zdrowia", _, _, iCb);
 	menu_additem(iMenu, "Opcje wiezyczek", _, _, iCb);
 	
-	formatex(szFormat, charsmax(szFormat), "Automatyczna zamiana kasy %s^n\w[\y %d monet\w kiedy masz \y $%d\w ]", g_PlayerSwapMoneyAutobuy[id] ? "\yis ON":"\ris OFF",  g_ConfigValues[CFG_SWAP_MONEY_GOLD], g_ConfigValues[CFG_SWAP_MONEY_MONEY]);	
+	formatex(szFormat, charsmax(szFormat), "Automatyczna zamiana kasy %s^n\w[\y %d monet\w kiedy masz \y $%d\w ]", g_PlayerSwapMoneyAutobuy[id] ? "\yjest Wl":"\rjest WYL",  g_ConfigValues[CFG_SWAP_MONEY_GOLD], g_ConfigValues[CFG_SWAP_MONEY_MONEY]);	
 	menu_additem(iMenu, szFormat, _, _, iCb);
 	
 	menu_setprop(iMenu, MPROP_EXITNAME, "Back");
@@ -3149,9 +3140,9 @@ public MenuEditHealthbarScale(id)
 	formatex(szFormat, charsmax(szFormat), "%s\w kazde 0.05", g_IsUserAdding[id]? "\yDodaj":"\rOdejmij")
 	new iMenu = menu_create(szFormat, "MenuEditHealthbarScaleH");
 	
-	formatex(szFormat, charsmax(szFormat), "Scale: \r%0.2f", g_PlayerHealthbarScale[id]);
+	formatex(szFormat, charsmax(szFormat), "Skala: \r%0.2f", g_PlayerHealthbarScale[id]);
 	menu_additem(iMenu, szFormat);
-	menu_additem(iMenu, g_IsUserAdding[id] ? "\rSubstract":"\yAdd")
+	menu_additem(iMenu, g_IsUserAdding[id] ? "\rOdejmij":"\yDodaj")
 	
 	menu_setprop(iMenu, MPROP_EXITNAME, "Back");
 	
@@ -3191,7 +3182,7 @@ public MenuEditHealthbarStyle(id)
 {
 	static szFormat[33];
 	
-	new iMenu = menu_create("Change style:", "MenuEditHealthbarStyleH")
+	new iMenu = menu_create("Zmien styl:", "MenuEditHealthbarStyleH")
 	new iCb = menu_makecallback("MenuEditHealthbarStyleCb");
 	
 	menu_additem(iMenu, "Don't show healthbar", _, _, iCb);
@@ -5749,7 +5740,7 @@ public LoadConfig()
 	{
 		if(DEBUG)
 		{
-			log_to_file(LOG_FILE, "DEBUG: Config file ^"%s^" is not exist", CONFIG_FILE)
+			log_to_file(LOG_FILE, "DEBUG: Config file ^"%s^" nie odnaleziono", CONFIG_FILE)
 			log_to_file(LOG_FILE, "DEBUG: Loading default values")
 		}
 
@@ -6027,7 +6018,7 @@ public LoadConfiguration()
 	
 	if(!file_exists(MAP_CONFIG_FILE))
 	{
-		log_to_file(LOG_FILE, "DEBUG: Maps configuration file '%s' is not exist...", MAP_CONFIG_FILE)
+		log_to_file(LOG_FILE, "DEBUG: Maps configuration file '%s' nie odnaleziono...", MAP_CONFIG_FILE)
 		g_IsGamePossible = false
 		
 		write_file(MAP_CONFIG_FILE, ";File created automaticly. Here add your TD maps every new line. Automaticly added last played map", 0)
@@ -6103,7 +6094,7 @@ public CheckMap()
 	else 
 	{
 		if(DEBUG)
-			log_to_file(LOG_FILE, "DEBUG: Enity 'start' is not exist. iEnt = %d", iEnt)
+			log_to_file(LOG_FILE, "DEBUG: Enity 'start' nie odnaleziono. iEnt = %d", iEnt)
 
 		g_IsGamePossible = false;
 		return PLUGIN_CONTINUE
@@ -6133,7 +6124,7 @@ public CheckMap()
 	else 
 	{
 		if(DEBUG)
-			log_to_file(LOG_FILE, "DEBUG: Entity 'end' on map is not exist.")
+			log_to_file(LOG_FILE, "DEBUG: Entity 'end' on map nie odnaleziono.")
 
 		g_IsGamePossible = false;
 		
@@ -6146,7 +6137,7 @@ public CheckMap()
 	if(!is_valid_ent(iEnt)) 
 	{
 		if(DEBUG)
-			log_to_file(LOG_FILE, "DEBUG: Entity 'track1' which sterring a monster is not exist. There can be a errors...")
+			log_to_file(LOG_FILE, "DEBUG: Entity 'track1' which sterring a monster nie odnaleziono. There can be a errors...")
 	}
 	else 
 	{
@@ -6165,7 +6156,7 @@ public CheckMap()
 				formatex(szTrack, charsmax(szTrack), "track%d", i)
 				if(is_valid_ent( find_ent_by_tname(-1, szTrack) )) {
 					if(DEBUG)
-						log_to_file(LOG_FILE, "DEBUG: Entity %s_wall is not exist...", szTrack)
+						log_to_file(LOG_FILE, "DEBUG: Entity %s_wall nie odnaleziono...", szTrack)
 
 					g_IsGamePossible = false;
 					
@@ -6181,7 +6172,7 @@ public CheckMap()
 	else
 	{
 		if(DEBUG)
-			log_to_file(LOG_FILE, "DEBUG: Entity %s_wall is not exist...")					
+			log_to_file(LOG_FILE, "DEBUG: Entity %s_wall nie odnaleziono...")					
 		g_IsGamePossible = false;
 
 		return PLUGIN_CONTINUE;
@@ -6213,7 +6204,7 @@ public LoadWaves(szMapName[])
 	{
 		if(DEBUG)
 		{
-			log_to_file(LOG_FILE, "DEBUG: File ^"%s^" is not exist", szFileDir)
+			log_to_file(LOG_FILE, "DEBUG: File ^"%s^" nie odnaleziono", szFileDir)
 			log_to_file(LOG_FILE, "DEBUG: Loading standard waves")
 		}
 		
@@ -6232,7 +6223,7 @@ public LoadWaves(szMapName[])
 		
 		if(!file_exists(szFileDir)) 
 		{    
-			log_to_file(LOG_FILE, "File configuration ^"%s^" is not exist. Changing to next map from amx_nextmap cvar", szFileDir)
+			log_to_file(LOG_FILE, "File configuration ^"%s^" nie odnaleziono. Changing to next map from amx_nextmap cvar", szFileDir)
 			g_IsGamePossible = false
 			
 			return PLUGIN_CONTINUE		
@@ -6491,19 +6482,19 @@ public LoadWaves(szMapName[])
 				if(DEBUG)
 				{
 					if(!iLoadedStartZone)
-						log_to_file(LOG_FILE, "DEBUG: [START_ZONE_ENTITY] is not exist. Please set it in admin menu nad paste to configuration file to play this map.")
+						log_to_file(LOG_FILE, "DEBUG: [START_ZONE_ENTITY] nie odnaleziono. Please set it in admin menu nad paste to configuration file to play this map.")
 					
 					if(!iLoadedRepairZone)
-						log_to_file(LOG_FILE, "DEBUG: [REPAIR_ZONE_ENTITY] is not exist. It is not the problem. If you want to add repair zone please set it in admin menu and paste to configuration file code before waves.")
+						log_to_file(LOG_FILE, "DEBUG: [REPAIR_ZONE_ENTITY] nie odnaleziono. It is not the problem. If you want to add repair zone please set it in admin menu and paste to configuration file code before waves.")
 					
 					for(new i ; i < VOTE_MAP_COUNT; i++)
 						if(!iLoadedVoteMapZone[i])
-							log_to_file(LOG_FILE, "DEBUG: [MAP_VOTE_ZONE_%d_ENTITY] is not exist. Please set it in admin menu nad paste to configuration file to play this map.", i+1)
+							log_to_file(LOG_FILE, "DEBUG: [MAP_VOTE_ZONE_%d_ENTITY] nie odnaleziono. Please set it in admin menu nad paste to configuration file to play this map.", i+1)
 					
 					if(!g_MapLight[0])
 					{
 						//get_pCFG_string(g_CvarPointers[CFG_MAP_LIGHT], g_MapLight, 1);
-						log_to_file(LOG_FILE, "DEBUG: MAP_LIGHT is not exist. Loading default value: '%s'", g_MapLight)
+						log_to_file(LOG_FILE, "DEBUG: MAP_LIGHT nie odnaleziono. Loading default value: '%s'", g_MapLight)
 					}
 				}
 				LoadWaves("standard_wave")
@@ -6554,13 +6545,13 @@ public LoadWaves(szMapName[])
 					if(!iLoadedStartZone)
 					{
 						iWasConf--;
-						log_to_file(LOG_FILE, "DEBUG: [START_ZONE_ENTITY] is not exist. Please set it in admin menu nad paste to configuration file to play this map.")
+						log_to_file(LOG_FILE, "DEBUG: [START_ZONE_ENTITY] nie odnaleziono. Please set it in admin menu nad paste to configuration file to play this map.")
 					}
 					
 					if(!iLoadedRepairZone)
 					{
 						iWasConf--;
-						log_to_file(LOG_FILE, "DEBUG: [REPAIR_ZONE_ENTITY] is not exist. It is not the problem. If you want to add repair zone please set it in admin menu and paste to configuration file code before waves.")
+						log_to_file(LOG_FILE, "DEBUG: [REPAIR_ZONE_ENTITY] nie odnaleziono. It is not the problem. If you want to add repair zone please set it in admin menu and paste to configuration file code before waves.")
 					}
 					
 					for(new i ; i < VOTE_MAP_COUNT; i++)
@@ -6568,7 +6559,7 @@ public LoadWaves(szMapName[])
 						if(!iLoadedVoteMapZone[i])
 						{
 							iWasConf--;
-							log_to_file(LOG_FILE, "DEBUG: [MAP_VOTE_ZONE_%d_ENTITY] is not exist. Please set it in admin menu nad paste to configuration file to play this map.", i+1)
+							log_to_file(LOG_FILE, "DEBUG: [MAP_VOTE_ZONE_%d_ENTITY] nie odnaleziono. Please set it in admin menu nad paste to configuration file to play this map.", i+1)
 						}
 					}
 					
@@ -6576,7 +6567,7 @@ public LoadWaves(szMapName[])
 					{
 						iWasConf--
 						//get_pCFG_string(g_CvarPointers[CFG_MAP_LIGHT], g_MapLight, 1);
-						log_to_file(LOG_FILE, "DEBUG: MAP_LIGHT is not exist. Loading default value: %s", g_MapLight)
+						log_to_file(LOG_FILE, "DEBUG: MAP_LIGHT nie odnaleziono. Loading default value: %s", g_MapLight)
 					}
 				}
 	
@@ -6771,7 +6762,7 @@ public LoadModels()
 				
 	if(!file_exists(MODELS_CONFIG_FILE))
 	{
-		log_to_file(LOG_FILE, "Models config file '%s' is not exist.", MODELS_CONFIG_FILE)
+		log_to_file(LOG_FILE, "Models config file '%s' nie odnaleziono.", MODELS_CONFIG_FILE)
 		g_IsGamePossible = false
 		
 		return PLUGIN_CONTINUE;
@@ -6811,14 +6802,14 @@ public LoadModels()
 			{
 				formatex(szModelDir, charsmax(szModelDir),"models/player/%s/%s.mdl", szTemp[3], szTemp[3]);
 				if(!file_exists(szModelDir))
-					log_to_file(LOG_FILE, "DEBUG: Defined player model '%s' is not exist.", szModelDir)
+					log_to_file(LOG_FILE, "DEBUG: Defined player model '%s' nie odnaleziono.", szModelDir)
 			}
 			else
 			{
 				format(szModelDir, charsmax(szModelDir),"%s/%s.mdl", szModelDir, szTemp[3])
 				
 				if(!file_exists(szModelDir))
-					log_to_file(LOG_FILE, "DEBUG: Defined model '%s' is not exist.", szModelDir)
+					log_to_file(LOG_FILE, "DEBUG: Defined model '%s' nie odnaleziono.", szModelDir)
 			}
 		}
 	
@@ -6876,7 +6867,7 @@ public LoadSounds()
 	
 	if(!file_exists(SOUNDS_CONFIG_FILE))
 	{
-		log_to_file(LOG_FILE, "Sounds config file '%s' is not exist.", SOUNDS_CONFIG_FILE)
+		log_to_file(LOG_FILE, "Sounds config file '%s' nie odnaleziono.", SOUNDS_CONFIG_FILE)
 		g_IsGamePossible = false
 		
 		return PLUGIN_CONTINUE;
@@ -6911,7 +6902,7 @@ public LoadSounds()
 			formatex(szSoundDir, charsmax(szSoundDir),"sound/%s", szTemp[2])
 			
 			if(!file_exists(szSoundDir))
-				log_to_file(LOG_FILE, "DEBUG: Defined sound '%s' is not exist.", szSoundDir)
+				log_to_file(LOG_FILE, "DEBUG: Defined sound '%s' nie odnaleziono.", szSoundDir)
 		}
 		
 		if(equali(szTemp[0], "START_WAVE")) 
@@ -7505,7 +7496,7 @@ public SetShopItemInfo(iPluginIndex, iShopIndex)
 	if(!iFound)
 	{
 		if(DEBUG)
-			log_to_file(LOG_FILE, "DEBUG: Item ^"%s^" in shop configuration file is not exist. Adding [This message can be showed when you add new item to shop]", szFile)
+			log_to_file(LOG_FILE, "DEBUG: Item ^"%s^" in shop configuration file nie odnaleziono. Adding [This message can be showed when you add new item to shop]", szFile)
 	
 		write_file(SHOP_CONFIG_FILE, "", -1)
 		write_file(SHOP_CONFIG_FILE, szIndex, -1)
