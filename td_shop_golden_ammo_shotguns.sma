@@ -4,7 +4,7 @@
 #include <fakemeta>
 #include <hamsandwich>
 
-#define PLUGIN "TD: Shop | Zlote naboje - STRZELBY"
+#define PLUGIN "TD: Shop | Zlote naboje [STRZELBY]"
 #define VERSION "1.0"
 #define AUTHOR "tomcionek15 & grs4"
 
