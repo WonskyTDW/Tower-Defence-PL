@@ -17,7 +17,7 @@ public plugin_init()
 {
 	new id = register_plugin(PLUGIN, VERSION, AUTHOR)
 	
-	iItem = td_shop_register_item("Golden ammo for PISTOLS", "You have 100 golden ammo for PISTOLS. You take with it 1.5x more damage", 130, 0, id)
+	iItem = td_shop_register_item("Zlote naboje [PISTOLETY]", "Otrzymujesz 100 zlotych naboi do pistoletow. Zadajesz 1.5x wiecej obrazen", 130, 0, id)
 
 	RegisterHam(Ham_TraceAttack, "info_target", "TraceAttack")
 	RegisterHam(Ham_TraceAttack, "worldspawn", "TraceAttackW", 1)
@@ -33,10 +33,10 @@ public td_shop_item_selected(id, itemid) {
 public info(id) {
 	if(is_user_connected(id)) {
 		if(!g_PlayerAmmo[id])
-			client_print(id, print_chat, "[GOLDEN AMMO] Ready to shot!");
+			client_print(id, print_chat, "[ZLOTE NABOJE] Gotowe do uzytku!");
 
 		if(g_PlayerAmmo[id])
-			client_print(id, print_chat, "[GOLDEN AMMO] Now you have %d golden ammo only for PISTOLS!", g_PlayerAmmo[id]);
+			client_print(id, print_chat, "[ZLOTE NABOJE] Pozostalo %d do pistoletow!", g_PlayerAmmo[id]);
 
 	}
 }
@@ -53,7 +53,7 @@ public TraceAttackW(iEnt, iAttacker, Float:flDamage, Float:fDir[3], ptr, iDamage
 
 	if(weapon != CSW_USP && weapon != CSW_GLOCK18 && weapon != CSW_FIVESEVEN && weapon != CSW_ELITE && weapon != CSW_P228 && weapon != CSW_DEAGLE)
 		return HAM_IGNORED;
-	client_print(iAttacker, print_center, "Golden Ammo for PISTOLS: %d", g_PlayerAmmo[iAttacker])
+	client_print(iAttacker, print_center, "[ZLOTE NABOJE]: %d", g_PlayerAmmo[iAttacker])
 	
 	return HAM_IGNORED
 }
