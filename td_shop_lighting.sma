@@ -6,7 +6,7 @@
 #include <engine>
 #include <colorchat>
 
-#define PLUGIN "TD SHOP: Lighting"
+#define PLUGIN "TD SHOP: Blyskawica"
 #define VERSION "1.0"
 #define AUTHOR "GT Team"
 
@@ -18,7 +18,7 @@ new giSpriteLighting
 public plugin_init() {
 	new id = register_plugin(PLUGIN, VERSION, AUTHOR)
 	
-	item = td_shop_register_item("Lighting", "You got one lighting power! (Button'X') It takes 1000 damage", 70, 0, id)
+	item = td_shop_register_item("Blyskawica", "Otrzymujesz moc Thora! (Przycisk'X') Zadaje 1000 obrazen", 70, 0, id)
 	register_clcmd("radio2",     "cmdUseLighting")
 }
 
@@ -32,7 +32,7 @@ public td_shop_item_selected(id, itemid)
 
 		if(td_get_user_info(id, PLAYER_LEVEL) >= 10) 
 		{
-			ColorChat(id, GREEN, "[TD]^x01 You cannot buy lighting becouse you earned 10 level.");
+			ColorChat(id, GREEN, "[TD]^x01 Nie mozesz kupic blyskawicy, poniewaz zdobyles 10 poziom.");
 			return PLUGIN_HANDLED;
 		}
 		g_LightingNum[id]++
@@ -54,14 +54,14 @@ public cmdUseLighting(id)
 	find_sphere_class(0, "monster", 80.0, entlist, 1, AimedOrigin)
 	
 	if(!is_valid_ent(entlist[0])  ||  entity_get_int(entlist[0], EV_INT_iuser1) == _:ROUND_NONE) {
-		client_print(id, print_center, "You must aim at the monster!")
+		client_print(id, print_center, "Musisz celowac w potwora!")
 		return PLUGIN_HANDLED
 	}
 	g_LightingNum[id]--
 	if(g_LightingNum[id] < 0)
 		g_LightingNum[id] = 0
 	else
-		client_print(id, print_center, "You can use lighting %d time/s!", g_LightingNum[id])
+		client_print(id, print_center, "Mozesz uzyc blyskawicy %d razy!", g_LightingNum[id])
 		
 	emit_sound(id, CHAN_AUTO, "TD/player_use_lighting.wav", 1.0, ATTN_NORM, 0, PITCH_NORM); 
 	ExecuteHamB(Ham_TakeDamage, entlist[0], id, id, 1000.0, DMG_BLAST)
