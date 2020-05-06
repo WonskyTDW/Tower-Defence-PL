@@ -4803,7 +4803,7 @@ public StartDrawVote()
 public GetMapIndexWithMostVotes(&ret1, &ret2)
 {
 	if(DEBUG)	
-		log_to_file(LOG_FILE, "DEBUG: Getting map index with most votes. Size: %d / %d", g_VotedForNextMapNum, VOTE_MAP_COUNT)
+		log_to_file(LOG_FILE, "DEBUG: Uzyskiwanie indeksu map z najwieksza liczba głosow. Rozmiar: %d / %d", g_VotedForNextMapNum, VOTE_MAP_COUNT)
 
 	new votes[ VOTE_MAP_COUNT ];
 	
@@ -4946,7 +4946,7 @@ public CreateVoteMapEntities()
 		new ent = g_VoteForNextMapEntity[i] = create_entity("trigger_multiple");
 		
 		if(DEBUG)	
-			log_to_file(LOG_FILE, "DEBUG: Creating vote map zone entity. ENT = %d", ent)
+			log_to_file(LOG_FILE, "DEBUG: Tworzenie bytu votemap. ENT = %d", ent)
 		
 		set_pev(ent, pev_classname, szClassname);
 		set_pev(ent, pev_origin, g_VoteForNextMapEntityPosition[i][0]);
@@ -5163,7 +5163,7 @@ public CountdownEnded()
 	}
 
 	if(DEBUG)	
-		log_to_file(LOG_FILE, "DEBUG: Countdown ended.")
+		log_to_file(LOG_FILE, "DEBUG: Odliczanie zakonczone")
 		
 	set_task(g_ConfigValuesFloat[CFG_FLOAT_SEND_MONSTER_TIME], "PreSendMonster", TASK_SEND_MONSTERS, _, _, "a", g_HowManyMonsters);
 	return PLUGIN_CONTINUE;
@@ -6018,10 +6018,10 @@ public LoadConfiguration()
 	
 	if(!file_exists(MAP_CONFIG_FILE))
 	{
-		log_to_file(LOG_FILE, "DEBUG: Maps configuration file '%s' nie odnaleziono...", MAP_CONFIG_FILE)
+		log_to_file(LOG_FILE, "DEBUG: Plik konfiguracyjny mapy '%s' nie odnaleziono...", MAP_CONFIG_FILE)
 		g_IsGamePossible = false
 		
-		write_file(MAP_CONFIG_FILE, ";File created automaticly. Here add your TD maps every new line. Automaticly added last played map", 0)
+		write_file(MAP_CONFIG_FILE, ";Plik utworzony automatycznie. Tutaj dodaj mapy TD do każdej nowej linii. Automatycznie dodana ostatnio odtwarzana mapa", 0)
 		write_file(MAP_CONFIG_FILE, szMapName, 1)
 	}
 	/* Allow to load all cvars and configs by server */
@@ -6046,7 +6046,7 @@ public LoadLastMaps()
 			/* Remove "" */
 			remove_quotes(szText)
 			if(DEBUG)	
-				log_to_file(LOG_FILE, "DEBUG: Loaded last map: %s.", szText);
+				log_to_file(LOG_FILE, "DEBUG: Ladowanie ostatniej mapy: %s.", szText);
 			copy(g_LastMapName[g_LastMapsNum++], charsmax(g_LastMapName[]),  szText);
 		}
 	}
@@ -6059,7 +6059,7 @@ public FinishLoadingConfig()
 	
 	if(DEBUG)
 	{
-		log_to_file(LOG_FILE, "DEBUG: Loading all configuration files finished.")
+		log_to_file(LOG_FILE, "DEBUG: Ladowanie wszystkich plikow konfiguracyjnych zakonczone")
 		log_to_file(LOG_FILE, "---------------END OF DEBUGGING TRACE---------------")
 	}
 }
@@ -6068,7 +6068,7 @@ public CheckMap()
 	set_task(0.5, "FinishLoadingConfig");
 	
 	if(DEBUG)
-		log_to_file(LOG_FILE, "DEBUG: Starting a proccess of checking map.")
+		log_to_file(LOG_FILE, "DEBUG: Rozpoczęto proces sprawdzania map")
 	
 	/* start */
 	new iEnt = find_ent_by_tname(-1, "start")
@@ -6094,7 +6094,7 @@ public CheckMap()
 	else 
 	{
 		if(DEBUG)
-			log_to_file(LOG_FILE, "DEBUG: Enity 'start' nie odnaleziono. iEnt = %d", iEnt)
+			log_to_file(LOG_FILE, "DEBUG: Byt 'start' nie odnaleziony. iEnt = %d", iEnt)
 
 		g_IsGamePossible = false;
 		return PLUGIN_CONTINUE
@@ -6124,7 +6124,7 @@ public CheckMap()
 	else 
 	{
 		if(DEBUG)
-			log_to_file(LOG_FILE, "DEBUG: Entity 'end' on map nie odnaleziono.")
+			log_to_file(LOG_FILE, "DEBUG: Byt 'end' na mapie nie odnaleziono.")
 
 		g_IsGamePossible = false;
 		
@@ -6137,7 +6137,7 @@ public CheckMap()
 	if(!is_valid_ent(iEnt)) 
 	{
 		if(DEBUG)
-			log_to_file(LOG_FILE, "DEBUG: Entity 'track1' which sterring a monster nie odnaleziono. There can be a errors...")
+			log_to_file(LOG_FILE, "DEBUG: Byt 'track1' ktory steruje potworami nie odnaleziony. Moga byc problemy...")
 	}
 	else 
 	{
@@ -6156,7 +6156,7 @@ public CheckMap()
 				formatex(szTrack, charsmax(szTrack), "track%d", i)
 				if(is_valid_ent( find_ent_by_tname(-1, szTrack) )) {
 					if(DEBUG)
-						log_to_file(LOG_FILE, "DEBUG: Entity %s_wall nie odnaleziono...", szTrack)
+						log_to_file(LOG_FILE, "DEBUG: Byt %s_wall nie odnaleziono...", szTrack)
 
 					g_IsGamePossible = false;
 					
@@ -6172,14 +6172,14 @@ public CheckMap()
 	else
 	{
 		if(DEBUG)
-			log_to_file(LOG_FILE, "DEBUG: Entity %s_wall nie odnaleziono...")					
+			log_to_file(LOG_FILE, "DEBUG: Byt %s_wall nie odnaleziono...")					
 		g_IsGamePossible = false;
 
 		return PLUGIN_CONTINUE;
 	} 
 
 	if(DEBUG)
-		log_to_file(LOG_FILE, "DEBUG: Checking map finished.")
+		log_to_file(LOG_FILE, "DEBUG: Sprawdzanie map zakonczone.")
 
 	if(g_FogColor[0] == 0 && g_FogColor[1] == 0 && g_FogColor[2] == 0) {
 		//todo what/
@@ -6193,7 +6193,7 @@ public CheckMap()
 public LoadWaves(szMapName[]) 
 {
 	if(DEBUG)
-		log_to_file(LOG_FILE, "DEBUG: Loading waves from ^"%s.cfg^" file started.", szMapName)
+		log_to_file(LOG_FILE, "DEBUG: Ladowanie dla z ^"%s.cfg^" rozpoczete", szMapName)
 
 	new szFileDir[64];
 	new iLoadStandardWave;
@@ -6204,8 +6204,8 @@ public LoadWaves(szMapName[])
 	{
 		if(DEBUG)
 		{
-			log_to_file(LOG_FILE, "DEBUG: File ^"%s^" nie odnaleziono", szFileDir)
-			log_to_file(LOG_FILE, "DEBUG: Loading standard waves")
+			log_to_file(LOG_FILE, "DEBUG: Pliku ^"%s^" nie odnaleziono", szFileDir)
+			log_to_file(LOG_FILE, "DEBUG: Zaladowano standardowe fale")
 		}
 		
 		iLoadStandardWave = 1;
@@ -6216,14 +6216,14 @@ public LoadWaves(szMapName[])
 		if(DEBUG)
 		{
 			if(iLoadStandardWave == 2) 
-				log_to_file(LOG_FILE, "DEBUG: In wave configuration file ^"%s^" selects loads standard waves.", szFileDir)
+				log_to_file(LOG_FILE, "DEBUG: W pliku konfiguracji fal ^"%s^" wybiera obciazenie fal standardowych.", szFileDir)
 		}
 		
 		formatex(szFileDir, charsmax(szFileDir), "addons/amxmodx/configs/Tower Defense/standard_wave.cfg")
 		
 		if(!file_exists(szFileDir)) 
 		{    
-			log_to_file(LOG_FILE, "File configuration ^"%s^" nie odnaleziono. Changing to next map from amx_nextmap cvar", szFileDir)
+			log_to_file(LOG_FILE, "Plik konfiguracyjny ^"%s^" nie odnaleziono. Zmiana na nastepna mape z amx_nextmap cvar", szFileDir)
 			g_IsGamePossible = false
 			
 			return PLUGIN_CONTINUE		
@@ -6292,7 +6292,7 @@ public LoadWaves(szMapName[])
 		if(iLoadStartZone)
 		{
 			if(DEBUG)
-				log_to_file(LOG_FILE, "DEBUG: Loading startzone...")
+				log_to_file(LOG_FILE, "DEBUG: Ladowanie startzone...")
 
 			new Float:fOrigin[3];
 			new Float:fMins[3];
@@ -6313,14 +6313,14 @@ public LoadWaves(szMapName[])
 			iLoadedStartZone = true;
 			
 			if(DEBUG)
-				log_to_file(LOG_FILE, "DEBUG: Startzone loaded")
+				log_to_file(LOG_FILE, "DEBUG: Startzone zaladowana")
 				
 			continue;
 		} 
 		else if(iLoadRepairZone)
 		{
 			if(DEBUG)
-				log_to_file(LOG_FILE, "DEBUG: Loading repairzone...")
+				log_to_file(LOG_FILE, "DEBUG: Ladowanie repairzone...")
 				
 			new Float:fOrigin[3];
 			new Float:fMins[3];
@@ -6338,7 +6338,7 @@ public LoadWaves(szMapName[])
 			iLoadRepairZone = false;
 			iLoadedRepairZone = true;
 			if(DEBUG)
-				log_to_file(LOG_FILE, "DEBUG: Repair Zone loaded")
+				log_to_file(LOG_FILE, "DEBUG: Repair Zone zaladowana")
 
 			continue;
 		}
@@ -6347,11 +6347,11 @@ public LoadWaves(szMapName[])
 			if(iLoadedVoteMapZone[iLoadVoteMapIndex])
 			{
 				if(DEBUG)
-					log_to_file(LOG_FILE, "DEBUG: Error: [MAP_VOTE_ZONE_%d_ENTITY] was loaded multiply time!", iLoadVoteMapIndex+1)
+					log_to_file(LOG_FILE, "DEBUG: Blad: [MAP_VOTE_ZONE_%d_ENTITY] zostal zaladowany wielokrotnie!", iLoadVoteMapIndex+1)
 			}
 			
 			if(DEBUG)
-				log_to_file(LOG_FILE, "DEBUG: Loading Map Vote Zone %d...", iLoadVoteMapIndex + 1)
+				log_to_file(LOG_FILE, "DEBUG: Ladowanie Map Vote Zone %d...", iLoadVoteMapIndex + 1)
 
 			for(new i ; i < 3 ; i++)
 			{
@@ -6368,7 +6368,7 @@ public LoadWaves(szMapName[])
 				log_to_file(LOG_FILE, "---: Mins[0]: %0.1f | Mins[1]: %0.1f | Mins[2]: %0.1f", g_VoteForNextMapEntityPosition[iLoadVoteMapIndex][1][0], g_VoteForNextMapEntityPosition[iLoadVoteMapIndex][1][1], g_VoteForNextMapEntityPosition[iLoadVoteMapIndex][1][2])
 				log_to_file(LOG_FILE, "---: Max[0]: %0.1f | Max[1]: %0.1f | Max[2]: %0.1f", g_VoteForNextMapEntityPosition[iLoadVoteMapIndex][2][0], g_VoteForNextMapEntityPosition[iLoadVoteMapIndex][2][1], g_VoteForNextMapEntityPosition[iLoadVoteMapIndex][2][2])
 		
-				log_to_file(LOG_FILE, "DEBUG: Map Vote Zone %d loaded", iLoadVoteMapIndex + 1)
+				log_to_file(LOG_FILE, "DEBUG: Map Vote Zone %d zaladowana", iLoadVoteMapIndex + 1)
 			}
 			iLoadVoteMapIndex = -1;
 			continue;
@@ -6378,10 +6378,10 @@ public LoadWaves(szMapName[])
 		{
 			if(DEBUG)
 			{
-				log_to_file(LOG_FILE, "DEBUG: Left command to use [iWasConf] = %d", iWasConf)
+				log_to_file(LOG_FILE, "DEBUG: Lewe polecenie, aby uzyc [iWasConf] = %d", iWasConf)
 
 				if(equali(szData[0], "[REPAIR_ZONE_ENTITY]") || equali(szData[0], "[START_ZONE_ENTITY]") || equali(szData[0], "[LOAD_STANDARD_WAVE]"))
-					log_to_file(LOG_FILE, "DEBUG: Command '%s'", szData[0])
+					log_to_file(LOG_FILE, "DEBUG: Komenda '%s'", szData[0])
 				else
 				{
 					new cmd[33], was;
@@ -6390,14 +6390,14 @@ public LoadWaves(szMapName[])
 						formatex(cmd, 32, "[MAP_VOTE_ZONE_%d_ENTITY]", i+1)
 						if(equali(cmd, szData[0]))
 						{
-							log_to_file(LOG_FILE, "DEBUG: Command '%s'", szData[0])
+							log_to_file(LOG_FILE, "DEBUG: Komenda '%s'", szData[0])
 							was = 1;
 							break;
 						}
 					}
 					
 					if(!was)
-						log_to_file(LOG_FILE, "DEBUG: Command '%s' | set: '%s'", szData[0], szData[1])
+						log_to_file(LOG_FILE, "DEBUG: Komenda '%s' | ustawiona: '%s'", szData[0], szData[1])
 				}
 			}
 
@@ -6482,19 +6482,19 @@ public LoadWaves(szMapName[])
 				if(DEBUG)
 				{
 					if(!iLoadedStartZone)
-						log_to_file(LOG_FILE, "DEBUG: [START_ZONE_ENTITY] nie odnaleziono. Please set it in admin menu nad paste to configuration file to play this map.")
+						log_to_file(LOG_FILE, "DEBUG: [START_ZONE_ENTITY] nie odnaleziono. Ustaw go w menu administratora i wklej do pliku konfiguracyjnego, aby odtworzyc te mape.")
 					
 					if(!iLoadedRepairZone)
-						log_to_file(LOG_FILE, "DEBUG: [REPAIR_ZONE_ENTITY] nie odnaleziono. It is not the problem. If you want to add repair zone please set it in admin menu and paste to configuration file code before waves.")
+						log_to_file(LOG_FILE, "DEBUG: [REPAIR_ZONE_ENTITY] nie odnaleziono. To nie jest problem. Jesli chcesz dodac strefe naprawy, ustaw ja w menu administratora i wklej do kodu pliku konfiguracyjnego przed falami.")
 					
 					for(new i ; i < VOTE_MAP_COUNT; i++)
 						if(!iLoadedVoteMapZone[i])
-							log_to_file(LOG_FILE, "DEBUG: [MAP_VOTE_ZONE_%d_ENTITY] nie odnaleziono. Please set it in admin menu nad paste to configuration file to play this map.", i+1)
+							log_to_file(LOG_FILE, "DEBUG: [MAP_VOTE_ZONE_%d_ENTITY] nie odnaleziono. Ustaw go w menu administratora i wklej do pliku konfiguracyjnego, aby odtworzyc te mape.", i+1)
 					
 					if(!g_MapLight[0])
 					{
 						//get_pCFG_string(g_CvarPointers[CFG_MAP_LIGHT], g_MapLight, 1);
-						log_to_file(LOG_FILE, "DEBUG: MAP_LIGHT nie odnaleziono. Loading default value: '%s'", g_MapLight)
+						log_to_file(LOG_FILE, "DEBUG: MAP_LIGHT nie odnaleziono. Zaladowano domyslna wartosc: '%s'", g_MapLight)
 					}
 				}
 				LoadWaves("standard_wave")
@@ -6545,13 +6545,13 @@ public LoadWaves(szMapName[])
 					if(!iLoadedStartZone)
 					{
 						iWasConf--;
-						log_to_file(LOG_FILE, "DEBUG: [START_ZONE_ENTITY] nie odnaleziono. Please set it in admin menu nad paste to configuration file to play this map.")
+						log_to_file(LOG_FILE, "DEBUG: [START_ZONE_ENTITY] nie odnaleziono. Ustaw go w menu administratora i wklej do pliku konfiguracyjnego, aby odtworzyc te mape.")
 					}
 					
 					if(!iLoadedRepairZone)
 					{
 						iWasConf--;
-						log_to_file(LOG_FILE, "DEBUG: [REPAIR_ZONE_ENTITY] nie odnaleziono. It is not the problem. If you want to add repair zone please set it in admin menu and paste to configuration file code before waves.")
+						log_to_file(LOG_FILE, "DEBUG: [REPAIR_ZONE_ENTITY] nie odnaleziono. To nie jest problem. Jesli chcesz dodac strefe naprawy, ustaw ja w menu administratora i wklej do kodu pliku konfiguracyjnego przed falami.")
 					}
 					
 					for(new i ; i < VOTE_MAP_COUNT; i++)
@@ -6559,7 +6559,7 @@ public LoadWaves(szMapName[])
 						if(!iLoadedVoteMapZone[i])
 						{
 							iWasConf--;
-							log_to_file(LOG_FILE, "DEBUG: [MAP_VOTE_ZONE_%d_ENTITY] nie odnaleziono. Please set it in admin menu nad paste to configuration file to play this map.", i+1)
+							log_to_file(LOG_FILE, "DEBUG: [MAP_VOTE_ZONE_%d_ENTITY] nie odnaleziono. Ustaw go w menu administratora i wklej do pliku konfiguracyjnego, aby odtworzyc te mape.", i+1)
 						}
 					}
 					
@@ -6567,14 +6567,14 @@ public LoadWaves(szMapName[])
 					{
 						iWasConf--
 						//get_pCFG_string(g_CvarPointers[CFG_MAP_LIGHT], g_MapLight, 1);
-						log_to_file(LOG_FILE, "DEBUG: MAP_LIGHT nie odnaleziono. Loading default value: %s", g_MapLight)
+						log_to_file(LOG_FILE, "DEBUG: MAP_LIGHT nie odnaleziono. Zaladowano domyslna wartosc: %s", g_MapLight)
 					}
 				}
 	
 				if(iWasConf > 0)
 				{
-					log_to_file(LOG_FILE, "DEBUG: File does not have all required commands.")
-					log_to_file(LOG_FILE, "DEBUG: Missing commands were replaced with standard params.")
+					log_to_file(LOG_FILE, "DEBUG: Plik nie ma wszystkich wymaganych polecen.")
+					log_to_file(LOG_FILE, "DEBUG: Brakujace polecenia zastapiono standardowymi parametrami.")
 					iWasConf = 0;
 				}
 			}
@@ -6618,7 +6618,7 @@ public LoadWaves(szMapName[])
 				
 				if(iNum < 0 || (!IsSpecialWave(iWave) && iNum == 0) || iNum > MAX_MONSTERS_PER_WAVE)
 				{
-					log_to_file(LOG_FILE, "Incorrect numbers of monster! ^"%d^" | line: %d", iNum, i)
+					log_to_file(LOG_FILE, "Niepoprawne numery potworow! ^"%d^" | line: %d", iNum, i)
 					g_IsGamePossible = false
 					
 					return PLUGIN_CONTINUE
@@ -6631,7 +6631,7 @@ public LoadWaves(szMapName[])
 				iNum = str_to_num(szData[3]);
 				if(iNum <= 0 && !IsSpecialWave(iWave)) 
 				{
-					log_to_file(LOG_FILE, "Incorrect HP value! ^"%d^" | line: %d", iNum, i)
+					log_to_file(LOG_FILE, "Niepoprawna wartosc HP! ^"%d^" | line: %d", iNum, i)
 					g_IsGamePossible = false
 					return PLUGIN_CONTINUE
 				}
@@ -6642,7 +6642,7 @@ public LoadWaves(szMapName[])
 				iNum = str_to_num(szData[4]);
 				if(iNum <= 0 && !IsSpecialWave(iWave)) 
 				{
-					log_to_file(LOG_FILE, "Incorrect SPEED value! ^"%d^" | line: %d", iNum, i)
+					log_to_file(LOG_FILE, "Niepoprawna wartosc SPEED! ^"%d^" | line: %d", iNum, i)
 					g_IsGamePossible = false
 					return PLUGIN_CONTINUE
 				}
@@ -6656,7 +6656,7 @@ public LoadWaves(szMapName[])
 					
 					if(iNum <= 0) 
 					{
-						log_to_file(LOG_FILE, "Incorrect HP value [speccial wave]! ^"%d^" | line: %d", iNum, i)
+						log_to_file(LOG_FILE, "Niepoprawna wartosc HP [fala specjalna]! ^"%d^" | line: %d", iNum, i)
 						g_IsGamePossible = false
 						return PLUGIN_CONTINUE
 					}
@@ -6667,7 +6667,7 @@ public LoadWaves(szMapName[])
 					iNum = str_to_num(szData[6]);
 					if(iNum <= 0)
 					 {
-						log_to_file(LOG_FILE, "Incorrect SPEED value [speccial wave]! ^"%d^" | line: %d", iNum, i)
+						log_to_file(LOG_FILE, "Niepoprawna wartosc SPEED [fala specjalna]! ^"%d^" | line: %d", iNum, i)
 						g_IsGamePossible = false
 						return PLUGIN_CONTINUE
 					}
@@ -6683,7 +6683,7 @@ public LoadWaves(szMapName[])
 			} 
 			else 
 			{
-				log_to_file(LOG_FILE, "Incorrect wave numver! Was ^"%d^", is ^"%d^". | line: %d", iOldWave, iWave, i)
+				log_to_file(LOG_FILE, "Niepoprawny numer fali! Bylo ^"%d^", jest ^"%d^". | line: %d", iOldWave, iWave, i)
 				g_IsGamePossible = false
 				return PLUGIN_CONTINUE
 			}
@@ -6697,7 +6697,7 @@ public LoadWaves(szMapName[])
 		if(!wasEndDebugMessage)
 		{
 			wasEndDebugMessage = 1;
-			log_to_file(LOG_FILE, "DEBUG: Loading waves finished.")
+			log_to_file(LOG_FILE, "DEBUG: Ladowanie fal zakonczone")
 		}
 	}
 	return PLUGIN_CONTINUE
@@ -6705,7 +6705,7 @@ public LoadWaves(szMapName[])
 
 public CheckIsGamePossible(){
 	if(DEBUG)
-		log_to_file(LOG_FILE, "DEBUG: Checking game status started.")
+		log_to_file(LOG_FILE, "DEBUG: Rozpoczeto sprawdzanie statusu gry")
 
 	if(!g_IsGamePossible)
 	{
@@ -6718,42 +6718,42 @@ public CheckIsGamePossible(){
 	}
 	
 	if(DEBUG)
-		log_to_file(LOG_FILE, "DEBUG: Checking game status finished.")
+		log_to_file(LOG_FILE, "DEBUG: Zakonczono sprawdzanie statusu gry")
 }
 
 public CheckShopConfig()
 {
 	if(DEBUG)
-		log_to_file(LOG_FILE, "DEBUG: Checking a configuration file of shop...");
+		log_to_file(LOG_FILE, "DEBUG: Sprawdzanie pliku konfiguracynego sklepu...");
 
 	if(!file_exists(SHOP_CONFIG_FILE))
 	{
 		if(DEBUG)
-			log_to_file(LOG_FILE, "DEBUG: Shop configuration file not found, creating new...")
+			log_to_file(LOG_FILE, "DEBUG: Plik konfiguracyjny sklepu nie odnaleziony, tworzenie nowego...")
 
-		write_file(SHOP_CONFIG_FILE, ";**** FILE CREATED AUTOMATICLY ****", 0);
-		write_file(SHOP_CONFIG_FILE, ";If you add a new item to shop, text will be created automaticly, example:", 1);
-		write_file(SHOP_CONFIG_FILE, ";[NAME_OF_PLUGIN] // without .amxx", 2);
-		write_file(SHOP_CONFIG_FILE, ";NAME = ^"name of item^" // must be in quotes(max 63 characters)", 3);
-		write_file(SHOP_CONFIG_FILE, ";DESCRIPTION = ^"desc of item^" // must be in quotes (max 127 characters)", 4);
-		write_file(SHOP_CONFIG_FILE, ";PRICE = 35 // only a numbers! (max 9999999, min 0 -> free)", 5);
-		write_file(SHOP_CONFIG_FILE, ";ONE_PER_MAP = true (or yes, no, false) // others characters will not be load", 6);
-		write_file(SHOP_CONFIG_FILE, ";If there is a problem, DEBUG mode in td_engine,sma will propably find it!", 7);
+		write_file(SHOP_CONFIG_FILE, ";**** PLIK STWORZONY AUTOMATYCZNIE ****", 0);
+		write_file(SHOP_CONFIG_FILE, ";Jesli dodasz nowy przedmiot do sklepu, tekst zostanie utworzony automatycznie, na przyklad:", 1);
+		write_file(SHOP_CONFIG_FILE, ";[NAME_OF_PLUGIN] // bez .amxx", 2);
+		write_file(SHOP_CONFIG_FILE, ";NAME = ^"name of item^" // nazwa (max 63 znakow)", 3);
+		write_file(SHOP_CONFIG_FILE, ";DESCRIPTION = ^"desc of item^" // opis (max 127 znakow)", 4);
+		write_file(SHOP_CONFIG_FILE, ";PRICE = 35 // tylko cyfry! (max 9999999, min 0 -> free)", 5);
+		write_file(SHOP_CONFIG_FILE, ";ONE_PER_MAP = true (lub yes, no, false) // inaczej sie nie zaladuje", 6);
+		write_file(SHOP_CONFIG_FILE, ";Jesli wystapi problem, tryb DEBUG w td_engine, prawdopodobnie go znajdzie!", 7);
 		write_file(SHOP_CONFIG_FILE, "", 8);
 
 		if(DEBUG)
-			log_to_file(LOG_FILE, "DEBUG: Shop configuration file created succesfully")
+			log_to_file(LOG_FILE, "DEBUG: Plik konfiguracyjny sklepu pomyslnie otworzony ")
 	}
 
 	if(DEBUG)
-		log_to_file(LOG_FILE, "DEBUG: Checking shop configuration file completed...")
+		log_to_file(LOG_FILE, "DEBUG: Sprawdzanie pliku konfiguracyjnego sklepu zakonczone")
 
 }
 
 public LoadModels()
 {
 	if(DEBUG)
-		log_to_file(LOG_FILE, "DEBUG: Loading models from '%s' config file started.", MODELS_CONFIG_FILE)
+		log_to_file(LOG_FILE, "DEBUG: Ladowanie modeli z '%s' rozpoczete.", MODELS_CONFIG_FILE)
 
 	new szText[128], len;
 	new szTemp[4][128];
@@ -6762,7 +6762,7 @@ public LoadModels()
 				
 	if(!file_exists(MODELS_CONFIG_FILE))
 	{
-		log_to_file(LOG_FILE, "Models config file '%s' nie odnaleziono.", MODELS_CONFIG_FILE)
+		log_to_file(LOG_FILE, "Pliku '%s' nie odnaleziono.", MODELS_CONFIG_FILE)
 		g_IsGamePossible = false
 		
 		return PLUGIN_CONTINUE;
@@ -6796,20 +6796,20 @@ public LoadModels()
 		if(DEBUG)
 		{
 			szModelDir = "models/TD";
-			log_to_file(LOG_FILE, "DEBUG: Loading model '%s' | set '%s' or '%s'", szTemp[0], szTemp[2], szTemp[3])
+			log_to_file(LOG_FILE, "DEBUG: Ladowanie modelu '%s' | ustaw '%s' lub '%s'", szTemp[0], szTemp[2], szTemp[3])
 		
 			if(containi(szTemp[0], "VIP_MODEL") != -1)
 			{
 				formatex(szModelDir, charsmax(szModelDir),"models/player/%s/%s.mdl", szTemp[3], szTemp[3]);
 				if(!file_exists(szModelDir))
-					log_to_file(LOG_FILE, "DEBUG: Defined player model '%s' nie odnaleziono.", szModelDir)
+					log_to_file(LOG_FILE, "DEBUG: Zdefiniowany model gracza '%s' nie odnaleziony.", szModelDir)
 			}
 			else
 			{
 				format(szModelDir, charsmax(szModelDir),"%s/%s.mdl", szModelDir, szTemp[3])
 				
 				if(!file_exists(szModelDir))
-					log_to_file(LOG_FILE, "DEBUG: Defined model '%s' nie odnaleziono.", szModelDir)
+					log_to_file(LOG_FILE, "DEBUG: Zdefiniowany model '%s' nie odnaleziony.", szModelDir)
 			}
 		}
 	
@@ -6850,7 +6850,7 @@ public LoadModels()
 			copy(g_VipModel, 31, szTemp[2])	
 	}
 	if(DEBUG)
-		log_to_file(LOG_FILE, "DEBUG: Loading models finished.")
+		log_to_file(LOG_FILE, "DEBUG: Ladowanie modeli zakonczone")
 
 	return PLUGIN_CONTINUE
 	
@@ -6859,7 +6859,7 @@ public LoadModels()
 public LoadSounds() 
 {
 	if(DEBUG)
-		log_to_file(LOG_FILE, "DEBUG: Loading sounds from '%s' config file started.", SOUNDS_CONFIG_FILE)
+		log_to_file(LOG_FILE, "DEBUG: Ladowani dzwiekow z '%s' rozpoczete", SOUNDS_CONFIG_FILE)
 
 
 	new szText[128], len;
@@ -6867,7 +6867,7 @@ public LoadSounds()
 	
 	if(!file_exists(SOUNDS_CONFIG_FILE))
 	{
-		log_to_file(LOG_FILE, "Sounds config file '%s' nie odnaleziono.", SOUNDS_CONFIG_FILE)
+		log_to_file(LOG_FILE, "Plik konfiguracyjny dzwiekow '%s' nie odnaleziony.", SOUNDS_CONFIG_FILE)
 		g_IsGamePossible = false
 		
 		return PLUGIN_CONTINUE;
@@ -6902,7 +6902,7 @@ public LoadSounds()
 			formatex(szSoundDir, charsmax(szSoundDir),"sound/%s", szTemp[2])
 			
 			if(!file_exists(szSoundDir))
-				log_to_file(LOG_FILE, "DEBUG: Defined sound '%s' nie odnaleziono.", szSoundDir)
+				log_to_file(LOG_FILE, "DEBUG: Zdefiniowanego dzwieku '%s' nie odnaleziono.", szSoundDir)
 		}
 		
 		if(equali(szTemp[0], "START_WAVE")) 
@@ -6972,7 +6972,7 @@ public LoadSounds()
 	}
 	
 	if(DEBUG)
-		log_to_file(LOG_FILE, "DEBUG: Loading sounds finished.")
+		log_to_file(LOG_FILE, "DEBUG: Ladowanie dzwiekow zakonczone.")
 	return PLUGIN_CONTINUE
 }
 
@@ -7359,7 +7359,7 @@ public SetShopItemInfo(iPluginIndex, iShopIndex)
 						else
 						{
 							if(DEBUG)
-								log_to_file(LOG_FILE, "DEBUG: [This is only warning] Item ^"%s^" in shop configuration file have name consisting of several lines.", szFile)
+								log_to_file(LOG_FILE, "DEBUG: [WARNING] Plik ^"%s^" w pliku konfiguracyjnym sklepu ma nazwe skladajacy sie z kilku wierszy.", szFile)
 
 							iMulti = true;
 							remove_quotes(szText);
@@ -7370,7 +7370,7 @@ public SetShopItemInfo(iPluginIndex, iShopIndex)
 					}
 					else
 						if(DEBUG)
-							log_to_file(LOG_FILE, "DEBUG: Item ^"%s^" in shop configuration file does not have initial quoted mark.", szFile)	
+							log_to_file(LOG_FILE, "DEBUG: Plik ^"%s^" w pliku konfiguracyjnym sklepu nie ma poczatkowego cudzyslowu.", szFile)	
 					
 				}
 				else if(iMulti) 
@@ -7391,7 +7391,7 @@ public SetShopItemInfo(iPluginIndex, iShopIndex)
 				}
 				else 
 					if(DEBUG)
-						log_to_file(LOG_FILE, "DEBUG: Item ^"%s^" does not have a command which set item name (^"NAME^"). Loading default value.", szFile)				
+						log_to_file(LOG_FILE, "DEBUG: Plik ^"%s^" nie ma polecenia, ktore ustawialoby nazwe elementu (^"NAME^"). Ladowanie domyslnej wartosci.", szFile)				
 				
 				iStatus = CHECK_DESCRIPTION;
 				continue;
@@ -7415,7 +7415,7 @@ public SetShopItemInfo(iPluginIndex, iShopIndex)
 						else 
 						{
 							if(DEBUG)
-								log_to_file(LOG_FILE, "DEBUG: [This is only warning] Item ^"%s^" in shop configuration file have description consisting of several lines", szFile)
+								log_to_file(LOG_FILE, "DEBUG: [WARNING] Plik ^"%s^" w pliku konfiguracyjnym sklepu ma opis skladajacy sie z kilku wierszy", szFile)
 							iMulti = true;
 							remove_quotes(szText);
 							formatex(szTemp, 127, "%s", szText)
@@ -7425,7 +7425,7 @@ public SetShopItemInfo(iPluginIndex, iShopIndex)
 					}
 					else
 						if(DEBUG)
-							log_to_file(LOG_FILE, "DEBUG: Item ^"%s^" in shop configuration file does not have start quote in description.", szFile)		
+							log_to_file(LOG_FILE, "DEBUG: Plik ^"%s^" w pliku konfiguracyjnym sklepu nie ma cytatu startowego w opisie.", szFile)		
 					
 				}
 				else if(iMulti)
@@ -7446,7 +7446,7 @@ public SetShopItemInfo(iPluginIndex, iShopIndex)
 				}
 				else 
 					if(DEBUG)
-						log_to_file(LOG_FILE, "DEBUG: Item ^"%s^" in shop configuration file does not have description  (^"DESCRIPTION^"). Loading Default", szFile)					
+						log_to_file(LOG_FILE, "DEBUG: Plik ^"%s^" w pliku konfiguracyjnym sklepu nie ma opisu  (^"DESCRIPTION^"). Zaladowano domyslne", szFile)					
 				
 				iStatus = CHECK_PRICE;
 				continue;
@@ -7458,14 +7458,14 @@ public SetShopItemInfo(iPluginIndex, iShopIndex)
 					new iNum = str_to_num(szInfo);
 					
 					if(iNum < 0 || iNum > 999999 && DEBUG)
-						log_to_file(LOG_FILE, "DEBUG: Item ^"%s^" in shop configuration file is having bad price value (^"PRICE = %d^"). Loading Default.", szFile, iNum)
+						log_to_file(LOG_FILE, "DEBUG: Plik ^"%s^" in shop configuration file is having bad price value (^"PRICE = %d^"). Loading Default.", szFile, iNum)
 					else 
 						g_ShopItemsPrice[iShopIndex] = str_to_num(szInfo)
 
 				}
 				else 
 					if(DEBUG)
-						log_to_file(LOG_FILE, "DEBUG: Item ^"%s^" in shop configuration file is having bad price value (^"PRICE^"). Loading Default.", szFile)
+						log_to_file(LOG_FILE, "DEBUG: Plik ^"%s^" in shop configuration file is having bad price value (^"PRICE^"). Loading Default.", szFile)
 				
 				iStatus = CHECK_ONE_PER_MAP;
 				continue;
