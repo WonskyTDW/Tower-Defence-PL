@@ -3185,15 +3185,15 @@ public MenuEditHealthbarStyle(id)
 	new iMenu = menu_create("Zmien styl:", "MenuEditHealthbarStyleH")
 	new iCb = menu_makecallback("MenuEditHealthbarStyleCb");
 	
-	menu_additem(iMenu, "Don't show healthbar", _, _, iCb);
+	menu_additem(iMenu, "Nie pokazuj paska HP", _, _, iCb);
 	
 	for(new i; i < 3 ; i++) 
 	{
-		formatex(szFormat, charsmax(szFormat), "Healthbar no. %d", i+1)
+		formatex(szFormat, charsmax(szFormat), "Pasek numer %d", i+1)
 		menu_additem(iMenu, szFormat, _, _, iCb)
 	}
 	
-	menu_setprop(iMenu, MPROP_EXITNAME, "Back");
+	menu_setprop(iMenu, MPROP_EXITNAME, "Wroc");
 	
 	menu_display(id, iMenu);
 }
@@ -3209,9 +3209,9 @@ public MenuEditHealthbarStyleH(id, menu, item) {
 	}
 	
 	if(item == 0)
-		ColorChat(id, GREEN, "%s^x01 Healthbars will not be showed", CHAT_PREFIX);
+		ColorChat(id, GREEN, "%s^x01 Paski zdrowia nie beda wyswietlane", CHAT_PREFIX);
 	else
-		ColorChat(id, GREEN, "%s^x01 Healthbar was changed to Healthbar no. %d", CHAT_PREFIX, item );
+		ColorChat(id, GREEN, "%s^x01 Pasek zdrowia zostal ustawiony na nr. %d", CHAT_PREFIX, item );
 	
 	g_PlayerHealthbar[id] = item;
 	MenuEditHealthbarStyle(id)
@@ -3226,17 +3226,17 @@ public ShowPlayerOptionsHudMenu(id)
 	
 	static szFormat[64];
 	
-	new iMenu = menu_create("HUD Settings:", "ShowPlayerOptionsHudMenuH");
+	new iMenu = menu_create("Ustawienia HUD :", "ShowPlayerOptionsHudMenuH");
 	new iCb = menu_makecallback("ShowPlayerOptionsHudMenuCb");
 	
-	formatex(szFormat, charsmax(szFormat), "Change position \r[ X: %0.2f \yY: %0.2f \r]", g_PlayerHudPosition[id][0], g_PlayerHudPosition[id][1]);
+	formatex(szFormat, charsmax(szFormat), "Zmien pozycje \r[ X: %0.2f \yY: %0.2f \r]", g_PlayerHudPosition[id][0], g_PlayerHudPosition[id][1]);
 	menu_additem(iMenu, szFormat, _, _, iCb);
 	
-	formatex(szFormat, charsmax(szFormat), "Change color [R: %d G: %d B: %d]",  g_PlayerHudColor[id][0], g_PlayerHudColor[id][1], g_PlayerHudColor[id][2]);
+	formatex(szFormat, charsmax(szFormat), "Zmien kolor [R: %d G: %d B: %d]",  g_PlayerHudColor[id][0], g_PlayerHudColor[id][1], g_PlayerHudColor[id][2]);
 	menu_additem(iMenu, szFormat,  _, _, iCb);
-	menu_additem(iMenu,  "Change HUD size", _, _, iCb);
+	menu_additem(iMenu,  "Zmien rozmiar HUD", _, _, iCb);
 
-	formatex(szFormat, charsmax(szFormat), "Show hit crosshair effect(& sound): \y %s", g_PlayerShowHitCrosshair[id] ? "\yEnabled" : "\rDisabled");
+	formatex(szFormat, charsmax(szFormat), "Pokaz efekt trafienia w celowniku (i dzwiek): \y %s", g_PlayerShowHitCrosshair[id] ? "\yEnabled" : "\rDisabled");
 	menu_additem(iMenu, szFormat);
 	
 	menu_setprop(iMenu, MPROP_EXITNAME, "Back");
@@ -3273,7 +3273,7 @@ public MenuEditHudSize(id)
 {
 	static szFormat[33]
 	
-	formatex(szFormat, charsmax(szFormat), "\yActual size:\w %s", g_PlayerHudSize[id] == HUD_SMALL ? "SMALL" : g_PlayerHudSize[id] == HUD_NORMAL ? "NORMAL" : "BIG");
+	formatex(szFormat, charsmax(szFormat), "\yObecny rozmiar:\w %s", g_PlayerHudSize[id] == HUD_SMALL ? "MALY" : g_PlayerHudSize[id] == HUD_NORMAL ? "NORMALNY" : "DUZY");
 	
 	new iMenu = menu_create(szFormat, "MenuEditHudSizeH")
 	new iCb = menu_makecallback("MenuEditHudSizeCb");
@@ -3309,7 +3309,7 @@ public MenuEditHudSizeH(id, menu, item)
 		message_end();
 	}
 	
-	ColorChat(id, GREEN, "%s^x01 Your hud was changed to %s", CHAT_PREFIX,  g_PlayerHudSize[id] == HUD_SMALL ? "SMALL" : g_PlayerHudSize[id] == HUD_NORMAL ? "NORMAL" : "BIG");
+	ColorChat(id, GREEN, "%s^x01 Twoj HUD zostal zmieniony na %s", CHAT_PREFIX,  g_PlayerHudSize[id] == HUD_SMALL ? "MALY" : g_PlayerHudSize[id] == HUD_NORMAL ? "NORMALNY" : "DUZY");
 	MenuEditHudSize(id)
 	
 	return PLUGIN_CONTINUE
@@ -3319,7 +3319,7 @@ public MenuEditHudPosition(id)
 {
 	static szFormat[33];
 	
-	formatex(szFormat, charsmax(szFormat), "%s\w every 0.04 :", g_IsUserAdding[id] ? "\yAdd":"\rSubstract");
+	formatex(szFormat, charsmax(szFormat), "%s\w kazde 0.04 :", g_IsUserAdding[id] ? "\yDodaj":"\rOdejmij");
 	
 	new iMenu = menu_create(szFormat, "MenuEditHudPositionH")
 	
@@ -3329,8 +3329,8 @@ public MenuEditHudPosition(id)
 	formatex(szFormat, charsmax(szFormat), "Y: %0.2f", g_PlayerHudPosition[id][1]);
 	menu_additem(iMenu, szFormat);
 	
-	menu_additem(iMenu, g_IsUserAdding[id] ? "\rSubstract":"\yAdd");
-	menu_setprop(iMenu, MPROP_EXITNAME, "Back");
+	menu_additem(iMenu, g_IsUserAdding[id] ? "\rOdejmij":"\yDodaj");
+	menu_setprop(iMenu, MPROP_EXITNAME, "Wroc");
 	
 	menu_display(id, iMenu);
 }
@@ -3382,21 +3382,21 @@ public MenuEditHudColor(id)
 {
 	static szFormat[33]
 	
-	formatex(szFormat, charsmax(szFormat), "%s\w every 10:", g_IsUserAdding[id] ? "\yAdd":"\rSubstract");
+	formatex(szFormat, charsmax(szFormat), "%s\w kazde 10:", g_IsUserAdding[id] ? "\yDodaj":"\rOdejmij");
 	
 	new iMenu = menu_create(szFormat, "MenuEditHudColorH")
 	
-	formatex(szFormat, charsmax(szFormat), "Red: %d", g_PlayerHudColor[id][0]);
+	formatex(szFormat, charsmax(szFormat), "Czerwony: %d", g_PlayerHudColor[id][0]);
 	menu_additem(iMenu, szFormat);
 	
-	formatex(szFormat, charsmax(szFormat), "Green: %d", g_PlayerHudColor[id][1]);
+	formatex(szFormat, charsmax(szFormat), "Zielony: %d", g_PlayerHudColor[id][1]);
 	menu_additem(iMenu, szFormat);
 	
-	formatex(szFormat, charsmax(szFormat), "Blue: %d", g_PlayerHudColor[id][2]);
+	formatex(szFormat, charsmax(szFormat), "Niebieski: %d", g_PlayerHudColor[id][2]);
 	menu_additem(iMenu, szFormat);
 	
-	menu_additem(iMenu,  g_IsUserAdding[id] ? "\rSubstract":"\yAdd");
-	menu_setprop(iMenu, MPROP_EXITNAME, "Back");
+	menu_additem(iMenu,  g_IsUserAdding[id] ? "\rOdejmij":"\yDodaj");
+	menu_setprop(iMenu, MPROP_EXITNAME, "Wroc");
 	
 	menu_display(id, iMenu);
 
@@ -3533,7 +3533,7 @@ public MonsterKilled(iEnt, id) //zabicie potwora
 			get_user_name(id, szNick, 32);
 			iEarnedGold = g_ConfigValues[CFG_KILL_BONUS_GOLD] + g_BonusRobbedGold;
 			
-			ColorChat(0, GREEN, "%s^x01 Defender %s killed a BONUS and get %d gold!", CHAT_PREFIX, szNick, iEarnedGold);
+			ColorChat(0, GREEN, "%s^x01 Obronca %s zabil bonusowe zombie i dostal %d zlota!", CHAT_PREFIX, szNick, iEarnedGold);
 			
 		} 
 		else if(iMonsterType == ROUND_BOSS) 
@@ -3541,7 +3541,7 @@ public MonsterKilled(iEnt, id) //zabicie potwora
 			new szNick[33];
 			get_user_name(id, szNick, 32);
 			
-			ColorChat(0, GREEN, "%s^x01 Defender %s killed a BOSS!",CHAT_PREFIX, szNick);
+			ColorChat(0, GREEN, "%s^x01 Obronca %s zabil BOSSA!",CHAT_PREFIX, szNick);
 			iEarnedGold = g_ConfigValues[CFG_KILL_BOSS_GOLD]
 		}
 			
@@ -3552,7 +3552,7 @@ public MonsterKilled(iEnt, id) //zabicie potwora
 			iEarnedGold = floatround(iEarnedGold * g_ConfigValuesFloat[CFG_FLOAT_PRM_MONSTER_MLTP_GOLD]);
 			
 		set_hudmessage(255, 255, 255, 0.60, 0.6, 2, 6.0, 1.0, 0.0, 0.4)
-		show_hudmessage(id, "+ KILL^n+ %d GOLD^n%s",  iEarnedGold, entity_get_edict(iEnt, EV_ENT_monster_headshot)? "HS":"")
+		show_hudmessage(id, "+ ZABICIE^n+ %d ZLOTA^n%s",  iEarnedGold, entity_get_edict(iEnt, EV_ENT_monster_headshot)? "HS":"")
 	}
 	
 	AddPlayerBenefits(id, iEarnedGold, iMonsterType);
@@ -3643,7 +3643,7 @@ public CmdUseLighting(id)
 		
 	if(g_PlayerLightingTime[id] + 30 > get_gametime()) 
 	{
-		client_print(id, print_center, "You must wait %d seconds!", floatround(g_PlayerLightingTime[id]+30-get_gametime()))
+		client_print(id, print_center, "Musisz zaczekac %d sekund!", floatround(g_PlayerLightingTime[id]+30-get_gametime()))
 		return PLUGIN_HANDLED
 	}
 	
@@ -3658,7 +3658,7 @@ public CmdUseLighting(id)
 	
 	if(!is_valid_ent(iEntList[0]) || entity_get_int(iEntList[0], EV_INT_monster_type) == ROUND_NONE) 
 	{
-		client_print(id, print_center, "You must aim the target!")
+		client_print(id, print_center, "Musisz celowac w cel!")
 		return PLUGIN_HANDLED
 	}
 	
@@ -3753,7 +3753,7 @@ public ShowDamage(ent, idinflictor, attacker, Float:damage, damagetype)
 		if(g_PlayerShowHitCrosshair[attacker] == 1)
 		{
 			set_dhudmessage(255, 255, 255, -1.0, -1.0, 0, 0.0, 0.1);
-			show_dhudmessage(attacker, "x");
+			show_dhudmessage(attacker, ".");
 
 			if(g_ConfigValues[CFG_HIT_SOUND])
 				client_cmd(attacker, "spk sound/%s", g_SoundFile[SND_HIT]);
@@ -3839,9 +3839,9 @@ public TakeDamage(ent, idinflictor, attacker, Float:damage, damagetype)
 			if(g_ConfigValues[CFG_SHOW_LEFT_DAMAGE]) 
 			{
 				if(floatround(entity_get_float(ent, EV_FL_health)-damage) < 0)
-					client_print(attacker, print_center, "KILL %s", isCritical?"CRITIC":"");
+					client_print(attacker, print_center, "ZABICIE %s", isCritical?"KRYTYK":"");
 				else
-					client_print(attacker, print_center, "HP: %d %s", floatround(entity_get_float(ent, EV_FL_health)-damage), isCritical?"| CRITIC":"");
+					client_print(attacker, print_center, "HP: %d %s", floatround(entity_get_float(ent, EV_FL_health)-damage), isCritical?"| KRYTYK":"");
 			}
 			
 			if(g_ConfigValues[CFG_DAMAGE_GOLD] || g_ConfigValues[CFG_DAMAGE_MONEY])
@@ -3933,7 +3933,7 @@ public client_putinserver(id)
 	CheckPlayerData(id)
 	
 	if(DEBUG)	
-		log_to_file(LOG_FILE, "DEBUG: Client with id=%d put in server.", id)
+		log_to_file(LOG_FILE, "DEBUG: Gracz z id=%d wszedl na serwer.", id)
 }
 
 public CheckPlayerData(id) 
@@ -3992,7 +3992,7 @@ public client_disconnected(id)
 	ResetPlayerInformation(id)
 
 	if(DEBUG)	
-		log_to_file(LOG_FILE, "DEBUG: Client with id=%d has just disconnected.", id)
+		log_to_file(LOG_FILE, "DEBUG: Gracz z id=%d rozlaczyl sie.", id)
 }
 public ResetPlayerInformation(id)
 {
@@ -4050,26 +4050,26 @@ public DisplayHud(iTask)
 		{	
 			new RoundType = g_InfoAboutWave[g_ActualWave][WAVE_ROUND_TYPE], str[32]
 			
-			formatex(str, charsmax(str), "%s", (RoundType==ROUND_NONE?"GAME NOT STARTED":RoundType==ROUND_NORMAL?"NORMAL":RoundType==ROUND_FAST?"FAST":RoundType==ROUND_STRENGTH?"STRENGTH":RoundType==ROUND_BONUS?"BONUS":RoundType==ROUND_BOSS?"BOSS":"NONE"))
+			formatex(str, charsmax(str), "%s", (RoundType==ROUND_NONE?"GRA NIE WYSTARTOWALA":RoundType==ROUND_NORMAL?"NORMALNA":RoundType==ROUND_FAST?"SZYBKA":RoundType==ROUND_STRENGTH?"CIEZKA":RoundType==ROUND_BONUS?"BONUSOWA":RoundType==ROUND_BOSS?"BOSS":"NONE"))
 			
 			if(g_PlayerHudSize[id] == HUD_BIG) 
 			{
 				set_dhudmessage(g_PlayerHudColor[id][0], g_PlayerHudColor[id][1], g_PlayerHudColor[id][2], g_PlayerHudPosition[id][0], g_PlayerHudPosition[id][1], 0, 6.0, 2.02, 0.0, 0.1)
-				show_dhudmessage(id, "[WAVE: %d / %d | %s] [GOLD: %d]^n[MONSTERS: %d (%d) / %d] [TOWER: %d / %d]^n[LEVEL: %d] [FRAGS: %d / %d]",
+				show_dhudmessage(id, "[FALA: %d / %d | %s] [ZLOTO: %d]^n[POTWORY: %d (%d) / %d] [WIEZA: %d / %d]^n[POZIOM: %d] [FRAGI: %d / %d]",
 				g_ActualWave, g_WavesNum, str,  g_PlayerInfo[id][PLAYER_GOLD],  g_AliveMonstersNum, g_SentMonstersNum, (IsSpecialWave(g_ActualWave) ? g_InfoAboutWave[g_ActualWave][WAVE_MONSTER_NUM] +1:g_InfoAboutWave[g_ActualWave][WAVE_MONSTER_NUM]),
 				g_TowerHealth, maxTowerHealth, g_PlayerInfo[id][PLAYER_LEVEL], g_PlayerInfo[id][PLAYER_FRAGS], (g_PlayerInfo[id][PLAYER_LEVEL]==MAX_LEVEL?  g_PlayerInfo[id][PLAYER_FRAGS] :  g_LevelFrags[g_PlayerInfo[id][PLAYER_LEVEL]+1]))
 			} 
 			else if(g_PlayerHudSize[id] == HUD_NORMAL) 
 			{
 				set_hudmessage(g_PlayerHudColor[id][0], g_PlayerHudColor[id][1], g_PlayerHudColor[id][2], g_PlayerHudPosition[id][0], g_PlayerHudPosition[id][1], 0, 6.0, 2.02, 0.0, 0.1)
-				ShowSyncHudMsg(id, g_SyncHudInfo, "[WAVE: %d / %d | %s] [GOLD: %d]^n[MONSTERS: %d (%d) / %d] [TOWER: %d / %d]^n[LEVEL: %d] [FRAGS: %d / %d]",
+				ShowSyncHudMsg(id, g_SyncHudInfo, "[FALA: %d / %d | %s] [ZLOTO: %d]^n[POTWORY: %d (%d) / %d] [WIEZA: %d / %d]^n[POZIOM: %d] [FRAGI: %d / %d]",
 				g_ActualWave, g_WavesNum, str,  g_PlayerInfo[id][PLAYER_GOLD],  g_AliveMonstersNum, g_SentMonstersNum, (IsSpecialWave(g_ActualWave) ? g_InfoAboutWave[g_ActualWave][WAVE_MONSTER_NUM] +1:g_InfoAboutWave[g_ActualWave][WAVE_MONSTER_NUM]),
 				g_TowerHealth, maxTowerHealth, g_PlayerInfo[id][PLAYER_LEVEL], g_PlayerInfo[id][PLAYER_FRAGS],( g_PlayerInfo[id][PLAYER_LEVEL]==MAX_LEVEL ?  g_PlayerInfo[id][PLAYER_FRAGS]: g_LevelFrags[g_PlayerInfo[id][PLAYER_LEVEL]+1]))
 			} 
 			else if(g_PlayerHudSize[id] == HUD_SMALL) 
 			{
 				static szText[128]	
-				formatex(szText, charsmax(szText),  "Wave: %d|Monsters: %d|Gold: %d|Lvl: %d|Frags: %d/%d", g_ActualWave,  g_AliveMonstersNum, g_PlayerInfo[id][PLAYER_GOLD], g_PlayerInfo[id][PLAYER_LEVEL], g_PlayerInfo[id][PLAYER_FRAGS],( g_PlayerInfo[id][PLAYER_LEVEL]==MAX_LEVEL?  g_PlayerInfo[id][PLAYER_FRAGS]: g_LevelFrags[g_PlayerInfo[id][PLAYER_LEVEL]]))
+				formatex(szText, charsmax(szText),  "Fala: %d|Potwory: %d|Zloto: %d|Poziom: %d|Fragi: %d/%d", g_ActualWave,  g_AliveMonstersNum, g_PlayerInfo[id][PLAYER_GOLD], g_PlayerInfo[id][PLAYER_LEVEL], g_PlayerInfo[id][PLAYER_FRAGS],( g_PlayerInfo[id][PLAYER_LEVEL]==MAX_LEVEL?  g_PlayerInfo[id][PLAYER_FRAGS]: g_LevelFrags[g_PlayerInfo[id][PLAYER_LEVEL]]))
 				
 				message_begin(MSG_ONE, g_HudStatusText, _, id);
 				write_byte(0);
@@ -4080,7 +4080,7 @@ public DisplayHud(iTask)
 		else
 		{
 			set_hudmessage(255, 0, 0, -1.0, 0.75, 1, 1.0, 2.02, 0.2, 0.2, -1)
-			show_hudmessage(id, "Play now by choosing team%s!^n%s created by %s", g_ConfigValues[CFG_RESPAWN_CMD] ? " or /respawn command" : "", PLUGIN, AUTHOR);
+			show_hudmessage(id, "Zagraj teraz, wybierajac druzyne %s!", g_ConfigValues[CFG_RESPAWN_CMD] ? " or /respawn command" : "");
 		}
 	}
 	
@@ -4091,12 +4091,12 @@ public CmdRespawnPlayer(id)
 {
 	if(g_ConfigValues[CFG_RESPAWN_CMD] == 0) 
 	{
-		ColorChat(id, GREEN, "%s^x03 This command is disabled on this server.", CHAT_PREFIX);
+		ColorChat(id, GREEN, "%s^x03 Ta komenda jest wylaczona na tym serwerze", CHAT_PREFIX);
 		return PLUGIN_HANDLED;
 	}
 	else if(is_user_alive(id)) 
 	{
-		ColorChat(id, GREEN, "%s^x01 You are alive.", CHAT_PREFIX);
+		ColorChat(id, GREEN, "%s^x01 Jestes zywy", CHAT_PREFIX);
 		return PLUGIN_HANDLED;
 	}
 	else 
@@ -4127,7 +4127,7 @@ public CmdRespawnPlayer(id)
 			else
 				cs_set_user_team(id, CS_TEAM_T, CS_DONTCHANGE);
 			
-			ColorChat(id, GREEN, "%s^x01 Wait a few seconds for respawn...", CHAT_PREFIX);
+			ColorChat(id, GREEN, "%s^x01 Zaczekaj kilka sekund na respawn...", CHAT_PREFIX);
 		}
 		return PLUGIN_HANDLED;
 	}	
@@ -4140,18 +4140,18 @@ public CmdRespawnPlayerPost(id)
 	new szName[33];
 	get_user_name(id, szName, 32);
 	
-	ColorChat(id, GREEN, "%s^x01 Welcome %s on %s server. Please say^x04 /menu^x01 to open game menu", CHAT_PREFIX, szName, PLUGIN);
+	ColorChat(id, GREEN, "%s^x01 Witaj %s na Tower Defence. Wpisz^x04 /menu^x01 aby otworzyc menu gry.", CHAT_PREFIX, szName);
 
 	if(is_user_alive(id))
 		return;
 
 	remove_task(id + TASK_RESPAWN);
 	
-	ColorChat(0, GREEN, "%s^x01 Defender^x04 %s^x01 has just respawned.", CHAT_PREFIX, szName);	
+	ColorChat(0, GREEN, "%s^x01 Obronca^x04 %s^x01 zostal ozywiony.", CHAT_PREFIX, szName);	
 	ExecuteHamB(Ham_CS_RoundRespawn, id)
 	set_task(0.1, "RepeatRespawn", id + 51233);
 	if(DEBUG)	
-		log_to_file(LOG_FILE, "DEBUG: Client %s has just respawned.", szName)
+		log_to_file(LOG_FILE, "DEBUG: Gracz %s zostal ozywiony", szName)
 }
 
 
@@ -4181,7 +4181,7 @@ public GiveUserSurviveWaveBonus(id)
 		iMoney += g_ConfigValues[CFG_VIP_SURV_WAVE_MONEY]
 	}
 	
-	ColorChat(id, GREEN, "%s^x01 You got %d gold and $%d for survive %d wave.", CHAT_PREFIX,iGold , iMoney, g_ActualWave - 1)
+	ColorChat(id, GREEN, "%s^x01 Otrzymujesz %d zlota i %d $ za przetrwanie %d fali.", CHAT_PREFIX,iGold , iMoney, g_ActualWave - 1)
 }
 
 public WaveEnded()
@@ -4193,7 +4193,7 @@ public WaveEnded()
 		{
 			if(is_user_alive(i) && g_PlayerInfo[i][PLAYER_FRAGS] > 0) 
 			{
-				ColorChat(i, GREEN, "%s^x01 Your^x03 data^x01 has been saved.", CHAT_PREFIX)
+				ColorChat(i, GREEN, "%s^x01 Twoj^x03 postep^x01 zostal zapisany.", CHAT_PREFIX)
 				SaveUserConfig(i, iFile);
 			}
 		}
@@ -4206,7 +4206,7 @@ public WaveEnded()
 		return iRet;
 
 	if(DEBUG)	
-		log_to_file(LOG_FILE, "DEBUG: Wave %d has just ended.", g_ActualWave)
+		log_to_file(LOG_FILE, "DEBUG: Fala %d zakonczyla sie.", g_ActualWave)
 		
 	if(g_FogColor[0] == 0 && g_FogColor[1] == 0 && g_FogColor[2] == 0)
 		CreateFog(0, .clear = true);
@@ -4278,14 +4278,14 @@ public StartNextWave(task)
 			CreateFog( 0, g_FogColor[0], g_FogColor[1], g_FogColor[2]);
 	}
 	
-	ColorChat(0, GREEN, "%s^x01 Wave %d is coming...", CHAT_PREFIX, g_ActualWave);
+	ColorChat(0, GREEN, "%s^x01 Fala %d nadchodzi...", CHAT_PREFIX, g_ActualWave);
 
 	new szData[2];
 	szData[0] = g_ConfigValues[CFG_TIME_TO_WAVE]
 	StartCountdown(szData[0], TASK_COUNTDOWN);
 	
 	if(DEBUG)	
-		log_to_file(LOG_FILE, "DEBUG: Countdown to wave %d started.", g_ActualWave)
+		log_to_file(LOG_FILE, "DEBUG: Odliczanie do rozpoczecia %d fali.", g_ActualWave)
 		
 	return PLUGIN_CONTINUE
 }
@@ -4312,7 +4312,7 @@ public EndGame(end)
 			{
 				if(iReward)
 				{
-					ColorChat(i, GREEN, "%s^x01 You got^x03 %d^x01 gold for^x03 %s^x01 the game.", CHAT_PREFIX, iReward, iWinResult ? "won" : "lost");
+					ColorChat(i, GREEN, "%s^x01 Otrzymujesz^x03 %d^x01 zlota za^x03 %s^x01 gry.", CHAT_PREFIX, iReward, iWinResult ? "wygranie" : "przegranie");
 					g_PlayerInfo[i][PLAYER_GOLD] += iReward;
 				}
 			}
@@ -4320,7 +4320,7 @@ public EndGame(end)
 			if(g_PlayerInfo[i][PLAYER_FRAGS] > 0) 
 			{
 				g_PlayerGamePlayedNumber[i] ++;
-				ColorChat(i, GREEN, "%s^x01 Your^x03 data^x01 has been saved.", CHAT_PREFIX)
+				ColorChat(i, GREEN, "%s^x01 Twoj^x03 postep^x01 zostal zapisany.", CHAT_PREFIX)
 				SaveUserConfig(i, iFile);
 			}
 		}
@@ -4334,7 +4334,7 @@ public EndGame(end)
 		return iRet;
 
 	if(DEBUG)	
-		log_to_file(LOG_FILE, "DEBUG: Game has just ended with endtype: %d.", end)
+		log_to_file(LOG_FILE, "DEBUG: Gra wlasnie zakonczyła sie wynikiem koncowym: %d.", end)
 		
 	for(new i = 1 ; i <= g_MaxPlayers ; i++)
 	{
@@ -4410,7 +4410,7 @@ public EndGame(end)
 	if(end == PLAYERS_WIN)
 	{
 		set_hudmessage(0, 255, 0, 0.06, 0.70, 1, 1.0, 10.0, 0.2, 0.2, -1)
-		ShowSyncHudMsg(0, g_SyncHudRepair, "Defeneders win!^nPrepare to vote in 5 seconds...");
+		ShowSyncHudMsg(0, g_SyncHudRepair, "Obroncy wygrali!^nPrzygotowuje vote w 5 sekund...");
 		
 		client_cmd(0, "spk %s", g_SoundFile[SND_DEFENDERS_WIN])
 
@@ -4424,7 +4424,7 @@ public EndGame(end)
 	else 
 	{
 		set_hudmessage(255, 0, 0, 0.06, 0.70, 1, 1.0, 10.0, 0.2, 0.2, -1)
-		ShowSyncHudMsg(0, g_SyncHudRepair, "Defenders lose!^nPrepare to vote in 5 seconds...");
+		ShowSyncHudMsg(0, g_SyncHudRepair, "Obroncy przegrali!^nPrzygotowuje vote w 5 sekund...");
 		
 		client_cmd(0, "spk %s", g_SoundFile[SND_DEFENDERS_LOSE])
 	}
@@ -4439,7 +4439,7 @@ public PrepareToVote()
 	params[0] = 10
 
 	if(DEBUG)	
-		log_to_file(LOG_FILE, "DEBUG: Preparing to vote.")
+		log_to_file(LOG_FILE, "DEBUG: Przygotowywanie vote.")
 		
 	CountdownVoteForNextMap(params, TASK_COUNTDOWN_VOTE);
 }
@@ -4459,7 +4459,7 @@ public CountdownVoteForNextMap(params[], task)
 	else
 	{
 		set_hudmessage(255, 255, 0, 0.06, 0.70, 1, 1.0, 1.1, 0.2, 0.2, -1)
-		ShowSyncHudMsg(0, g_SyncHudRepair, "Get ready to vote map in %d %s", params[0], params[0] == 1 ? "second" : "seconds");
+		ShowSyncHudMsg(0, g_SyncHudRepair, "Przygotuj się do głosowania na mape w %d %s", params[0], params[0] == 1 ? "second" : "seconds");
 		
 		if(params[0] == 8)
 			client_cmd(0, "spk ^"get red(e80) ninety(s45) to check(e20) use bay(s18) mass(e42) cap(s50)^"");
@@ -4487,7 +4487,7 @@ new g_VoteTime;
 public StartVoteForNextMap()
 {	
 	if(DEBUG)	
-		log_to_file(LOG_FILE, "DEBUG: Starting for vote to next map.")
+		log_to_file(LOG_FILE, "DEBUG: Rozpoczece glosowania na nastepna mape")
 		
 	LoadMaps();  
 	CreateVoteMapEntities()
@@ -4498,7 +4498,7 @@ public StartVoteForNextMap()
 public LoadMaps()
 {
 	if(DEBUG)	
-		log_to_file(LOG_FILE, "DEBUG: Loading maps to vote.")
+		log_to_file(LOG_FILE, "DEBUG: Ladowanie map do glosowania")
 		
 	if(file_exists(MAP_CONFIG_FILE) )
 	{
@@ -4515,7 +4515,7 @@ public LoadMaps()
 				
 
 			if(DEBUG)	
-				log_to_file(LOG_FILE, "DEBUG: Loaded map to vote: %s.", line)
+				log_to_file(LOG_FILE, "DEBUG: Zaladowano mapy do glosowania: %s.", line)
 				
 			ArrayPushString(aMapNames, line);
 		}
@@ -4554,7 +4554,7 @@ public LoadMaps()
 		}
 		
 		if(g_ConfigValues[CFG_VOTE_ALLOW_RESTART])
-			g_VoteForNextMapNames[g_VotedForNextMapNum++] = "Restart map"; //add restarting map
+			g_VoteForNextMapNames[g_VotedForNextMapNum++] = "Restart mapy"; //add restarting map
 		else
 		{	
 			while(g_VotedForNextMapNum < VOTE_MAP_COUNT)
@@ -4593,20 +4593,20 @@ public LoadMaps()
 
 public ShowMenuWithMapNames()
 {
-	new menu = menu_create("\yMap in votes:", "ShowMenuMapWithNamesCb");
+	new menu = menu_create("\yMapy w glosowaniu:", "ShowMenuMapWithNamesCb");
 	new iAllVotes;
 	new iRestartEnabled = g_ConfigValues[CFG_VOTE_ALLOW_RESTART]
 	
 	if(g_VoteTime == 0)
 	{
 		if(DEBUG)	
-			log_to_file(LOG_FILE, "DEBUG: Voting ended.")
+			log_to_file(LOG_FILE, "DEBUG: Glosowanie zakonczone.")
 		
 		new result[3]
 		GetMapIndexWithMostVotes(result[0], result[1]);
 				
 		set_hudmessage(0, 255, 255, 0.06, 0.70, 1, 1.0, 4.5, 0.2, 0.2, -1)
-		ShowSyncHudMsg(0, g_SyncHudInfo, "Calculating results...");
+		ShowSyncHudMsg(0, g_SyncHudInfo, "Obliczanie wynikow...");
 			
 		RemoveVoteMapEntitiesAndResetUsers();
 		set_task(5.0, "CheckVoteResults", _, result, 2);
@@ -4627,22 +4627,22 @@ public ShowMenuWithMapNames()
 				
 				if(iPlayerNoVoted)
 					if(i == VOTE_MAP_COUNT-1 && iRestartEnabled)
-						formatex(szFormat, charsmax(szFormat), "Restart map | %d %s^n^n\r%d %s\w didn't voted yet",   iVoteNum, iVoteNum == 1 ? "vote" : "votes", iPlayerNoVoted, iPlayerNoVoted == 1 ? "player" : "players");
+						formatex(szFormat, charsmax(szFormat), "Restart mapy | %d %s^n^n\r%d %s\w nie zaglosowano",   iVoteNum, iVoteNum == 1 ? "glos" : "glosy", iPlayerNoVoted, iPlayerNoVoted == 1 ? "gracza" : "graczy");
 					else
-						formatex(szFormat, charsmax(szFormat), "MAP \y%d\w:\r %s\w | %d %s^n^n\r%d %s\w didn't voted yet", i+1, g_VoteForNextMapNames[i], iVoteNum, iVoteNum == 1 ? "vote" : "votes", iPlayerNoVoted, iPlayerNoVoted == 1 ? "player" : "players");
+						formatex(szFormat, charsmax(szFormat), "MAPA \y%d\w:\r %s\w | %d %s^n^n\r%d %s\w nie zaglosowano", i+1, g_VoteForNextMapNames[i], iVoteNum, iVoteNum == 1 ? "glos" : "glosy", iPlayerNoVoted, iPlayerNoVoted == 1 ? "gracza" : "graczy");
 				else
 					if(i == VOTE_MAP_COUNT-1 && iRestartEnabled)
-						formatex(szFormat, charsmax(szFormat), "Restart map | %d %s^n^n\yAll players have voted",  iVoteNum, iVoteNum == 1 ? "vote" : "votes");
+						formatex(szFormat, charsmax(szFormat), "Restart mapy | %d %s^n^n\yWszyscy zaglosowali",  iVoteNum, iVoteNum == 1 ? "glos" : "glosy");
 					else
-						formatex(szFormat, charsmax(szFormat), "MAP \y%d\w:\r %s\w | %d %s^n^n\yAll players have voted", i+1, g_VoteForNextMapNames[i], iVoteNum, iVoteNum == 1 ? "vote" : "votes");
+						formatex(szFormat, charsmax(szFormat), "MAPA \y%d\w:\r %s\w | %d %s^n^n\yWszyscy zaglosowali", i+1, g_VoteForNextMapNames[i], iVoteNum, iVoteNum == 1 ? "glos" : "glosy");
 				
-				format(szFormat, charsmax(szFormat), "%s^n^nEnding vote in: \r%d %s", szFormat, g_VoteTime, g_VoteTime == 1 ? "second" : "seconds")
+				format(szFormat, charsmax(szFormat), "%s^n^nKoniec glosowania za: \r%d %s", szFormat, g_VoteTime, g_VoteTime == 1 ? "sekund" : "sekund")
 			}
 			else
 				if(i == VOTE_MAP_COUNT-1 && iRestartEnabled)
-					formatex(szFormat, charsmax(szFormat), "Restart map | %d %s",  iVoteNum, iVoteNum == 1 ? "vote" : "votes");
+					formatex(szFormat, charsmax(szFormat), "Restart mapy | %d %s",  iVoteNum, iVoteNum == 1 ? "glos" : "glosy");
 				else
-					formatex(szFormat, charsmax(szFormat), "MAP \y%d\w:\r %s\w | %d %s", i+1, g_VoteForNextMapNames[i], iVoteNum, iVoteNum == 1 ? "vote" : "votes");
+					formatex(szFormat, charsmax(szFormat), "MAPA \y%d\w:\r %s\w | %d %s", i+1, g_VoteForNextMapNames[i], iVoteNum, iVoteNum == 1 ? "glos" : "glosy");
 				
 			menu_additem(menu, szFormat);
 		}
@@ -4666,7 +4666,7 @@ new bool:g_IsDraw = false;
 public CheckVoteResults(result[], task)
 {
 	if(DEBUG)	
-		log_to_file(LOG_FILE, "DEBUG: Checking vote result.")
+		log_to_file(LOG_FILE, "DEBUG: Sprawdzanie rezultatu glosowania")
 		
 	new iWinnerMapIndex = result[0];
 	new iSecondWinnerMapIndex = result[1];
@@ -4687,7 +4687,7 @@ public CheckVoteResults(result[], task)
 		}
 		else
 		{
-			formatex(szFormat, charsmax(szFormat), "We have a draw between: '%s' and '%s'.", g_VoteForNextMapNames[iWinnerMapIndex], g_VoteForNextMapNames[iSecondWinnerMapIndex]);
+			formatex(szFormat, charsmax(szFormat), "Mamy remis miedzy: '%s' i '%s'.", g_VoteForNextMapNames[iWinnerMapIndex], g_VoteForNextMapNames[iSecondWinnerMapIndex]);
 			set_hudmessage(0, 255, 255, 0.06, 0.70, 1, 1.0, 1.1, 0.2, 0.2, -1)
 			ShowSyncHudMsg(0, g_SyncHudInfo, szFormat);
 			
@@ -4718,7 +4718,7 @@ public CheckVoteResults(result[], task)
 public ChangeLevelTask(params[], taskid)
 {	
 	if(DEBUG)	
-		log_to_file(LOG_FILE, "DEBUG: Changing map.")
+		log_to_file(LOG_FILE, "DEBUG: Zmiana mapy")
 		
 	if(params[2] == 0)
 	{
@@ -4737,9 +4737,9 @@ public ChangeLevelTask(params[], taskid)
 	{
 		new szFormat[128];
 		if(params[1] == 0)
-			formatex(szFormat, charsmax(szFormat), "We have second draw.^nGame randomly choosed result: %s^nMap will be changed in %d seconds...", g_VoteForNextMapNames[params[0]], params[2]);
+			formatex(szFormat, charsmax(szFormat), "Mamy drugi remis.^nGra losowo wybrala mape: %s^nMapa zostanie zmieniona w %d sekund...", g_VoteForNextMapNames[params[0]], params[2]);
 		else 
-			formatex(szFormat, charsmax(szFormat), "Vote winner: '%s'. Map will be changed in %d seconds...", g_VoteForNextMapNames[params[0]], params[2]);
+			formatex(szFormat, charsmax(szFormat), "Glosowanie wygrywa: '%s'. Mapa zostanie zmieniona w %d sekund...", g_VoteForNextMapNames[params[0]], params[2]);
 		
 		set_hudmessage(0, 255, 255, 0.06, 0.70, 1, 1.0, 1.1, 0.2, 0.2, -1)
 		ShowSyncHudMsg(0, g_SyncHudInfo, szFormat);
@@ -4774,7 +4774,7 @@ public RemoveData()
 	RemoveAllMonsters();
 
 	if(DEBUG)	
-		log_to_file(LOG_FILE, "DEBUG: Data removed.")
+		log_to_file(LOG_FILE, "DEBUG: Zapis usuniety")
 		
 	return PLUGIN_CONTINUE;
 }
@@ -4904,7 +4904,7 @@ public CreateVoteMapZoneEntity(id)
 	new ent = g_MapVoteZoneLastEntity = create_entity("trigger_multiple");
 	
 	if(DEBUG)	
-		log_to_file(LOG_FILE, "DEBUG: Creating vote map zone entity. ENT = %d.", ent)
+		log_to_file(LOG_FILE, "DEBUG: Tworzenie strefy VoteMAP. ENT = %d.", ent)
 		
 	set_pev(ent, pev_classname, "mapvote1");
 	
@@ -5077,7 +5077,7 @@ public StartCountdown(params[], task)
 			client_cmd(0, "spk sound/%s", g_SoundFile[SND_COUNTDOWN]);
 		
 		set_dhudmessage(255, 255, 0, 0.06, 0.63, 1, 0.1, 1.0, 0.1, 0.1)
-		show_dhudmessage(0, "Wave %d will start in %d %s", g_ActualWave, iSecond, iSecond == 1 ? "second" : "seconds");
+		show_dhudmessage(0, "Fala %d zacznie sie za %d %s", g_ActualWave, iSecond, iSecond == 1 ? "sekund" : "sekund");
 
 		/*
 		for(new i = 1 ; i <=  g_MaxPlayers; i++ ) 
@@ -5376,7 +5376,7 @@ public ShowBonusTopInfo(iEnt)
 	new iHealth = floatround( entity_get_float(iEnt, EV_FL_health) );
 	
 	if(g_IsBonusThief)
-		show_dhudmessage(0, "Bonus HP: %d^nRobbed Gold: %d", iHealth < 0 ? 0 : iHealth, g_BonusRobbedGold)
+		show_dhudmessage(0, "Bonus HP: %d^nSkradzione zloto: %d", iHealth < 0 ? 0 : iHealth, g_BonusRobbedGold)
 	else
 		show_dhudmessage(0, "Bonus HP: %d", iHealth < 0 ? 0 : iHealth)
 
@@ -5493,12 +5493,12 @@ public MakeBonusFx(iEnt)
 				
 				if(g_PlayerInfo[iPlayer][PLAYER_GOLD] -  iRandom <= 0)
 				{
-					ColorChat(0, GREEN, "%s^x01 BONUS was completely robbed defender '%s'!", CHAT_PREFIX, szName);
+					ColorChat(0, GREEN, "%s^x01 BONUS zostal calkowicie okradziony '%s'!", CHAT_PREFIX, szName);
 					g_PlayerInfo[iPlayer][PLAYER_GOLD] = 0
 				}	
 				else
 				{
-					ColorChat(0, GREEN, "%s^x01 BONUS was robbed %d gold from defender '%s'!", CHAT_PREFIX,iRandom,  szName);
+					ColorChat(0, GREEN, "%s^x01 BONUS ukradl %d zlota od obroncy '%s'!", CHAT_PREFIX,iRandom,  szName);
 					g_PlayerInfo[iPlayer][PLAYER_GOLD] -= iRandom;
 				}
 					
@@ -5673,7 +5673,7 @@ public DisplayWaveInfo(id, iWave)
 		else
 		{
 			iWave = 1;
-			formatex(szText, charsmax(szText), "- START GAME -^n");
+			formatex(szText, charsmax(szText), "- START GRY -^n");
 		}
 		
 	}
@@ -5682,13 +5682,13 @@ public DisplayWaveInfo(id, iWave)
 	new iMonsterNum = isSpecialWave  ? g_InfoAboutWave[iWave][WAVE_MONSTER_NUM] + 1 : g_InfoAboutWave[iWave][WAVE_MONSTER_NUM]
 	new RoundType = g_InfoAboutWave[iWave][WAVE_ROUND_TYPE]
 		
-	formatex(szText, charsmax(szText), "%sWAVE: %d | %s [ %d %s ]", 
+	formatex(szText, charsmax(szText), "%sFALA: %d | %s [ %d %s ]", 
 		szText,
 		iWave, 
-		(RoundType == ROUND_NONE 	? "GAME NOT STARTED":
-		RoundType == ROUND_NORMAL 	? "NORMAL": 
-		RoundType == ROUND_FAST 	? "FAST":
-		RoundType == ROUND_STRENGTH 	? "STRENGTH":
+		(RoundType == ROUND_NONE 	? "GRA NIE ROZPOCZETA":
+		RoundType == ROUND_NORMAL 	? "NORMALNA": 
+		RoundType == ROUND_FAST 	? "SZYBKA":
+		RoundType == ROUND_STRENGTH 	? "CIEZKA":
 		RoundType == ROUND_BONUS	? "BONUS":
 		RoundType == ROUND_BOSS 	? "BOSS": "ERROR"),
 		iMonsterNum, 
@@ -5703,7 +5703,7 @@ public DisplayWaveInfo(id, iWave)
 		
 		if(isMinPlayers)
 			hp = floatround( hp * power_float(g_ConfigValuesFloat[CFG_FLOAT_WAVE_MLTP_HP], iPlayers));
-		formatex(szText, charsmax(szText), "%s^nHP: %d^nSPEED: %d", szText, hp, g_InfoAboutWave[iWave][WAVE_MONSTER_SPEED])
+		formatex(szText, charsmax(szText), "%s^nHP: %d^nPREDKOSC: %d", szText, hp, g_InfoAboutWave[iWave][WAVE_MONSTER_SPEED])
 	}
 	
 	if(isSpecialWave)
@@ -5715,7 +5715,7 @@ public DisplayWaveInfo(id, iWave)
 			else hp = floatround( hp * power_float(g_ConfigValuesFloat[CFG_FLOAT_WAVE_MLTP_HP_BOSS], iPlayers))	
 		}
 		
-		formatex(szText, charsmax(szText), "%s^n^n%s:^nHP: %d^nSPEED: %d", szText, RoundType == ROUND_BOSS ? "BOSS" :"BONUS", hp, g_InfoAboutWave[iWave][WAVE_SPECIAL_SPEED])
+		formatex(szText, charsmax(szText), "%s^n^n%s:^nHP: %d^nPREDKOSC: %d", szText, RoundType == ROUND_BOSS ? "BOSS" :"BONUS", hp, g_InfoAboutWave[iWave][WAVE_SPECIAL_SPEED])
 	}
 	
 	set_hudmessage(255, 255, 255, 0.50, 0.65, 2, 9.0, 15.0, 0.05, 3.0)
@@ -5724,7 +5724,7 @@ public DisplayWaveInfo(id, iWave)
 public LoadConfig()
 {
 	if(DEBUG)
-		log_to_file(LOG_FILE, "DEBUG: Loading config from ^"%s^" file started.", CONFIG_FILE)
+		log_to_file(LOG_FILE, "DEBUG: Ladowanie ustawien ^"%s^" rozpoczete", CONFIG_FILE)
 
 	new iRet;
 	ExecuteForward(g_ForwardSettingsRefreshed, iRet);
@@ -5732,7 +5732,7 @@ public LoadConfig()
 	if(iRet != PLUGIN_CONTINUE)
 	{
 		if(DEBUG)
-			log_to_file(LOG_FILE, "DEBUG: Some plugin block load configs value from td_enginew. iRet != RETURN_PLUGIN_CONTINUE")
+			log_to_file(LOG_FILE, "DEBUG: Jakis plugin blokuje ladowanie. iRet != RETURN_PLUGIN_CONTINUE")
 		return iRet;
 	}
 	
@@ -5740,8 +5740,8 @@ public LoadConfig()
 	{
 		if(DEBUG)
 		{
-			log_to_file(LOG_FILE, "DEBUG: Config file ^"%s^" nie odnaleziono", CONFIG_FILE)
-			log_to_file(LOG_FILE, "DEBUG: Loading default values")
+			log_to_file(LOG_FILE, "DEBUG: Plik ^"%s^" nie odnaleziony", CONFIG_FILE)
+			log_to_file(LOG_FILE, "DEBUG: Zaladowano domyslne")
 		}
 
 		/* Create default file */
@@ -5760,7 +5760,7 @@ public LoadConfig()
 		parse(szText, szData[0], 63, szData[1], 63, szData[2], 63);
 
 		if(DEBUG)
-			log_to_file(LOG_FILE, "DEBUG: Command '%s' | Set: '%s'", szData[0], szData[2]);
+			log_to_file(LOG_FILE, "DEBUG: Komenda '%s' | Ustawiona: '%s'", szData[0], szData[2]);
 			
 		if(equali(szData[0], "DATA_SAVE_MODE"))
 			g_ConfigValues[CFG_DATA_SAVE_MODE] 		= str_to_num( szData[2] );
@@ -6001,7 +6001,7 @@ public LoadConfiguration()
 	if(DEBUG)
 	{
 		log_to_file(LOG_FILE, "-------------------DEBUG MODE ON--------------------")
-		log_to_file(LOG_FILE, "DEBUG: Validating configuration files...")
+		log_to_file(LOG_FILE, "DEBUG: Sprawdzanie plikow konfiguracyjnych...")
 	}
 
 	LoadModels();
