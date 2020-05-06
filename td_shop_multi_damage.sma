@@ -14,7 +14,7 @@ public plugin_init()
 {
 	new id = register_plugin(PLUGIN, VERSION, AUTHOR)
 	
-	iItem = td_shop_register_item("Multi damage for 1 wave", "Your hits are always HS & Critical for 1 waves", 300, 0, id)
+	iItem = td_shop_register_item("Super obrazenia na 1 fale", "Trafiasz zawsze HS i krytycznie przez 1 fale", 300, 0, id)
 }
 
 public td_reset_player_info(iPlayer)
@@ -29,7 +29,7 @@ public td_shop_item_selected(id, itemid)
 	{
 		g_iWaveNums[id] += 1;
 		
-		ColorChat(id, GREEN, "[TD]^x01 Multi damage damage now will be enabled for %d waves!", g_iWaveNums[id]);
+		ColorChat(id, GREEN, "[TD]^x01 Super obrazenia zostaly odblokowane na %d fale!", g_iWaveNums[id]);
 		
 		SetOff(id + 54155);
 	}
@@ -48,13 +48,13 @@ public SetOff(id)
 	if(g_iWaveNums[id] == 0)
 	{
 		set_hudmessage(200, 255, 0, 0.60, 0.69, 0, 0.1, 4.0, 0.1, 0.1, -1)
-		show_hudmessage(id,"Multi damage time down!")
+		show_hudmessage(id,"Super obrazenia sie skonczyly!")
 
-		ColorChat(id, GREEN, "[TD]^x01 3x damage time down.");
+		ColorChat(id, GREEN, "[TD]^x01 3x Super obrazenia zablokowane.");
 		return;
 	}
 	set_hudmessage(200, 255, 0, 0.60, 0.60, 1, 0.1, 1.1, 0.1, 0.1, -1)
-	show_hudmessage(id,"Multi damage damage: %d %s left", g_iWaveNums[id], g_iWaveNums[id] == 1 ? "wave" : "waves")
+	show_hudmessage(id,"Super obrazenia: %d %s pozostalo", g_iWaveNums[id], g_iWaveNums[id] == 1 ? "wave" : "waves")
 	
 	set_task(1.0, "SetOff", id + 54155);
 }	
