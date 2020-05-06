@@ -53,7 +53,7 @@ public TraceAttackW(iEnt, iAttacker, Float:flDamage, Float:fDir[3], ptr, iDamage
 
 	if(weapon != CSW_USP && weapon != CSW_GLOCK18 && weapon != CSW_FIVESEVEN && weapon != CSW_ELITE && weapon != CSW_P228 && weapon != CSW_DEAGLE)
 		return HAM_IGNORED;
-	client_print(iAttacker, print_center, "[ZLOTE NABOJE]: %d", g_PlayerAmmo[iAttacker])
+	client_print(iAttacker, print_center, "Zlote naboje PISTOLETY:: %d", g_PlayerAmmo[iAttacker])
 	
 	return HAM_IGNORED
 }
