@@ -209,13 +209,13 @@ public plugin_natives()
 }
 public plugin_precache()
 {
-	log_to_file(LOG_FILE, "Loading configuration...");
+	log_to_file(LOG_FILE, "Ladowanie ustawien...");
 	LoadConfiguration();
 	
 	if(DEBUG_T)
 	{
-		log_to_file(LOG_FILE, "DEBUG_T: Precaching resources started");
-		log_to_file(LOG_FILE, "DEBUG_T: Precaching sounds");
+		log_to_file(LOG_FILE, "DEBUG_T: Rozpoczynam wstepny bufor");
+		log_to_file(LOG_FILE, "DEBUG_T: Pobieranie dzwiekow ");
 	}
 
 	new szFile[64];
@@ -226,76 +226,76 @@ public plugin_precache()
 		if(file_exists(szFile))
 			precache_sound(g_SoundFile[ENUM_SOUNDS:i]);
 		else if(DEBUG_T)
-			log_to_file(LOG_FILE, "DEBUG_T: '%s' is not exist! id=%d", szFile, i);
+			log_to_file(LOG_FILE, "DEBUG_T: '%s' nie odnaleziono! id=%d", szFile, i);
 	}
 
 	if(file_exists("models/rshell_big.mdl"))
 		g_SpriteShell 		= precache_model("models/rshell_big.mdl")
 	else if(DEBUG_T)
-		log_to_file(LOG_FILE, "DEBUG_T: 'models/rshell_big.mdl' is not exist!");
+		log_to_file(LOG_FILE, "DEBUG_T: 'models/rshell_big.mdl' nie odnaleziono!");
 
 	if(file_exists("sprites/TD/laserbeam.spr"))
 		g_SpriteLaserBeam 	= precache_model("sprites/TD/laserbeam.spr")
 	else if(DEBUG_T)
-		log_to_file(LOG_FILE, "DEBUG_T: 'sprites/TD/laserbeam.spr' is not exist!");
+		log_to_file(LOG_FILE, "DEBUG_T: 'sprites/TD/laserbeam.spr' nie odnaleziono!");
 
 	if(file_exists("sprites/TD/zerogxplode.spr"))
 		g_SpriteExplosion	= precache_model("sprites/TD/zerogxplode.spr")
 	else if(DEBUG_T)
-		log_to_file(LOG_FILE, "DEBUG_T: 'sprites/TD/zerogxplode.spr' is not exist!");
+		log_to_file(LOG_FILE, "DEBUG_T: 'sprites/TD/zerogxplode.spr' nie odnaleziono!");
 		
 	if(file_exists("sprites/white.spr"))
 		g_SpriteWhite		= precache_model("sprites/white.spr");
 	else if(DEBUG_T)
-		log_to_file(LOG_FILE, "DEBUG_T: 'sprites/white.spr' is not exist!");
+		log_to_file(LOG_FILE, "DEBUG_T: 'sprites/white.spr' nie odnaleziono!");
 
 	if(file_exists("sprites/TD/smoke.spr"))
 		g_SpriteRocketSmoke= precache_model("sprites/TD/smoke.spr");
 	else if(DEBUG_T)
-		log_to_file(LOG_FILE, "DEBUG_T: 'sprites/TD/smoke.spr' is not exists!");
+		log_to_file(LOG_FILE, "DEBUG_T: 'sprites/TD/smoke.spr' nie odnalezionos!");
 		
 	if(file_exists("sprites/TD/ranger.spr"))
 		precache_model("sprites/TD/ranger.spr");
 	else if(DEBUG_T)
-		log_to_file(LOG_FILE, "DEBUG_T: 'sprites/TD/ranger.spr' is not exist!");
+		log_to_file(LOG_FILE, "DEBUG_T: 'sprites/TD/ranger.spr' nie odnaleziono!");
 		
 	if(file_exists("models/TD/rocket.mdl"))
 		precache_model("models/TD/rocket.mdl");
 	else if(DEBUG_T)
-		log_to_file(LOG_FILE, "DEBUG_T: 'models/TD/rocket.mdl' is not exist!");
+		log_to_file(LOG_FILE, "DEBUG_T: 'models/TD/rocket.mdl' nie odnaleziono!");
 		
 	if(file_exists("models/TD/sentrygun_1.mdl"))
 		precache_model("models/TD/sentrygun_1.mdl")
 	else if(DEBUG_T)
-		log_to_file(LOG_FILE, "DEBUG_T: 'models/TD/sentrygun_1.mdl' is not exist!");
+		log_to_file(LOG_FILE, "DEBUG_T: 'models/TD/sentrygun_1.mdl' nie odnaleziono!");
 		
 	if(file_exists("models/TD/sentrygun_2.mdl"))
 		precache_model("models/TD/sentrygun_2.mdl")
 	else if(DEBUG_T)
-		log_to_file(LOG_FILE, "DEBUG_T: 'models/TD/sentrygun_2.mdl' is not exist!");
+		log_to_file(LOG_FILE, "DEBUG_T: 'models/TD/sentrygun_2.mdl' nie odnaleziono!");
 		
 	if(file_exists("models/TD/sentrygun_3.mdl"))
 		precache_model("models/TD/sentrygun_3.mdl")
 	else if(DEBUG_T)
-		log_to_file(LOG_FILE, "DEBUG_T: 'models/TD/sentrygun_3.mdl' is not exist!");
+		log_to_file(LOG_FILE, "DEBUG_T: 'models/TD/sentrygun_3.mdl' nie odnaleziono!");
 
 	if(file_exists("models/TD/sentrygun_4.mdl"))
 		precache_model("models/TD/sentrygun_4.mdl")
 	else if(DEBUG_T)
-		log_to_file(LOG_FILE, "DEBUG_T: 'models/TD/sentrygun_4.mdl' is not exist!");
+		log_to_file(LOG_FILE, "DEBUG_T: 'models/TD/sentrygun_4.mdl' nie odnaleziono!");
 		
 	if(file_exists("models/TD/sentrygun_5.mdl"))
 		precache_model("models/TD/sentrygun_5.mdl")
 	else if(DEBUG_T)
-		log_to_file(LOG_FILE, "DEBUG_T: 'models/TD/sentrygun_5.mdl' is not exist!");
+		log_to_file(LOG_FILE, "DEBUG_T: 'models/TD/sentrygun_5.mdl' nie odnaleziono!");
 	
 	if(file_exists("models/TD/totem.mdl"))
 		precache_model("models/TD/totem.mdl");
 	else if(DEBUG_T)
-		log_to_file(LOG_FILE, "DEBUG_T: 'models/TD/totem.mdl' is not exist!");
+		log_to_file(LOG_FILE, "DEBUG_T: 'models/TD/totem.mdl' nie odnaleziono!");
 
 	if(DEBUG_T)
-		log_to_file(LOG_FILE, "DEBUG_T: Precaching resources finished");	
+		log_to_file(LOG_FILE, "DEBUG_T: Wstepne zasoby zaladowane.");	
 }
 
 public plugin_init() 
@@ -333,7 +333,7 @@ public _td_turrets_set_player_totem(id, value)
 		case TOTEM_ALL: formatex(totemName, charsmax(totemName), "SUPER");
 	}
 
-	client_print(id, print_center, "Press 'Z' in place where you want to place %s totem.", totemName);
+	client_print(id, print_center, "Nacisnij 'Z' w miejscu w ktorych chcesz postawic %s totem.", totemName);
 }
 
 public _td_turrets_get_player_totem(id)
@@ -701,7 +701,7 @@ public LoadConfig()
 	{
 		if(DEBUG_T)
 		{
-			log_to_file(LOG_FILE, "DEBUG_T TURRETS: Config file ^"%s^" is not exist", CONFIG_FILE)
+			log_to_file(LOG_FILE, "DEBUG_T TURRETS: Config file ^"%s^" nie odnaleziono", CONFIG_FILE)
 			log_to_file(LOG_FILE, "DEBUG_T TURRETS: Loading default values")
 		}
 
@@ -894,11 +894,11 @@ public fwAddToFullPack(es_handle, e, ENT, HOST, hostflags, player, set)
 
 public ShowUserSettingsMenu(id) 
 {
-	new iMenu = menu_create("Turrets settings:", "ShowUserSettingsMenuH")
-	menu_additem(iMenu, "Change turrets alarm value")
-	menu_additem(iMenu, "Change own turrets effect")
+	new iMenu = menu_create("Ustawienia Wiezyczek:", "ShowUserSettingsMenuH")
+	menu_additem(iMenu, "Zmień wartość alarmu wiez")
+	menu_additem(iMenu, "Zmien efekt wiezyczki")
 	
-	menu_setprop(iMenu, MPROP_EXITNAME, "Back");
+	menu_setprop(iMenu, MPROP_EXITNAME, "Wroc");
 	menu_display(id, iMenu);
 }
 
@@ -920,14 +920,14 @@ public ShowUserSettingsMenuH(id, menu, item)
 
 public ShowEditOwnTurretEffect(id)
 {
-	new iMenu = menu_create("\ySelect mode: ", "ShowEditOwnTurretEffectH");
+	new iMenu = menu_create("\yWybierz tryb: ", "ShowEditOwnTurretEffectH");
 	new iCb = menu_makecallback("ShowEditOwnTurretEffectCb");
 	
-	menu_additem(iMenu, "Turn off effects", _, _, iCb);
-	menu_additem(iMenu, "Show glow", _, _, iCb);
-	menu_additem(iMenu, "Show transparently", _, _, iCb);
+	menu_additem(iMenu, "Wylacz efekty", _, _, iCb);
+	menu_additem(iMenu, "Pokaz blask", _, _, iCb);
+	menu_additem(iMenu, "Pokaz transparentnie", _, _, iCb);
 	
-	menu_setprop(iMenu, MPROP_EXITNAME, "Back");
+	menu_setprop(iMenu, MPROP_EXITNAME, "Wroc");
 	
 	menu_display(id, iMenu)
 }
@@ -944,14 +944,14 @@ public ShowEditOwnTurretEffectH(id, menu, item)
 	}
 	
 	g_PlayerTurretShowingOption[id]  = item;
-	ColorChat(id, GREEN, "%s^x01 You changed visibility of your turret effect.", CHAT_PREFIX);
+	ColorChat(id, GREEN, "%s^x01 Zmieniles widocznosc efektu wiezy.", CHAT_PREFIX);
 	ShowEditOwnTurretEffect(id);
 }
 public ShowEditAlarmValueMenu(id) 
 {
 	static szTitle[64]
 	
-	formatex(szTitle, charsmax(szTitle), "\wSet alarm status at \y%d\w ammo", g_PlayerAmmoAlarmValue[id]);
+	formatex(szTitle, charsmax(szTitle), "\wUstawa alarm przy \y%d\w ammo", g_PlayerAmmoAlarmValue[id]);
 	
 	new iMenu = menu_create(szTitle, "ShowEditAlarmValueMenuH")
 	new iCb = menu_makecallback("ShowEditAlarmValueMenuCb");
@@ -963,7 +963,7 @@ public ShowEditAlarmValueMenu(id)
 	menu_additem(iMenu, "100", _, _, iCb)
 	menu_additem(iMenu, "150", _, _, iCb)
 	
-	menu_setprop(iMenu, MPROP_EXITNAME, "Back");
+	menu_setprop(iMenu, MPROP_EXITNAME, "Wroc");
 	menu_display(id, iMenu);
 }
 
@@ -1006,7 +1006,7 @@ public ShowEditAlarmValueMenuH(id, menu, item)
 		case 6: g_PlayerAmmoAlarmValue[id] = 150
 	}
 	
-	ColorChat(id, GREEN, "%s^x01 You changed alarm status at %d ammo.", CHAT_PREFIX, g_PlayerAmmoAlarmValue[id]);
+	ColorChat(id, GREEN, "%s^x01 Zmieniles status alarmu przy %d ammo.", CHAT_PREFIX, g_PlayerAmmoAlarmValue[id]);
 	
 	ShowEditAlarmValueMenu(id);
 	return PLUGIN_CONTINUE
@@ -1019,14 +1019,14 @@ public ShowUserTurretsMenu(id)
 	
 	if(!g_AreTurretsEnabled)
 	{
-		ColorChat(id, GREEN, "[TD TURRETS]^x01 Turrets are disabled from some reason.")
+		ColorChat(id, GREEN, "[TD WIEZYCZKA]^x01 Wiezyczki sa z jakiegos powodu wylaczone.")
 		return;
 	}
 	static szFormat[128], szAlarm[33];
 
 	new iMaxTurretsNum = MAX_SERVER_TURRETS < MAX_MAP_TURRETS ? MAX_SERVER_TURRETS : MAX_MAP_TURRETS;
 	
-	formatex(szFormat, charsmax(szFormat), "\yServer turrets:\r %d\d /\r %d^n\yYour turrets:\r %d\d /\r %d^n\wSelect option:", g_ServerTurretsNum, iMaxTurretsNum, g_PlayerTurretsNum[id], MAX_PLAYER_TURRETS);
+	formatex(szFormat, charsmax(szFormat), "\yWiezyczki na serwerze:\r %d\d /\r %d^n\yTwoje wiezyczki:\r %d\d /\r %d^n\wWybierz opcje:", g_ServerTurretsNum, iMaxTurretsNum, g_PlayerTurretsNum[id], MAX_PLAYER_TURRETS);
 
 	static menu ; menu = menu_create(szFormat, "ShowUserTurretsMenuH")
 	static cb; cb =  menu_makecallback("ShowUserTurretsMenuCb");
@@ -1041,7 +1041,7 @@ public ShowUserTurretsMenu(id)
 		if(isSlotBought) 
 		{
 			if(!isValidTurret)
-				formatex(szFormat, charsmax(szFormat), "Slot %d\r [\y BUY TURRET\r ]",  i+1)
+				formatex(szFormat, charsmax(szFormat), "Slot %d\r [\y KUP WIEZYCZKE\r ]",  i+1)
 			else
 			{
 				new szTurretName[33];
@@ -1054,13 +1054,13 @@ public ShowUserTurretsMenu(id)
 			
 				if(iAmmo < 1)
 				{
-					formatex(szAlarm, 32, "\r [\w NO AMMO\r ]")
+					formatex(szAlarm, 32, "\r [\w BRAK AMMO\r ]")
 					add(szFormat, 127, szAlarm)
 				}
 				
 				else if(g_PlayerAlarmStatus[id][i]) 
 				{
-					formatex(szAlarm,32, "\r [\w LOW AMMO\r ]")
+					formatex(szAlarm,32, "\r [\w MALO AMMO\r ]")
 					add(szFormat, 127, szAlarm)
 				}	
 			}
@@ -1068,14 +1068,14 @@ public ShowUserTurretsMenu(id)
 		else if(g_ServerTurretsNum >= iMaxTurretsNum)
 		{
 			if(g_ServerTurretsNum >= MAX_SERVER_TURRETS && !isValidTurret)
-				formatex(szFormat, charsmax(szFormat), "Slot %d\r [ SERVER LIMIT REACHED ]", i+1)
+				formatex(szFormat, charsmax(szFormat), "Slot %d\r [ OSIĄGNIĘTO LIMIT SERWERA ]", i+1)
 			else if(g_ServerTurretsNum >= MAX_MAP_TURRETS && !isValidTurret)
-				formatex(szFormat, charsmax(szFormat), "Slot %d\r [ MAP LIMIT REACHED ]", i+1)
+				formatex(szFormat, charsmax(szFormat), "Slot %d\r [ OSIAGNIETO LIMIT NA MAPIE ]", i+1)
 		}
 		else if(iGold < g_TurretSlotCost[i])
-			formatex(szFormat, charsmax(szFormat), "Slot %d\r [ %d \yGOLD\r ]", i+1, g_TurretSlotCost[i])
+			formatex(szFormat, charsmax(szFormat), "Slot %d\r [ %d \yZLOTO\r ]", i+1, g_TurretSlotCost[i])
 		else if(iGold >= g_TurretSlotCost[i])
-			formatex(szFormat, charsmax(szFormat), "Slot %d\r [\y BUY FOR \r%d\y GOLD\r ]",  i+1,  g_TurretSlotCost[i])
+			formatex(szFormat, charsmax(szFormat), "Slot %d\r [\y KUP ZA \r%d\y ZLOTA\r ]",  i+1,  g_TurretSlotCost[i])
 
 		
 		menu_additem(menu, szFormat, _, _, cb)
@@ -1123,7 +1123,7 @@ public ShowUserTurretsMenuH(id, menu, item)
 	{
 		td_set_user_info(id, PLAYER_GOLD, td_get_user_info(id, PLAYER_GOLD) - g_TurretSlotCost[item])
 		
-		ColorChat(id, GREEN, "[TD TURRETS]^x01 You bought slot %d!", item + 1)
+		ColorChat(id, GREEN, "[TD WIEZYCZKA]^x01 Wykupiles slot %d!", item + 1)
 		
 		g_PlayerBoughtSlot[id][item] = true
 		
@@ -1154,7 +1154,7 @@ public ShowBuyTurretMenu(id, iTurretIndex)
 	
 	for(new i = 1; i < _:ENUM_TURRETS_TYPE; i++) 
 	{
-		formatex(szFormat, charsmax(szFormat), "%s \r[ \y%d\w GOLD\r ]", g_TurretsName[i], g_TurretsPriceData[i][0])
+		formatex(szFormat, charsmax(szFormat), "%s \r[ \y%d\w ZLOTO\r ]", g_TurretsName[i], g_TurretsPriceData[i][0])
 		menu_additem(iMenu, szFormat, szTurretIndex, _, cb)
 	}
 	
@@ -1195,14 +1195,14 @@ public ShowMenuCreateTurret(id,  iTurretType, iTurretIndex)
 {
 	new szData[4]
 	new szTitle[256], szTurretInfo[174]
-	formatex(szTurretInfo, charsmax(szTurretInfo), "Turret type: \w %s^n\yTurret damage:\r %d\w ~\r %d^n\yTurret range:\r %d^n\yTurret accuracy:\r %d%%^n\yTurret firerate:\r %0.2fs", g_TurretsName[iTurretType],
+	formatex(szTurretInfo, charsmax(szTurretInfo), "Typ wiezyczki: \w %s^n\yDMG wiezyczki:\r %d\w ~\r %d^n\yZasieg wiezyczki:\r %d^n\yCelnosc wiezyczki:\r %d%%^n\ySzybkostrzelnosc wiezyczki:\r %0.2fs", g_TurretsName[iTurretType],
 	g_TurretsDamageData[iTurretType][0][0], g_TurretsDamageData[iTurretType][0][1],
 	g_TurretsRangeData[iTurretType][0], g_TurretsAccuracyData[iTurretType][0], ((g_TurretsFreqData[iTurretType] / 100.0) * (g_TurretsFireRateData[iTurretType][0] / 100.0)))
 
 	if(g_TurretsMaxLevelData[iTurretType][1] == 1) 
-		formatex(szTitle, charsmax(szTitle), "Where do you want to place turret?^n%s^n\rWARNING!\w On this map is only one level of range!", szTurretInfo);
+		formatex(szTitle, charsmax(szTitle), "Gdzie chcesz postawic wiezyczke?^n%s^n\rWARNING!\w Na tej mapie jest tylko jeden poziom zasiegu!", szTurretInfo);
 	else
-		formatex(szTitle, charsmax(szTitle), "Where do you want to place turret?^n%s", szTurretInfo);
+		formatex(szTitle, charsmax(szTitle), "Gdzie chcesz postawic wiezyczke?^n%s", szTurretInfo);
 		
 	new iMenu = menu_create(szTitle, "ShowMenuCreateTurretH")
 	
@@ -1254,7 +1254,7 @@ public ShowMenuCreateTurretH(id, menu, item)
 	|| find_sphere_class(iEnt, "turret_reloading", 60.0, entlist, 2) 
 	|| find_sphere_class(iEnt, "turret_upgrading", 60.0, entlist, 2)) 
 	{
-		client_print(id, print_center,"You cannot create turret near other turret");
+		client_print(id, print_center,"Nie mozesz stworzyc wiezy w poblizu innej wiezy");
 		ShowMenuCreateTurret(id, iTurretType, iTurretIndex)
 		return PLUGIN_CONTINUE
 	}
@@ -1269,7 +1269,7 @@ public ShowMenuCreateTurretH(id, menu, item)
 		get_user_name(entity_get_edict(entity_get_int(entlist[0], EV_INT_place_owner), EV_ENT_turret_owner), szName, 32);
 		entity_get_string(entity_get_int(entlist[0], EV_INT_place_owner), EV_SZ_turret_name, szTurretName ,32);
 		
-		client_print(id, print_center, "This place is taken by '%s' turret [%s is moving turret]", szTurretName, szName)
+		client_print(id, print_center, "To miejsce jest zajete przez '%s' wiezyczke [%s przesun]", szTurretName, szName)
 		ShowMenuCreateTurret(id, iTurretType, iTurretIndex)
 		return PLUGIN_CONTINUE
 	}
@@ -1350,7 +1350,7 @@ public PlayerCreateTurret(id, iTurretType, iTurretIndex)
 	if(fInstallTime <= 0.0) fInstallTime = 0.1;
 	
 	td_set_user_info(id, PLAYER_GOLD, td_get_user_info(id, PLAYER_GOLD) - g_TurretsPriceData[iTurretType][0])
-	ColorChat(id, GREEN, "%s^x01 Building turret.. Turret type: %s | Turret name: %s | Ammo: %d [ %0.1f seconds ]", CHAT_PREFIX, g_TurretsName[iTurretType], g_TurretsShopName[iTurretIndex], entity_get_int(iEnt, EV_INT_turret_ammo), fInstallTime);
+	ColorChat(id, GREEN, "%s^x01 Buduj wiezyczke.. Typ wiezyczki: %s | Nazwa wiezyczki: %s | Ammo: %d [ %0.1f seconds ]", CHAT_PREFIX, g_TurretsName[iTurretType], g_TurretsShopName[iTurretIndex], entity_get_int(iEnt, EV_INT_turret_ammo), fInstallTime);
 	
 	new Float:fOrigin[3]
 	new iOrigin[3]
@@ -1382,7 +1382,7 @@ public TaskTurretInstalled(params[], task)
 	if(entity_get_int(params[1], EV_INT_turret_ammo) > 0)
 		entity_set_float(params[1], EV_FL_nextthink, get_gametime() + 1.0);
 	
-	ColorChat(params[0], GREEN, "%s^x01 Turret '%s' is ready!", CHAT_PREFIX, g_TurretsShopName[ params[2] ]);
+	ColorChat(params[0], GREEN, "%s^x01 Wiezyczka '%s' jest gotowa!", CHAT_PREFIX, g_TurretsShopName[ params[2] ]);
 	
 	emit_sound(params[1], CHAN_AUTO, g_SoundFile[SOUND_TURRET_READY], 1.0, 2.3, 0, PITCH_NORM);
 	
@@ -2124,7 +2124,7 @@ public TurretTouched(iEnt, iPlayer)
 		new iAmmo = entity_get_int(iEnt, EV_INT_turret_ammo);
 		if(!iAmmo)
 			iAmmo = 0;
-		formatex(szText, 127, "Your turret: %s^nAmmo: %d^nPress 'E' to open turret menu.", szTurretName, clamp(iAmmo, 0, 9999));
+		formatex(szText, 127, "Twoja wiezyczka: %s^nAmmo: %d^nNacisnij 'E' by otworzyc menu.", szTurretName, clamp(iAmmo, 0, 9999));
 		CreateTurretRanger(iPlayer,iEnt, g_PlayerTurretRangeLevel[iPlayer][ entity_get_int(iEnt, EV_INT_turret_index)]);
 	}
 	else
@@ -2132,7 +2132,7 @@ public TurretTouched(iEnt, iPlayer)
 		new szOwnerName[33];
 		get_user_name(GetTurretOwner(iEnt), szOwnerName, 32);
 		
-		formatex(szText, 127, "Turret: %s^nTurret owner: %s", szTurretName, szOwnerName);
+		formatex(szText, 127, "Wiezyczka: %s^nWlasciciel: %s", szTurretName, szOwnerName);
 	}
 
 	CheckIsPlayerInRange(szText, iPlayer + TASK_CHECK_IS_IN_RANGE);
@@ -2267,10 +2267,10 @@ public ShowTurretMenu(id, iTurretIndex)
 	if(iTurretAmmo == -1)
 	{
 		iTurretAmmo = 0;
-		formatex(szTitle, charsmax(szTitle), "\r[\y %s \r] [\y %s\r ] [\w NO AMMO\r ]", szFormat, g_TurretsName[iTurretType]);
+		formatex(szTitle, charsmax(szTitle), "\r[\y %s \r] [\y %s\r ] [\w BRAK AMMO\r ]", szFormat, g_TurretsName[iTurretType]);
 	}
 	else if(g_PlayerAlarmStatus[id][iTurretIndex])
-		formatex(szTitle, charsmax(szTitle), "\r[\y %s \r] [\y %s\r ] [\w LOW AMMO\r ]", szFormat, g_TurretsName[iTurretType]);
+		formatex(szTitle, charsmax(szTitle), "\r[\y %s \r] [\y %s\r ] [\w MALO AMMO\r ]", szFormat, g_TurretsName[iTurretType]);
 	else
 		formatex(szTitle, charsmax(szTitle), "\r[\y %s \r] [\y %s\r ]", szFormat, g_TurretsName[iTurretType]);
 
@@ -2287,7 +2287,7 @@ public ShowTurretMenu(id, iTurretIndex)
 	new iRange = floatround(g_TurretsRangeData[iTurretType][g_PlayerTurretRangeLevel[id][iTurretIndex]] * (1.0 + totemAbbilities[1] / 100.0));
 	fFireRate *= (1.0 - (totemAbbilities[2] / 100.0));
 
-	formatex(szTitle, charsmax(szTitle), "%s^n[ \yLevel: \w%d\r ] [ \yAmmo: \w%d\r ]^n[ \yDamage: \w%d\y ~\w %d\r ] [ \yRange:\w %d\r ]^n[ \yAccuracy: \w%d%%\r ] [\yFirerate: \w%0.2fs\r ]", 
+	formatex(szTitle, charsmax(szTitle), "%s^n[ \yPoziom: \w%d\r ] [ \yAmmo: \w%d\r ]^n[ \yDMG: \w%d\y ~\w %d\r ] [ \yZasieg:\w %d\r ]^n[ \yCelnosc: \w%d%%\r ] [\ySzybkostrzelnosc: \w%0.2fs\r ]", 
 	szTitle, entity_get_int(iEnt, EV_INT_turret_level), iTurretAmmo ?  iTurretAmmo : 0, 
 	iDamageMin, iDamageMax, iRange, g_TurretsAccuracyData[iTurretType][ g_PlayerTurretAccuracyLevel[id][iTurretIndex]], fFireRate)
 	
@@ -2313,21 +2313,21 @@ public ShowTurretMenu(id, iTurretIndex)
 	menu_additem(iMenu, szFormat, szTurretIndex, _, cb);
 	
 	// 1
-	menu_additem(iMenu, "Delete turret", _, _, cb);
+	menu_additem(iMenu, "Zniszcz wiezyczke", _, _, cb);
 
 	// 2
-	formatex(szFormat, 32, "Move turret for %d gold", g_ConfigValues[CFG_TURRET_MOVE_COST])
+	formatex(szFormat, 32, "Przeniesc za %d zlota", g_ConfigValues[CFG_TURRET_MOVE_COST])
 	menu_additem(iMenu, szFormat, _, _, cb)
 	
 	// 3
-	formatex(szFormat, 32, "Change turret name for %d gold", g_ConfigValues[CFG_TURRET_CHANGE_NAME_COST])
+	formatex(szFormat, 32, "Zmien nazwe za %d zlota", g_ConfigValues[CFG_TURRET_CHANGE_NAME_COST])
 	menu_additem(iMenu, szFormat, _, _, cb)
 	
 	// 4
 	if(g_IsTurretUpgrading[id][iTurretIndex])
-		menu_additem(iMenu, "Is during in phase configuration...", _, _, cb)
+		menu_additem(iMenu, "Jest w fazie konfiguracji...", _, _, cb)
 	else 
-		menu_additem(iMenu, "Upgrade turret", _, _, cb)
+		menu_additem(iMenu, "Ulpesz wiezyczke", _, _, cb)
 	
 	if(g_PlayerTouchingTurret[id] != iEnt)
 		menu_setprop(iMenu, MPROP_EXITNAME, "Back")
@@ -2469,7 +2469,7 @@ public ShowTurretMenuH(id, menu, item)
 		if(fTaskTime <= 0.0)
 			fTaskTime = 0.1
 		
-		ColorChat(id, GREEN, "%s^x01 Reloading turret... [ %0.1f seconds ]",CHAT_PREFIX,  fTaskTime)
+		ColorChat(id, GREEN, "%s^x01 Przeladowywanie wiezyczki... [ %0.1f seconds ]",CHAT_PREFIX,  fTaskTime)
 		
 		DestroyTurretRanger(iTurretEntity);
 		
@@ -2492,14 +2492,14 @@ public ShowTurretMenuH(id, menu, item)
 		new entlist[2];
 		if(!find_sphere_class(id, "turret", 60.0, entlist, 1))
 		{
-			client_print(id, print_center, "You must stay near your [activated] turret!");
+			client_print(id, print_center, "Musisz pozostac blisko swojej [aktywowanej] wiezyczki!");
 			ShowTurretMenu(id, iTurretIndex);
 			return PLUGIN_CONTINUE;
 		}
 
 		else if(entlist[0] != iTurretEntity)
 		{
-			client_print(id, print_center, "You are staying near wrong turret!");
+			client_print(id, print_center, "Stajesz w poblizu niewlasciwej wiezy!");
 			ShowTurretMenu(id, iTurretIndex);
 			return PLUGIN_CONTINUE;
 		}
@@ -2547,7 +2547,7 @@ public ShowMenuUpgradeTurret(id, iTurretIndex)
 
 	CreateTurretRanger(id, iEnt, iTurretRangeLevel);
 	
-	formatex(szFormat, 255, "\r[\y %s \r] [\y %s\r ]^n[ \yTurret level: \w%d\r ]^n[ \yDamage: \w%d\y ~\w %d\r ] [ \yRange:\w %d\r ]^n[ \yAccuracy: \w%d%%\r ] [\yFirerate: \w%0.2fs\r ]", 
+	formatex(szFormat, 255, "\r[\y %s \r] [\y %s\r ]^n[ \yPoziom wiezyczki: \w%d\r ]^n[ \yDMG: \w%d\y ~\w %d\r ] [ \yZasieg:\w %d\r ]^n[ \yCelnosc: \w%d%%\r ] [\ySzybkostrzelnosc: \w%0.2fs\r ]", 
 	g_TurretsName[iTurretType],szTurretName,
 	entity_get_int(iEnt, EV_INT_turret_level),
 	g_TurretsDamageData[iTurretType][iTurretDamageLevel][0], g_TurretsDamageData[iTurretType][iTurretDamageLevel][1],
@@ -2560,11 +2560,11 @@ public ShowMenuUpgradeTurret(id, iTurretIndex)
 	num_to_str(iTurretIndex, szData, 3)
 
 	if(iTurretDamageLevel + 1 == g_TurretsMaxLevelData[iTurretType][0])
-		menu_additem(menu, "Increase Damage\r [ \yMAX \w~ \yMAX \r]", szData,_,cb)
+		menu_additem(menu, "Zwieksz obrazenia\r [ \yMAX \w~ \yMAX \r]", szData,_,cb)
 	else 
 	{
 		iTurretDamageLevel++;
-		formatex(szFormat,   charsmax(szFormat), "Increase Damage\r [ \y%d\w gold\r ] [\w +\y%d \w~ \w+\y%d\r ]",
+		formatex(szFormat,   charsmax(szFormat), "Zwieksz obrazenia\r [ \y%d\w gold\r ] [\w +\y%d \w~ \w+\y%d\r ]",
 		g_TurretsPriceData[iTurretType][iTurretDamageLevel],
 		(g_TurretsDamageData[iTurretType][iTurretDamageLevel][0] - g_TurretsDamageData[iTurretType][iTurretDamageLevel - 1][0]), 
 		(g_TurretsDamageData[iTurretType][iTurretDamageLevel][1] - g_TurretsDamageData[iTurretType][iTurretDamageLevel - 1][1]))
@@ -2573,12 +2573,12 @@ public ShowMenuUpgradeTurret(id, iTurretIndex)
 	}
 	
 	if(iTurretRangeLevel + 1 == g_TurretsMaxLevelData[iTurretType][1])
-		menu_additem(menu, "Increase Range\r [ \yMAX\r ]", _,_,cb)
+		menu_additem(menu, "Zwieksz zasieg\r [ \yMAX\r ]", _,_,cb)
 	else
 	{
 		iTurretRangeLevel++;
 		
-		formatex(szFormat,   charsmax(szFormat), "Increase Range\r [ \y%d\w gold\r ] [\w + \y%d\r ]",
+		formatex(szFormat,   charsmax(szFormat), "Zwieksz zasieg\r [ \y%d\w gold\r ] [\w + \y%d\r ]",
 		g_TurretsPriceData[iTurretType][iTurretRangeLevel],
 		(g_TurretsRangeData[iTurretType][iTurretRangeLevel] - g_TurretsRangeData[iTurretType][iTurretRangeLevel - 1]))
 		
@@ -2586,12 +2586,12 @@ public ShowMenuUpgradeTurret(id, iTurretIndex)
 	}
 
 	if(iTurretAccuracyLevel + 1 == g_TurretsMaxLevelData[iTurretType][2])
-		menu_additem(menu, "Increase Accuracy\r [ \yMAX\r ]", _,_,cb)
+		menu_additem(menu, "Zwieksz Celnosc\r [ \yMAX\r ]", _,_,cb)
 	else
 	{
 		iTurretAccuracyLevel++;
 		
-		formatex(szFormat,   charsmax(szFormat), "Increase Accuracy\r [ \y%d\w gold\r ] [\w + \y%d%%\r ]",
+		formatex(szFormat,   charsmax(szFormat), "Zwieksz Celnosc\r [ \y%d\w gold\r ] [\w + \y%d%%\r ]",
 		g_TurretsPriceData[iTurretType][iTurretAccuracyLevel],
 		(g_TurretsAccuracyData[iTurretType][iTurretAccuracyLevel] - g_TurretsAccuracyData[iTurretType][iTurretAccuracyLevel - 1]))
 		
@@ -2599,14 +2599,14 @@ public ShowMenuUpgradeTurret(id, iTurretIndex)
 	}
 
 	if(iTurretFireRateLevel + 1 == g_TurretsMaxLevelData[iTurretType][3])
-		menu_additem(menu, "Increase Firerate\r [ \yMAX\r ]", _,_,cb)
+		menu_additem(menu, "Zwieksz Szybkostrzelnosc\r [ \yMAX\r ]", _,_,cb)
 	else
 	{
 		iTurretFireRateLevel++;
 
 		new Float:fTime2 = ((g_TurretsFreqData[iTurretType] / 100.0) * (g_TurretsFireRateData[iTurretType][iTurretFireRateLevel] / 100.0));
 			
-		formatex(szFormat,   charsmax(szFormat), "Increase Firerate\r [ \y%d\w gold\r ] [\w -\y%0.2fs\r ]",
+		formatex(szFormat,   charsmax(szFormat), "Zwieksz Szybkostrzelnosc\r [ \y%d\w gold\r ] [\w -\y%0.2fs\r ]",
 		g_TurretsPriceData[iTurretType][iTurretFireRateLevel],
 		 (fTime - fTime2));
 		
@@ -2614,7 +2614,7 @@ public ShowMenuUpgradeTurret(id, iTurretIndex)
 	}
 	
 	if(g_PlayerTouchingTurret[id] != iEnt)
-		menu_setprop(menu, MPROP_EXITNAME, "Back")
+		menu_setprop(menu, MPROP_EXITNAME, "Wroc")
 	
 	menu_display(id, menu)
 
@@ -2694,7 +2694,7 @@ public ShowMenuUpgradeTurretH(id, menu, item) {
 		fUpgradeTime = 0.1;
 	g_IsTurretUpgrading[id][iTurretIndex] = true;
 	g_PlayerTouchingTurret[id] = 0;
-	ColorChat(id, GREEN, "%s^x01 Upgrading turret... [ %0.1f seconds ]", CHAT_PREFIX, fUpgradeTime);
+	ColorChat(id, GREEN, "%s^x01 Ulepszanie wiezyczki... [ %0.1f sekund ]", CHAT_PREFIX, fUpgradeTime);
 	
 	entity_set_string(iEnt, EV_SZ_classname, "turret_upgrading")
 	new szData[4]; szData[0] = id;szData[1] = item; szData[2] = iTurretIndex
@@ -2729,11 +2729,11 @@ public UpgradeTurretTaskInfo(szData[], iTask) {
 	g_IsTurretUpgrading[id][iTurretIndex] = false;
 	
 	if(item == 0) 
-		ColorChat(id, GREEN, "%s^x01 Your '%s' turret takes from now %d - %d damage.",CHAT_PREFIX, szTurretName, g_TurretsDamageData[iTurretType][g_PlayerTurretDamageLevel[id][iTurretIndex]][0], g_TurretsDamageData[iTurretType][g_PlayerTurretDamageLevel[id][iTurretIndex]][1])
+		ColorChat(id, GREEN, "%s^x01 Twoja wiezyczka '%s' zadaje teraz %d - %d DMG.",CHAT_PREFIX, szTurretName, g_TurretsDamageData[iTurretType][g_PlayerTurretDamageLevel[id][iTurretIndex]][0], g_TurretsDamageData[iTurretType][g_PlayerTurretDamageLevel[id][iTurretIndex]][1])
 	else if(item == 1)
-		ColorChat(id, GREEN, "%s^x01 Your '%s' turret now can shoot in %d units range", CHAT_PREFIX, szTurretName,  g_TurretsRangeData[iTurretType][ g_PlayerTurretRangeLevel[id][iTurretIndex] ])		
+		ColorChat(id, GREEN, "%s^x01 Twoja wiezyczka '%s' ma teraz zasieg %d", CHAT_PREFIX, szTurretName,  g_TurretsRangeData[iTurretType][ g_PlayerTurretRangeLevel[id][iTurretIndex] ])		
 	else if(item == 2)
-		ColorChat(id, GREEN, "%s^x01 Your '%s' turret now have %d%% accurancy", CHAT_PREFIX, szTurretName,  g_TurretsAccuracyData[iTurretType][ g_PlayerTurretAccuracyLevel[id][iTurretIndex] ])		
+		ColorChat(id, GREEN, "%s^x01 YTwoja wiezyczka '%s' ma teraz celnosc %d% ", CHAT_PREFIX, szTurretName,  g_TurretsAccuracyData[iTurretType][ g_PlayerTurretAccuracyLevel[id][iTurretIndex] ])		
 
 	new iNewLevel, iDivider;
 	iNewLevel += g_PlayerTurretDamageLevel[id][iTurretIndex] 	+ 1;
@@ -2756,7 +2756,7 @@ public UpgradeTurretTaskInfo(szData[], iTask) {
 		client_cmd(id, "spk %s", g_SoundFile[SOUND_TURRET_LEVELUP]);
 		emit_sound(iEnt, CHAN_AUTO, g_SoundFile[SOUND_TURRET_LEVELUP], 1.5, 2.3, 0, PITCH_NORM);
 		
-		ColorChat(id, GREEN, "%s^x01 Your '%s' turret earned %d level", CHAT_PREFIX, szTurretName, iNewLevel)
+		ColorChat(id, GREEN, "%s^x01 Twoja wiezyczka '%s' zdobyla %d poziom", CHAT_PREFIX, szTurretName, iNewLevel)
 		SetTurretModelByLevel(iEnt, iNewLevel)
 	}
 	
@@ -2777,16 +2777,16 @@ public ShowMenuMoveTurret(id, iTurretIndex)
 	new iMenu ;
 	
 	if(g_TurretsMaxLevelData[  entity_get_int( g_PlayerTurretEnt[id][iTurretIndex], EV_INT_turret_type)][1] == 1) 
-		iMenu = menu_create("Where do you want to move this turret?^n\rWARNING!\w On this map is only one level of range!", "ShowMenuMoveTurretH")
+		iMenu = menu_create("Gdzie chcesz postawic wiezyczke?^n\rWARNING!\w Na tej mapie jest tylko jeden poziom zasiegu!", "ShowMenuMoveTurretH")
 	else
-		iMenu = menu_create("Where do you want to move this turret?", "ShowMenuMoveTurretH")
+		iMenu = menu_create("Gdzie chcesz postawic wiezyczke?", "ShowMenuMoveTurretH")
 	
 	new szData[4];
 	num_to_str(iTurretIndex, szData, 3)
 	
-	menu_additem(iMenu, "Move turret here", szData)
+	menu_additem(iMenu, "Przenies tutaj", szData)
 	menu_additem(iMenu, "Back")
-	menu_setprop(iMenu, MPROP_EXITNAME, "Back");
+	menu_setprop(iMenu, MPROP_EXITNAME, "Wyjdz");
 	
 	menu_display(id, iMenu);
 }
@@ -2807,13 +2807,13 @@ public ShowMenuMoveTurretH(id, menu, item)
 	
 	if(td_get_user_info(id, PLAYER_GOLD) < g_ConfigValues[CFG_TURRET_MOVE_COST] )
 	{
-		client_print(id, print_center, "You don't have %d gold", g_ConfigValues[CFG_TURRET_MOVE_COST] );
+		client_print(id, print_center, "Nie masz %d zlota", g_ConfigValues[CFG_TURRET_MOVE_COST] );
 		goto removeEffect;
 	}
 	
 	if(item == MENU_EXIT || !is_user_alive(id) || item == 1)
 	{	
-		ColorChat(id, GREEN, "%s^x01 You decided not to move your '%s' turret. [Activate time: %0.1f]", CHAT_PREFIX, szType, fActivateTime);
+		ColorChat(id, GREEN, "%s^x01 Zdecydowales sie nie ruszac '%s' . [Czas aktywacji: %0.1f]", CHAT_PREFIX, szType, fActivateTime);
 		
 		removeEffect:
 		
@@ -2865,7 +2865,7 @@ public ShowMenuMoveTurretH(id, menu, item)
 		get_user_name(entity_get_edict(entity_get_int(entlist[0], EV_INT_place_owner), EV_ENT_turret_owner), szName, 32);
 		entity_get_string(entity_get_int(entlist[0], EV_INT_place_owner), EV_SZ_turret_name, szTurretName ,32);
 		
-		client_print(id, print_center, "This place is taken by '%s' turret [%s is moving turret]", szTurretName, szName)
+		client_print(id, print_center, "To miejsce jest zajete przez '%s'  [%s]", szTurretName, szName)
 		ShowMenuMoveTurret(id, iTurretIndex)
 		return PLUGIN_CONTINUE
 	}
@@ -2882,7 +2882,7 @@ public ShowMenuMoveTurretH(id, menu, item)
 	
 	emit_sound(iEnt, CHAN_AUTO, g_SoundFile[SOUND_TURRET_PLANT], 1.0, 0.7, 0, PITCH_NORM);
 	
-	ColorChat(id, GREEN, "%s^x01 You moved your '%s' turret. [Activate time: %0.1f]", CHAT_PREFIX, szType, fActivateTime);
+	ColorChat(id, GREEN, "%s^x01 Przeniosles swoja wiezyczke '%s'. [Czas aktywacji: %0.1f]", CHAT_PREFIX, szType, fActivateTime);
 	set_task(fActivateTime, "PlayerMoveTurretTaskInfo", iEnt + TASK_MOVE_TURRET, szType, 32);
 	
 	DestroyTurretRanger(iEnt);
@@ -2919,7 +2919,7 @@ public PlayerMoveTurretTaskInfo(szTurretName[], iEnt)
 	iEnt -= TASK_MOVE_TURRET;
 	new id = GetTurretOwner(iEnt);
 	
-	ColorChat(id, GREEN, "%s^x01 '%s' turret is ready!", CHAT_PREFIX, szTurretName);
+	ColorChat(id, GREEN, "%s^x01 '%s' jest juz gotowa!", CHAT_PREFIX, szTurretName);
 	
 	g_IsTurretUpgrading[ id ][ entity_get_int(iEnt, EV_INT_turret_index) ] = false;
 	
@@ -2977,13 +2977,13 @@ public ShowDeleteTurretMenu(id, iTurretIndex)
 		iTurretCost = floatround( iTurretCost * g_ConfigValuesFloat[CFG_FLOAT_CHARGE_BACK_MLTP] );
 		num_to_str(iTurretCost, szTurretInfo[1], 3);
 		
-		formatex(szTitle, 127, "Delete turret confirm:^n\rAre you sure? You will get back %d gold", iTurretCost);
+		formatex(szTitle, 127, "Potwierdz usuniecie:^n\rJestes pewien? Zwroce Ci %d zlota", iTurretCost);
 	}
 	else
-		formatex(szTitle, 127, "Delete turret confirm:^n\rAre you sure?");
+		formatex(szTitle, 127, "Potwierdz usuniecie:^n\rJestes pewien?");
 	
 	new menu = menu_create(szTitle, "ShowDeleteTurretMenuH");
-	menu_additem(menu, "\yYes", szTurretInfo[0]);
+	menu_additem(menu, "\yTak", szTurretInfo[0]);
 	menu_additem(menu, "Back", szTurretInfo[1]);
 	
 	menu_display(id, menu);
@@ -3022,10 +3022,10 @@ public ShowDeleteTurretMenuH(id, menu, item)
 	if(szTurretInfo[1] > 0)
 	{
 		td_set_user_info(id, PLAYER_GOLD, td_get_user_info(id, PLAYER_GOLD) + szTurretInfo[1]);
-		ColorChat(id, GREEN, "%s^x01 You has just deleted your turret (%s) and got %d gold back.", CHAT_PREFIX, szTurretName, szTurretInfo[1]);
+		ColorChat(id, GREEN, "%s^x01 Wlasnie usunales swoja wiezyczke (%s) i dostales %d zlota.", CHAT_PREFIX, szTurretName, szTurretInfo[1]);
 	}
 	else
-		ColorChat(id, GREEN, "%s^x01 You has just deleted your turret (%s)", CHAT_PREFIX, szTurretName);
+		ColorChat(id, GREEN, "%s^x01 Wlasnie usunales swoja wiezyczke (%s)", CHAT_PREFIX, szTurretName);
 
 	g_PlayerTouchingTurret[id] = 0;
 	DeleteTurret(iEnt, id, szTurretInfo[0]);
@@ -3116,7 +3116,7 @@ public MessageModeTurretChangeName(id)
 	
 	if(!equali(szAccessCode, "true"))
 	{
-		ColorChat(id, GREEN, "%s^x01 You don't have access. Please go to turret menu.", CHAT_PREFIX);
+		ColorChat(id, GREEN, "%s^x01 Nie masz dostepu. Otworz menu wizyczki", CHAT_PREFIX);
 		return PLUGIN_HANDLED;
 	}
 	
@@ -3125,7 +3125,7 @@ public MessageModeTurretChangeName(id)
 	
 	if(iPlayerGold < iCost)
 	{
-		ColorChat(id,GREEN, "%s^x01 You don't have %d gold.", CHAT_PREFIX, iCost);
+		ColorChat(id,GREEN, "%s^x01 Nie masz %d zlota.", CHAT_PREFIX, iCost);
 		return PLUGIN_HANDLED
 	}
 	client_cmd(id, "setinfo _tcn false");
@@ -3139,7 +3139,7 @@ public MessageModeTurretChangeName(id)
 	
 	if(strlen(szNewTurretName) < 4)
 	{
-		ColorChat(id,GREEN, "%s^x01 Turret must have at least 4 chars.", CHAT_PREFIX);
+		ColorChat(id,GREEN, "%s^x01 Wiezyczka musi miec co najmniej 4 znaki.", CHAT_PREFIX);
 		ShowTurretMenu(id, iTurretIndex);
 		return PLUGIN_HANDLED
 	}
@@ -3147,7 +3147,7 @@ public MessageModeTurretChangeName(id)
 	new szOldName[33];
 	entity_get_string(g_PlayerTurretEnt[id][iTurretIndex], EV_SZ_turret_name, szOldName, 32);
 	
-	ColorChat(id,GREEN, "%s^x01 You changed turret name from '%s' to '%s'", CHAT_PREFIX, szOldName, szNewTurretName);
+	ColorChat(id,GREEN, "%s^x01 Zmieniles nazwe wiezyczki z '%s' na '%s'", CHAT_PREFIX, szOldName, szNewTurretName);
 	
 	entity_set_string(g_PlayerTurretEnt[id][iTurretIndex], EV_SZ_turret_name, szNewTurretName);
 	td_set_user_info(id,PLAYER_GOLD, iPlayerGold - iCost);
@@ -3177,7 +3177,7 @@ public TurretReloadTaskEnd(params[], iTurretEntity)
 	emit_sound(iTurretEntity, CHAN_AUTO, g_SoundFile[SOUND_TURRET_READY], 1.0, 1.3, 0, PITCH_NORM)
 	
 	//g_PlayerTurretIsUpgrading[id][iTurretIndex] = false
-	ColorChat(id, GREEN, "%s^x01 Turret '%s' has been reloaded! [Current ammo: %d]", CHAT_PREFIX, szTurretName, entity_get_int(iTurretEntity, EV_INT_turret_ammo))
+	ColorChat(id, GREEN, "%s^x01 Wiezyczka '%s' zostala przeladowana! [Obecne ammo: %d]", CHAT_PREFIX, szTurretName, entity_get_int(iTurretEntity, EV_INT_turret_ammo))
 	
 	new szData[3]; szData[0] = iTurretIndex; szData[1] = id
 	set_task(0.1, "OpenTurretMenuIfStayingNear", iTurretEntity + TASK_OPEN_TURRET_MENU, szData, 2);
@@ -3214,7 +3214,7 @@ public LoadSounds()
 			formatex(szDir, 127, "sound/%s", szTemp[2]);
 			
 			if(!file_exists(szDir))
-				log_to_file(LOG_FILE, "DEBUG_T: Error - this sound is not exist");
+				log_to_file(LOG_FILE, "DEBUG_T: Error - this sound nie odnaleziono");
 		}
 		
 		if(equali(szTemp[0], "TURRET_BULLET_FIRE_1")) 
@@ -3287,13 +3287,13 @@ public LoadTurretsConfig(szMapName[])
 	if(!file_exists(szDir)) 
 	{
 		if(DEBUG_T)
-			log_to_file(LOG_FILE, "DEBUG_T: Turrets config file is not exist. Attempt to load default config file '%s'", TURRETS_DEFAULT_CONFIG_FILE);
+			log_to_file(LOG_FILE, "DEBUG_T: Turrets config file nie odnaleziono. Attempt to load default config file '%s'", TURRETS_DEFAULT_CONFIG_FILE);
 		
 		formatex(szDir, charsmax(szDir), "%s/%s", TURRETS_CONFIG_PATH, TURRETS_DEFAULT_CONFIG_FILE)
 		
 		if(!file_exists(szDir))
 		{
-			log_to_file(LOG_FILE, "TURRETS : Default turrets config file is not exist. Turrets are disabled on this map.")
+			log_to_file(LOG_FILE, "TURRETS : Default turrets config file nie odnaleziono. Turrets are disabled on this map.")
 		
 			g_AreTurretsEnabled = false;
 			return PLUGIN_CONTINUE
