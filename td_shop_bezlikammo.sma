@@ -19,7 +19,7 @@ public plugin_init()
 {
 	new id = register_plugin(PLUGIN, VERSION, AUTHOR)
 	register_event("CurWeapon", "CurWeapon", "be", "1=1")
-	iItem = td_shop_register_item("Unlimited Clip Ammo", "Unlimited Clip ammunition for all weapons for 2 waves", 250, 0, id)
+	iItem = td_shop_register_item("Bezlik ammo", "Nieskonczona amunicja na dwie fale", 250, 0, id)
 }
 public td_reset_player_info(iPlayer)
 	g_iWaveNums[iPlayer] = 0;
@@ -33,7 +33,7 @@ public td_shop_item_selected(id, itemid)
 	{
 		g_iWaveNums[id] += 2;
 		
-		ColorChat(id, GREEN, "[TD]^x01 Unlimited Clip Ammo now will be enabled for %d waves!", g_iWaveNums[id]);
+		ColorChat(id, GREEN, "[TD]^x01 Nieskonczona amunicja przez %d etapow!", g_iWaveNums[id]);
 		
 		SetOff(id + 54321);
 	}
@@ -52,13 +52,13 @@ public SetOff(id)
 	if(g_iWaveNums[id] == 0)
 	{
 		set_hudmessage(200, 255, 0, 0.60, 0.84, 0, 0.1, 4.1, 0.1, 0.1, -1)
-		show_hudmessage(id,"Unlimited Clip Ammo time down!")
+		show_hudmessage(id,"Koniec Bezliku ammo!")
 
-		ColorChat(id, GREEN, "[TD]^x01 Unlimited ammo time down.");
+		ColorChat(id, GREEN, "[TD]^x01 Koniec Bezliku ammo.");
 		return;
 	}
 	set_hudmessage(200, 255, 0, 0.60, 0.84, 1, 0.1, 1.1, 0.1, 0.1, -1)
-	show_hudmessage(id,"Unlimited Clip Ammo: %d %s left", g_iWaveNums[id], g_iWaveNums[id] == 1 ? "wave" : "waves")
+	show_hudmessage(id,"Bezlik ammo: %d %s do konca", g_iWaveNums[id], g_iWaveNums[id] == 1 ? "fala" : "fale")
 	
 	set_task(1.0, "SetOff", id + 54321);
 }
