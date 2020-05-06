@@ -107,7 +107,7 @@ public td_wave_ended(iEndedWave)
 	
 	get_best_players(players);
 	
-	formatex(szText, charsmax(szText), "Best %s of wave:^n", numOfPlayers == 1 ? "player" : "players");
+	formatex(szText, charsmax(szText), "Najlepszy %s w fali:^n", numOfPlayers == 1 ? "player" : "players");
 	
 	for(new i; i < numOfPlayers; i++)
 	{
@@ -118,14 +118,14 @@ public td_wave_ended(iEndedWave)
 			
 		get_user_name(player_id, szUserName, 32)
 		kills = g_PlayerWaveKills[player_id];
-		format(szText, 255, "%s%s: %d %s / %d damage^n", szText, szUserName,  kills, kills == 1 ? "kill" : "kills", g_PlayerWaveDamage[player_id]);
+		format(szText, 255, "%s%s: %d %s / %d obrazen^n", szText, szUserName,  kills, kills == 1 ? "kill" : "kille", g_PlayerWaveDamage[player_id]);
 		
 		if(i == 0)
 		{
 			if(g_CvarValues[CVAR_BEST_PLAYER_GOLD] && iEndedWave != -1)
 			{
 				td_set_user_info(player_id, PLAYER_GOLD, td_get_user_info(player_id, PLAYER_GOLD)+g_CvarValues[CVAR_BEST_PLAYER_GOLD])
-				ColorChat(player_id, GREEN, "[TD]^x01 You got^x04 %d^x01 gold for being best player of this wave.", g_CvarValues[CVAR_BEST_PLAYER_GOLD]);
+				ColorChat(player_id, GREEN, "[TD]^x01 Otrzymujesz^x04 %d^x01 zlota za bycie najlepszym graczem tej fali", g_CvarValues[CVAR_BEST_PLAYER_GOLD]);
 			}
 			
 			if(g_CvarValues[CVAR_BEST_PLAYER_MONEY] && iEndedWave != -1)
@@ -133,7 +133,7 @@ public td_wave_ended(iEndedWave)
 				static money; money = cs_get_user_money(player_id);
 				
 				cs_set_user_money(player_id, (money + g_CvarValues[CVAR_BEST_PLAYER_MONEY]) > 16000 ? 16000 : money+g_CvarValues[CVAR_BEST_PLAYER_MONEY]);
-				ColorChat(player_id, GREEN, "[TD]^x01 You got^x04 $%d^x01 for being best player of this wave.",g_CvarValues[CVAR_BEST_PLAYER_MONEY]);
+				ColorChat(player_id, GREEN, "[TD]^x01 Otrzymujesz^x04 $%d^x01 za bycie najlepszym graczem tej fali.",g_CvarValues[CVAR_BEST_PLAYER_MONEY]);
 			}
 		}
 		
@@ -164,7 +164,7 @@ public td_game_ended(iEntResult)
 	
 	get_best_players(players, false);
 	
-	formatex(szText, charsmax(szText), "Total kills: %d^nTotal taked damage: %d^n^nBest %s of this map:^n", g_PlayerTotalKills[0], g_PlayerTotalDamage[0], numOfPlayers == 1 ? "player" : "players");
+	formatex(szText, charsmax(szText), "Wszystkie zabicia: %d^nZadane DMG: %d^n^nNajlepszy na mapie %s:^n", g_PlayerTotalKills[0], g_PlayerTotalDamage[0], numOfPlayers == 1 ? "player" : "players");
 	
 	for(new i; i < numOfPlayers; i++)
 	{
@@ -176,7 +176,7 @@ public td_game_ended(iEntResult)
 		get_user_name(player_id, szUserName, 32)
 		kills = g_PlayerTotalKills[player_id];
 		
-		format(szText, 255, "%s%s: %d %s / %d damage^n", szText, szUserName,  kills, kills == 1 ? "kill" : "kills", g_PlayerTotalDamage[player_id]);
+		format(szText, 255, "%s%s: %d %s / %d obrazenia^n", szText, szUserName,  kills, kills == 1 ? "kill" : "kille", g_PlayerTotalDamage[player_id]);
 	}
 		
 	set_hudmessage(0, 255, 0, 0.51, 0.33, 2, 2.0, 7.0, 0.05, 0.5)
@@ -189,7 +189,7 @@ public ShowUserStats(id)
 		return;
 		
 	set_hudmessage(0, 255, 0, 0.51, 0.33, 2, 2.0, 7.0, 0.05, 0.5)
-	show_hudmessage(id, "Your total kills: %d^nYour total taked damage: %d^n^nYour wave kills: %d^nYour wave taken damage: %d", 
+	show_hudmessage(id, "Twoje wszystkie zabicia: %d^nTwoje zadane DMG: %d^n^nTwoje fale zabic: %d^nTwoje fale DMG: %d", 
 		g_PlayerTotalKills[id], g_PlayerTotalDamage[id], g_PlayerWaveKills[id], g_PlayerWaveDamage[id]);
 }
 
