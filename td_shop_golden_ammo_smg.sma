@@ -4,7 +4,7 @@
 #include <fakemeta>
 #include <hamsandwich>
 
-#define PLUGIN "TD: Shop | Golden ammo for SMGs"
+#define PLUGIN "TD: Shop | Zlote naboje [SMG]"
 #define VERSION "1.0"
 #define AUTHOR "tomcionek15 & grs4"
 
@@ -17,7 +17,7 @@ public plugin_init()
 {
 	new id = register_plugin(PLUGIN, VERSION, AUTHOR)
 	
-	iItem = td_shop_register_item("Golden ammo for SMGs", "You have 150 golden ammo for SMGs. You take with it 1.5x more damage", 150, 0, id)
+	iItem = td_shop_register_item("Zlote naboje do SMG", "Otrzymujesz 150 zlotych naboi do SMG. Zadajesz 1.5x wiecej obrazen", 150, 0, id)
 
 	RegisterHam(Ham_TraceAttack, "info_target", "TraceAttack")
 	RegisterHam(Ham_TraceAttack, "worldspawn", "TraceAttackW", 1)
@@ -35,10 +35,10 @@ public td_shop_item_selected(id, itemid) {
 public info(id) {
 	if(is_user_connected(id)) {
 		if(!g_PlayerAmmo[id])
-			client_print(id, print_chat, "[GOLDEN AMMO] Ready to shot!");
+			client_print(id, print_chat, "[ZLOTE NABOJE] Gotowe do uzycia!");
 
 		if(g_PlayerAmmo[id])
-			client_print(id, print_chat, "[GOLDEN AMMO] Now you have %d golden ammo only for SMG!", g_PlayerAmmo[id]);
+			client_print(id, print_chat, "[ZLOTE NABOJE] Posiadasz %d zlotych naboi do SMG!", g_PlayerAmmo[id]);
 
 	}
 }
@@ -57,7 +57,7 @@ public TraceAttackW(iEnt, iAttacker, Float:flDamage, Float:fDir[3], ptr, iDamage
 	if(weapon != CSW_MAC10 && weapon != CSW_UMP45  && weapon != CSW_MP5NAVY && weapon != CSW_TMP && weapon != CSW_P90)
 		return HAM_IGNORED;
 		
-	client_print(iAttacker, print_center, "Golden Ammo for SMGs: %d", g_PlayerAmmo[iAttacker])
+	client_print(iAttacker, print_center, "Zlote naboje SMGd", g_PlayerAmmo[iAttacker])
 	
 	return HAM_IGNORED
 }
@@ -99,7 +99,7 @@ public TraceAttack(iEnt, iAttacker, Float:flDamage, Float:fDir[3], ptr, iDamageT
 	write_byte(10)		// speed
 	message_end()
 	
-	client_print(iAttacker, print_center, "Golden Ammo for SMGs: %d", g_PlayerAmmo[iAttacker])
+	client_print(iAttacker, print_center, "Zlote naboje SMG: %d", g_PlayerAmmo[iAttacker])
 	if(td_is_monster(iEnt)) 
 		SetHamParamFloat(3, flDamage*1.5);
 	return HAM_HANDLED;
