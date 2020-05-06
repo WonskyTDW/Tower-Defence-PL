@@ -17,7 +17,7 @@ public plugin_init()
 {
 	new id = register_plugin(PLUGIN, VERSION, AUTHOR)
 	
-	iItem = td_shop_register_item("Zlote naboje do karabinow", "Otrzymujesz 150 zlotych naboi do karabinow. Zadajesz 1.5x wiecej obrazen", 150, 0, id)
+	iItem = td_shop_register_item("Zlote naboje - KARABINY", "Otrzymujesz 150 zlotych naboi do karabinow. Zadajesz 1.5x wiecej obrazen", 150, 0, id)
 
 	RegisterHam(Ham_TraceAttack, "info_target", "TraceAttack")
 	RegisterHam(Ham_TraceAttack, "worldspawn", "TraceAttackW", 1)
