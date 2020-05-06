@@ -13,7 +13,7 @@ new iItem;
 public plugin_init() 
 {
 	new id = register_plugin(PLUGIN, VERSION, AUTHOR)
-	iItem = td_shop_register_item("25% speed", "You will be 25% faster", 250, 1, id)
+	iItem = td_shop_register_item("25% szybkosci", "Bedziesz o 25% szybszy", 250, 1, id)
 	
 }
 public td_shop_item_selected(id, itemid)
