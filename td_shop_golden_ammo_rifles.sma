@@ -54,7 +54,7 @@ public TraceAttackW(iEnt, iAttacker, Float:flDamage, Float:fDir[3], ptr, iDamage
 	if(weapon != CSW_GALI && weapon != CSW_FAMAS  && weapon != CSW_AK47 && weapon != CSW_M4A1 && weapon != CSW_AUG && weapon != CSW_SG552)
 		return HAM_IGNORED;
 	
-	client_print(iAttacker, print_center, "Zlote naboje do karabinow: %d", g_PlayerAmmo[iAttacker])
+	client_print(iAttacker, print_center, "Zlote naboje KARABINY: %d", g_PlayerAmmo[iAttacker])
 	
 	return HAM_IGNORED
 }
